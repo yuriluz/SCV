@@ -1,4 +1,4 @@
-package br.com.scv.persistence;
+package com.scv.persistence;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
