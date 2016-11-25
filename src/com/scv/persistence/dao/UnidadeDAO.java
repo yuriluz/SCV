@@ -32,9 +32,9 @@ public class UnidadeDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "INSERT INTO unidade_uni (uni_nomefant,uni_razao,uni_dtcad,uni_cnes,uni_cnpj,"
-	    	    + "uni_telefone,uni_tipo,uni_gestao,uni_logradouro,uni_bairro,uni_codcid,"
-	    	    + "uni_codest,uni_cep,uni_codger) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    String query = "INSERT INTO unidade_uni (uni_nomefant, uni_razao, uni_dtcad, uni_cnes, uni_cnpj,"
+	    	    + "uni_telefone, uni_tipo, uni_gestao, uni_logradouro, uni_bairro, uni_codcid,"
+	    	    + "uni_codest, uni_cep, uni_codger) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -70,9 +70,9 @@ public class UnidadeDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "UPDATE unidade_uni SET uni_nomefant=?,uni_razao=?,uni_cnes=?,uni_cnpj=?,"
-	    	    + "uni_telefone=?,uni_tipo=?,uni_gestao=?,uni_logradouro=?,uni_bairro=?,uni_codcid=?,"
-	    	    + "uni_codest=?,uni_cep=?,uni_codger=? WHERE uni_coduni=?)";	    
+	    String query = "UPDATE unidade_uni SET uni_nomefant=?, uni_razao=?, uni_cnes=?, uni_cnpj=?,"
+	    	    + "uni_telefone=?, uni_tipo=?, uni_gestao=?, uni_logradouro=?, uni_bairro=?, uni_codcid=?,"
+	    	    + "uni_codest=?, uni_cep=?, uni_codger=? WHERE uni_coduni=?)";	    
 	    
 	    try {
 	    	con = getConnection();

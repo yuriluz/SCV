@@ -31,9 +31,9 @@ public class GerenteDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "INSERT INTO gerente_ger (ger_matger,ger_nome,ger_dtmat,ger_sexo,"
-	    		+ "ger_nacional,ger_natural,ger_doc,ger_dtnasc,ger_telefone,ger_email,"
-	    		+ "ger_logradouro,ger_bairro,ger_codcid,ger_codest,ger_cep) "
+	    String query = "INSERT INTO gerente_ger (ger_matger, ger_nome, ger_dtmat, ger_sexo,"
+	    		+ "ger_nacional, ger_natural, ger_doc, ger_dtnasc, ger_telefone, ger_email,"
+	    		+ "ger_logradouro, ger_bairro, ger_codcid, ger_codest, ger_cep) "
 	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
@@ -71,7 +71,7 @@ public class GerenteDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "UPDATE gerente_ger SET ger_codger = ?, ger_matger = ?, ger_nome = ?, "
+	    String query = "UPDATE gerente_ger SET ger_matger = ?, ger_nome = ?, "
 	    		+ "ger_sexo = ?, ger_nacional = ?, ger_natural = ?, ger_doc = ?, ger_dtnasc = ?, "
 	    		+ "ger_telefone = ?, ger_email = ?, ger_logradouro = ?, ger_bairro = ?, ger_codcid = ?, "
 	    		+ "ger_codest = ?, ger_cep = ? WHERE ger_codger = ?";	    

@@ -31,9 +31,9 @@ public class VacinadorDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "INSERT INTO vacinador_vac (vac_matvac,vac_nome,vac_dtmat,vac_sexo,"
-	    		+ "vac_nacional,vac_natural,vac_doc,vac_dtnasc,vac_telefone,vac_email,"
-	    		+ "vac_logradouro,vac_bairro,vac_codcid,vac_codest,vac_cep,vac_coduni) "
+	    String query = "INSERT INTO vacinador_vac (vac_matvac, vac_nome, vac_dtmat, vac_sexo,"
+	    		+ "vac_nacional, vac_natural, vac_doc, vac_dtnasc, vac_telefone, vac_email,"
+	    		+ "vac_logradouro, vac_bairro, vac_codcid, vac_codest, vac_cep, vac_coduni) "
 	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
@@ -72,7 +72,7 @@ public class VacinadorDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "UPDATE vacinador_vac SET vac_codvac = ?, vac_matvac = ?, vac_nome = ?, "
+	    String query = "UPDATE vacinador_vac SET vac_matvac = ?, vac_nome = ?, "
 	    		+ "vac_sexo = ?, vac_nacional = ?, vac_natural = ?, vac_doc = ?, vac_dtnasc = ?, "
 	    		+ "vac_telefone = ?, vac_email = ?, vac_logradouro = ?, vac_bairro = ?, vac_codcid = ?, "
 	    		+ "vac_codest = ?, vac_cep = ?, vac_coduni = ? WHERE vac_codvac = ?";	    
