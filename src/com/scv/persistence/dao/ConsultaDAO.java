@@ -143,7 +143,7 @@ public class ConsultaDAO extends BaseDAO{
 		Consulta consulta = new Consulta();
 		
 		consulta.setCodigo(res.getInt("con_codcon"));
-		consulta.setPessoa(res.getInt("con_codpes"));
+		consulta.setPessoa(PessoaDAO.getInstance().carregarPorCodigo(res.getInt("con_codpes")));
 		consulta.setUnidade(UnidadeDAO.getInstance().carregarPorCodigo(res.getInt("con_coduni")));
 		consulta.setVacinador(VacinadorDAO.getInstance().carregarPorCodigo(res.getInt("con_codvac")));
 		consulta.setCampanha(CampanhaDAO.getInstance().carregarPorCodigo(res.getInt("con_codcam")));

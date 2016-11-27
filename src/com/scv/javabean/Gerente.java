@@ -12,11 +12,13 @@ public class Gerente {
 	Sexo sexo;
 	String nacionalidade;
 	String naturalidade;
+	String cpf;
 	String documento;
 	Date dataNascimento;
 	String telefone;
 	String email;
 	String logradouro;
+	String complemento;
 	String bairro;
 	Cidade cidade;
 	Estado estado;
@@ -142,6 +144,22 @@ public class Gerente {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 }
