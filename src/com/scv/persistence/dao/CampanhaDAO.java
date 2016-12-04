@@ -116,7 +116,7 @@ public class CampanhaDAO extends BaseDAO{
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "SELECT * FROM campanha WHERE cam_codcam = ?";
+        String query = "SELECT * FROM campanha_cam WHERE cam_codcam = ?";
 
         try {
             con = getConnection();

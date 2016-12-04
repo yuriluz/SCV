@@ -8,6 +8,12 @@ public class Pais {
 	
 	public Pais() {}
 	
+	public Pais(Integer codigo, String nome, String sigla) {
+		this.codigo =  codigo;
+		this.nome = nome;
+		this.sigla = sigla;
+	}
+	
 	public Integer getCodigo() {
 		return codigo;
 	}

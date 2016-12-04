@@ -9,6 +9,13 @@ public class Estado {
 	
 	public Estado() {}
 	
+	public Estado(Integer codigo, String nome, String uf, Pais pais) {
+		this.codigo = codigo;
+		this.nome = nome;
+		this.uf = uf;
+		this.pais = pais;
+	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}

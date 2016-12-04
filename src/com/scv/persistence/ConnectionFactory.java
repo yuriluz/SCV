@@ -9,7 +9,7 @@ public class ConnectionFactory {
 
 	    public Connection getConnection() {
 	        try {
-	            return (Connection) DriverManager.getConnection("jdbc:mysql://localhost/dbscv", "admin", "admin");
+	            return (Connection) DriverManager.getConnection("jdbc:mysql://localhost/dbscv?autoReconnect=true&useSSL=false", "admin", "admin");
 	        } catch (SQLException e) {
 	            throw new RuntimeException(e);
 	        }
