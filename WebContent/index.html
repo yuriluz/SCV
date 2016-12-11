@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Sistema de Controle de Vacinação (SCV) - Home</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $("#data").datepicker({
+    	dateFormat: "dd/mm/yy",
+    	changeMonth: true,
+    	changeYear: true,
+    	yearRange: "1900:c"
+    });
+  });
+  </script>
+  
+  <style>
+  	body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  	
+  	body, html {
+    	height: 100%;
+    	line-height: 1.8;
+    	margin: 0 auto;
+    	}
+    	    	
+	.w3-navbar li a {
+    	padding: 16px;
+    	float: left;
+    	color:#ffffff;
+    	}
+    	
+    .w3-navbar li a:hover{
+		background-color:#2980B9;
+		color:#ffffff;
+	}
+	
+	.w3-navbar li a.active {
+		background-color:#2980B9;  
+		color:#ffffff;
+	}
+	
+	.w3-blue-2 {
+		background-color:#006699;
+	}	
+    
+  </style>
+  
+  <meta name="description" content="Página inicial do Sistema de Controle de Vacinação">
+  <meta name="author" content="Yuri Luz">
+</head>
+<body>
+	<div id="container">
+		<div id="menu" class="w3-top">
+			<ul class="w3-navbar w3-blue-2 w3-card-2" id="myNavbar">
+				<li>
+					<a href="#home" class="w3-wide">SCV</a>
+				</li>
+
+    			<li class="w3-right w3-hide-small">
+      				<a href=""><i class="fa fa-user"></i> ADMINISTRATIVO</a>
+    			</li>
+
+    			<li>
+      				<a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+        				<i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+     				 </a>
+    			</li>
+  			</ul>
+		</div>
+		
+		<nav class="w3-sidenav w3-blue-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidenav">
+  			<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a>
+  			<a href="" onclick="w3_close()">ADMINISTRATIVO</a>
+		</nav>
+		
+		<div class="w3-card-2 w3-display-middle w3-light-grey w3-animate-opacity" style="width:80%; max-width:420px; margin-top:40px;" id="access">
+		  <header class="w3-container w3-blue-grey"><h3 class="w3-center" style="color:#ffffff;" >ACESSO AO SISTEMA</h3></header>
+		  <div class="w3-padding">
+		      <form method="POST" class="w3-container" id="acessForm" name="acessForm" action="">
+		      	<div>
+		      		<h6>Documento de identificação: </h6>
+		      		<input class="w3-radio" type="radio" name="typeDoc" id="typeCpf" value="cpf" checked>
+		      		<label class="w3-validate">CPF</label>
+					<input class="w3-radio w3-margin-left" type="radio" name="typeDoc" id="typeOther" value="other">
+					<label class="w3-validate">Outro</label>
+				</div>
+				<div>
+					<p><input class="w3-input w3-border" type="text" id="doc" name="doc" placeholder="Digite o número do documento de identificação" onKeyPress="MascaraCPF(acessForm.doc);" required></p>
+					<p><input class="w3-input w3-border" type="text" id="data" name="data" placeholder="Digite a data de nascimento" onKeyPress="MascaraData(acessForm.data);" required></p>
+				</div>
+				<div class="w3-center">
+					<p><button class="w3-btn w3-blue-grey" type="submit">ACESSAR <i class="fa fa-arrow-right"></i></button></p>
+				</div>
+		      </form>
+		  </div>
+		</div>
+
+	</div>
+	
+	<script>
+		var mySidenav = document.getElementById("mySidenav");
+	
+		function w3_open() {
+		    if (mySidenav.style.display === 'block') {
+		        mySidenav.style.display = 'none';
+		    } else {
+		        mySidenav.style.display = 'block';
+		    }
+		}
+	
+		function w3_close() {
+		    mySidenav.style.display = "none";
+		}
+		
+		function MascaraData(data){
+	        if(mascaraInteiro(data)==false){
+	                event.returnValue = false;
+	        }       
+	        return formataCampo(data, '00/00/0000', event);
+		}
+		
+		function MascaraCPF(cpf){
+				if (document.getElementById("typeOther").checked == true) {
+					return cpf;
+				}
+				
+				if(mascaraInteiro(cpf)==false){
+		                event.returnValue = false;
+		        }       
+		        return formataCampo(cpf, '000.000.000-00', event);
+		}
+		
+		function mascaraInteiro(){
+	        if (event.keyCode < 48 || event.keyCode > 57){
+	                event.returnValue = false;
+	                return false;
+	        }
+	        return true;
+		}
+		
+		function formataCampo(campo, Mascara, evento) { 
+	        var boleanoMascara; 
+
+	        var Digitato = evento.keyCode;
+	        exp = /\-|\.|\/|\(|\)| /g
+	        campoSoNumeros = campo.value.toString().replace( exp, "" ); 
+
+	        var posicaoCampo = 0;    
+	        var NovoValorCampo="";
+	        var TamanhoMascara = campoSoNumeros.length;; 
+
+	        if (Digitato != 8) { // backspace 
+	                for(i=0; i<= TamanhoMascara; i++) { 
+	                        boleanoMascara  = ((Mascara.charAt(i) == "-") || (Mascara.charAt(i) == ".")
+	                                                                || (Mascara.charAt(i) == "/")) 
+	                        boleanoMascara  = boleanoMascara || ((Mascara.charAt(i) == "(") 
+	                                                                || (Mascara.charAt(i) == ")") || (Mascara.charAt(i) == " ")) 
+	                        if (boleanoMascara) { 
+	                                NovoValorCampo += Mascara.charAt(i); 
+	                                  TamanhoMascara++;
+	                        }else { 
+	                                NovoValorCampo += campoSoNumeros.charAt(posicaoCampo); 
+	                                posicaoCampo++; 
+	                          }              
+	                  }      
+	                campo.value = NovoValorCampo;
+	                  return true; 
+	        }else { 
+	                return true; 
+	        }
+	}
+	</script>
+</body>
+</html>

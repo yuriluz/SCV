@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Teste</title>
+<title>Insert title here</title>
 </head>
 <body>
- <h1>HELLO WORLD</h1>
+
 </body>
 </html>
