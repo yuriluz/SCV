@@ -25,7 +25,7 @@ public class VacinaDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Vacina vacina) throws DAOException {
+	public void inserir(Vacina vacina) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -56,7 +56,7 @@ public class VacinaDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Vacina vacina) throws DAOException {
+	public void alterar(Vacina vacina) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -88,7 +88,7 @@ public class VacinaDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Vacina> carregarTodos() throws DAOException {
+	public List<Vacina> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Vacina> vacinas = new ArrayList<Vacina>();
 
         Connection con = null;
@@ -114,7 +114,7 @@ public class VacinaDAO extends BaseDAO{
         return vacinas;
 	}
 	
-	public Vacina carregarPorCodigo(Integer codigo) throws DAOException {
+	public Vacina carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Vacina vacina = new Vacina();
 
         Connection con = null;

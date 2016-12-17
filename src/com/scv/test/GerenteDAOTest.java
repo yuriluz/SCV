@@ -19,7 +19,7 @@ public class GerenteDAOTest {
 	}
 
 	@Ignore
-	public void testCarregarTodos() {
+	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Gerente> gerentes = new ArrayList<Gerente>();
 		
 		try {
@@ -32,7 +32,7 @@ public class GerenteDAOTest {
 	}
 
 	@Test
-	public void testCarregarPorCodigo() {
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
 		Gerente gerente = new Gerente();
 		
 		try {

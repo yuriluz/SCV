@@ -26,7 +26,7 @@ public class CidadeDAO extends BaseDAO{
         return singleton;
     }
 	
-	public List<Cidade> carregarTodas() throws DAOException {
+	public List<Cidade> carregarTodas() throws DAOException, ClassNotFoundException {
 		
 		List<Cidade> cidades = new ArrayList<Cidade>();
 
@@ -55,7 +55,7 @@ public class CidadeDAO extends BaseDAO{
         return cidades;
 	}
 	
-	public List<Cidade> carregarPorEstado(Estado estado) throws DAOException {
+	public List<Cidade> carregarPorEstado(Estado estado) throws DAOException, ClassNotFoundException {
 		
 		List<Cidade> cidades = new ArrayList<Cidade>();
 
@@ -86,7 +86,7 @@ public class CidadeDAO extends BaseDAO{
         return cidades;
 	}
 	
-	public Cidade carregarPorCodigo(Integer codigo) throws DAOException {
+	public Cidade carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		
 		Cidade cidade = new Cidade();
 		
@@ -117,7 +117,7 @@ public class CidadeDAO extends BaseDAO{
         return cidade;
 	}
 
-	private Cidade gerarCidade(ResultSet res) throws SQLException, DAOException {
+	private Cidade gerarCidade(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Cidade cidade = new Cidade();
 		
 		cidade.setCodigo(res.getInt("cid_codcid"));

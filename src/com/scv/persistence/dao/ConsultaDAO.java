@@ -26,7 +26,7 @@ public class ConsultaDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Consulta consulta) throws DAOException {
+	public void inserir(Consulta consulta) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -54,7 +54,7 @@ public class ConsultaDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Consulta consulta) throws DAOException {
+	public void alterar(Consulta consulta) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -83,7 +83,7 @@ public class ConsultaDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Consulta> carregarTodos() throws DAOException {
+	public List<Consulta> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Consulta> consultas = new ArrayList<Consulta>();
 
         Connection con = null;
@@ -109,7 +109,7 @@ public class ConsultaDAO extends BaseDAO{
         return consultas;
 	}
 	
-	public Consulta carregarPorCodigo(Integer codigo) throws DAOException {
+	public Consulta carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Consulta consulta = new Consulta();
 
         Connection con = null;
@@ -139,7 +139,7 @@ public class ConsultaDAO extends BaseDAO{
         return consulta;
 	}
 
-	private Consulta gerarConsulta(ResultSet res) throws SQLException, DAOException {
+	private Consulta gerarConsulta(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Consulta consulta = new Consulta();
 		
 		consulta.setCodigo(res.getInt("con_codcon"));

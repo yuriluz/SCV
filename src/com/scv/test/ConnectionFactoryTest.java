@@ -11,7 +11,7 @@ import com.scv.persistence.ConnectionFactory;
 public class ConnectionFactoryTest {
 
 	@Test
-	public void testGetConnection() {
+	public void testGetConnection() throws ClassNotFoundException {
 		Connection connection = new ConnectionFactory().getConnection();
 		assertNotNull(connection);
 	}

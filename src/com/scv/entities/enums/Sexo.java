@@ -15,7 +15,7 @@ public enum Sexo {
     
     public static Sexo getByValue(String value) {
         for (Sexo sexo : Sexo.values()) {
-            if (sexo.getValue() == value) {
+            if (sexo.getValue().equals(value)) {
                 return sexo;
             }
         }

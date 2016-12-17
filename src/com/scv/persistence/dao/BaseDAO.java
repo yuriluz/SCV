@@ -4,15 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
-import java.util.logging.Logger;
-
 import com.scv.persistence.ConnectionFactory;
 
 public abstract class BaseDAO {
-
-	private static Logger LOGGER = Logger.getLogger(BaseDAO.class.getName());
 	
-	protected Connection getConnection() {
+	protected Connection getConnection() throws ClassNotFoundException {
 		Connection connection = new ConnectionFactory().getConnection();
 		return connection;
 	}

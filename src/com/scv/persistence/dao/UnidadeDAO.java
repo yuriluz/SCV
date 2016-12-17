@@ -28,7 +28,7 @@ public class UnidadeDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Unidade unidade) throws DAOException {
+	public void inserir(Unidade unidade) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -66,7 +66,7 @@ public class UnidadeDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Unidade unidade) throws DAOException {
+	public void alterar(Unidade unidade) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -104,7 +104,7 @@ public class UnidadeDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Unidade> carregarTodos() throws DAOException {
+	public List<Unidade> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Unidade> unidades = new ArrayList<Unidade>();
 
         Connection con = null;
@@ -130,7 +130,7 @@ public class UnidadeDAO extends BaseDAO{
         return unidades;
 	}
 	
-	public Unidade carregarPorCodigo(Integer codigo) throws DAOException {
+	public Unidade carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Unidade unidade = new Unidade();
 
         Connection con = null;
@@ -160,7 +160,7 @@ public class UnidadeDAO extends BaseDAO{
         return unidade;
 	}
 
-	private Unidade gerarUnidade(ResultSet res) throws SQLException, DAOException {
+	private Unidade gerarUnidade(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Unidade unidade = new Unidade();
 		
 		unidade.setCodigo(res.getInt("uni_coduni"));

@@ -26,7 +26,7 @@ public class CampanhaDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Campanha campanha) throws DAOException {
+	public void inserir(Campanha campanha) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -55,7 +55,7 @@ public class CampanhaDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Campanha campanha) throws DAOException {
+	public void alterar(Campanha campanha) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -84,7 +84,7 @@ public class CampanhaDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Campanha> carregarTodos() throws DAOException {
+	public List<Campanha> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Campanha> campanhas = new ArrayList<Campanha>();
 
         Connection con = null;
@@ -110,7 +110,7 @@ public class CampanhaDAO extends BaseDAO{
         return campanhas;
 	}
 	
-	public Campanha carregarPorCodigo(Integer codigo) throws DAOException {
+	public Campanha carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Campanha campanha = new Campanha();
 
         Connection con = null;
@@ -140,7 +140,7 @@ public class CampanhaDAO extends BaseDAO{
         return campanha;
 	}
 
-	private Campanha gerarCampanha(ResultSet res) throws SQLException, DAOException {
+	private Campanha gerarCampanha(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Campanha campanha = new Campanha();
 		
 		campanha.setCodigo(res.getInt("cam_codcam"));

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Sistema de Controle de Vacinação (SCV)</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="./resources/styles/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="./resources/scripts/jquery-1.12.4.js"></script>
+<script src="./resources/scripts/jquery-ui.js"></script>
+<script src="./resources/scripts/calendar.js"></script>
+
+<meta name="description"
+	content="Página inicial do Sistema de Controle de Vacinação">
+<meta name="author" content="Yuri Luz">
+</head>
+<body class="w3-light-grey">
+
+	<!-- Navigation Bar -->
+	<div>
+		<ul class="w3-navbar w3-white" id="myNavbar">
+			<li><a href="#" class="w3-blue">SCV</a></li>
+			<li class="w3-right w3-hide-small"><a href="#"><i class="fa fa-user"></i> ADMINISTRATIVO</a></li>
+			<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+	      		<a href="javascript:void(0);" onclick="w3_open()"><i class="w3-padding-right w3-padding-left fa fa-bars"></i></a>
+	    	</li>
+		</ul>
+	
+		<div id="mySmallNavBar" class="w3-hide w3-hide-large w3-hide-medium" >
+			<ul class="w3-navbar w3-left-align w3-large w3-white">
+				<li><a class="w3-padding-large" href="#">ADMINISTRATIVO</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<header class="w3-display-container w3-content" style="height: 80%;">
+		<div
+			class="w3-display-middle w3-padding w3-animate-opacity w3-col l6 m8"
+			id="dialog">
+			<div class="w3-container w3-blue">
+				<h3 class="w3-center">ACESSO AO SISTEMA</h3>
+			</div>
+			<div class="w3-container w3-white w3-padding-16">
+
+				<form method="POST" id="acessForm" name="acessForm"
+					action="/SCV/userAccess">
+					<div class="w3-center">
+						<h6>Informe seus dados</h6>
+					</div>
+					<div>
+						<p>
+							<input class="w3-input w3-border" type="text" id="doc" name="doc"
+								placeholder="Número do documento" autocomplete="off" required>
+						</p>
+						<p>
+							<input class="w3-input w3-border" type="text" id="data"
+								name="data" placeholder="Data de nascimento" autocomplete="off"
+								OnKeyUp="mascaraData(this);" required>
+						</p>
+					</div>
+					<div class="w3-center">
+						<p>
+							<button class="w3-btn w3-white w3-border w3-hover-blue"
+								type="submit">
+								ACESSAR <i class="fa fa-arrow-right"></i>
+							</button>
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<script src="./resources/scripts/navigation.js"></script>
+	<script src="./resources/scripts/mask.js"></script>
+	
+</body>
+</html>

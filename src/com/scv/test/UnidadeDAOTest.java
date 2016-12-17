@@ -19,7 +19,7 @@ public class UnidadeDAOTest {
 	}
 
 	@Ignore
-	public void testCarregarTodos() {
+	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Unidade> unidades = new ArrayList<Unidade>();
 		
 		try {
@@ -32,7 +32,7 @@ public class UnidadeDAOTest {
 	}
 
 	@Test
-	public void testCarregarPorCodigo() {
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
 		Unidade unidade = new Unidade();
 		
 		try {

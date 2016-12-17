@@ -25,7 +25,7 @@ public class PaisDAO extends BaseDAO{
         return singleton;
     }
 	
-	public List<Pais> carregarTodos() throws DAOException {
+	public List<Pais> carregarTodos() throws DAOException, ClassNotFoundException {
 		
 		List<Pais> paises = new ArrayList<Pais>();
 
@@ -54,7 +54,7 @@ public class PaisDAO extends BaseDAO{
         return paises;
 	}
 	
-	public Pais carregarPorCodigo(Integer codigo) throws DAOException {
+	public Pais carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		
 		Pais pais = new Pais();
 		

@@ -27,7 +27,7 @@ public class GerenteDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Gerente gerente) throws DAOException {
+	public void inserir(Gerente gerente) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -69,7 +69,7 @@ public class GerenteDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Gerente gerente) throws DAOException {
+	public void alterar(Gerente gerente) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -111,7 +111,7 @@ public class GerenteDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Gerente> carregarTodos() throws DAOException {
+	public List<Gerente> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Gerente> gerentes = new ArrayList<Gerente>();
 
         Connection con = null;
@@ -137,7 +137,7 @@ public class GerenteDAO extends BaseDAO{
         return gerentes;
 	}
 	
-	public Gerente carregarPorCodigo(Integer codigo) throws DAOException {
+	public Gerente carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Gerente gerente = new Gerente();
 
         Connection con = null;
@@ -167,7 +167,7 @@ public class GerenteDAO extends BaseDAO{
         return gerente;
 	}
 
-	private Gerente gerarGerente(ResultSet res) throws SQLException, DAOException {
+	private Gerente gerarGerente(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Gerente gerente = new Gerente();
 		
 		gerente.setCodigo(res.getInt("ger_codger"));

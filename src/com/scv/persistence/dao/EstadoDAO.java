@@ -26,7 +26,7 @@ public class EstadoDAO extends BaseDAO{
         return singleton;
     }
 	
-	public List<Estado> carregarTodos() throws DAOException {
+	public List<Estado> carregarTodos() throws DAOException, ClassNotFoundException {
 		
 		List<Estado> estados = new ArrayList<Estado>();
 
@@ -55,7 +55,7 @@ public class EstadoDAO extends BaseDAO{
         return estados;
 	}
 	
-	public List<Estado> carregarPorPais(Pais pais) throws DAOException {
+	public List<Estado> carregarPorPais(Pais pais) throws DAOException, ClassNotFoundException {
 		
 		List<Estado> estados = new ArrayList<Estado>();
 
@@ -86,7 +86,7 @@ public class EstadoDAO extends BaseDAO{
         return estados;
 	}
 	
-	public Estado carregarPorCodigo(Integer codigo) throws DAOException {
+	public Estado carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		
 		Estado estado = new Estado();
 		
@@ -117,7 +117,7 @@ public class EstadoDAO extends BaseDAO{
         return estado;
 	}
 
-	private Estado gerarEstado(ResultSet res) throws SQLException, DAOException {
+	private Estado gerarEstado(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Estado estado = new Estado();
 		
 		estado.setCodigo(res.getInt("est_codest"));

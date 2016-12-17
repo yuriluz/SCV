@@ -19,7 +19,7 @@ public class VacinaDAOTest {
 	}
 
 	@Ignore
-	public void testCarregarTodos() {
+	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Vacina> vacinas = new ArrayList<Vacina>();
 		
 		try {
@@ -32,7 +32,7 @@ public class VacinaDAOTest {
 	}
 
 	@Test
-	public void testCarregarPorCodigo() {
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
 		Vacina vacina = new Vacina();
 		
 		try {

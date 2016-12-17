@@ -19,7 +19,7 @@ public class ConsultaDAOTest {
 	}
 
 	@Ignore
-	public void testCarregarTodos() {
+	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
 		
 		try {
@@ -32,7 +32,7 @@ public class ConsultaDAOTest {
 	}
 
 	@Test
-	public void testCarregarPorCodigo() {
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
 		Consulta consulta = new Consulta();
 		
 		try {

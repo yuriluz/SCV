@@ -18,7 +18,7 @@ public class PaisDAOTest {
 	}
 
 	@Test
-	public void testCarregarTodos() {
+	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Pais> paises = new ArrayList<Pais>();
 		
 		try {
@@ -31,7 +31,7 @@ public class PaisDAOTest {
 	}
 
 	@Test
-	public void testCarregarPorCodigo() {
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
 		Pais pais = new Pais();
 		
 		try {

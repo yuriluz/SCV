@@ -3,6 +3,7 @@ package com.scv.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class PessoaDAOTest {
 	}
 
 	@Ignore
-	public void testCarregarTodos() {
+	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 		
 		try {
@@ -32,7 +33,7 @@ public class PessoaDAOTest {
 	}
 
 	@Test
-	public void testCarregarPorCodigo() {
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 		
 		try {
@@ -43,5 +44,19 @@ public class PessoaDAOTest {
 		
 		assertNotNull(pessoa);
 	}
+	
+	@Test
+	public void testCarregarPorDocumentoENascimento() throws ClassNotFoundException {
+		Pessoa pessoa = new Pessoa();
+		
+		try {
+			pessoa = PessoaDAO.getInstance().carregarPorDocumentoENascimento("", new Date());
+		} catch (DAOException e) {
+			fail("PessoaDAO: Falha do teste de carregarPorDocumentoENascimento()");
+		}
+		
+		assertNotNull(pessoa);
+	}
+	
 
 }

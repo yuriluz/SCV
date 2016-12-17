@@ -28,7 +28,7 @@ public class PessoaDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Pessoa pessoa) throws DAOException {
+	public void inserir(Pessoa pessoa) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -42,7 +42,7 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt = con.prepareStatement(query);
 
 	        pstmt.setString(1, pessoa.getNome());
-	        pstmt.setDate(2, (java.sql.Date) new Date());
+	        pstmt.setDate(2, new java.sql.Date(new Date().getTime()));
 	        pstmt.setString(3, pessoa.getSexo().getValue());
 	        pstmt.setString(4, pessoa.getNacionalidade());
 	        pstmt.setString(5, pessoa.getNaturalidade());
@@ -70,7 +70,7 @@ public class PessoaDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Pessoa pessoa) throws DAOException {
+	public void alterar(Pessoa pessoa) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -89,7 +89,7 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setString(4, pessoa.getNaturalidade());
 	        pstmt.setString(5, pessoa.getCpf());
 	        pstmt.setString(6, pessoa.getDocumento());
-	        pstmt.setDate(7, (java.sql.Date) pessoa.getDataNascimento());
+	        pstmt.setDate(7, new java.sql.Date(pessoa.getDataNascimento().getTime()));
 	        pstmt.setString(8, pessoa.getTelefone());
 	        pstmt.setString(9, pessoa.getEmail());
 	        pstmt.setInt(10, pessoa.getEscolaridade().getValue());
@@ -112,7 +112,7 @@ public class PessoaDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Pessoa> carregarTodos() throws DAOException {
+	public List<Pessoa> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
         Connection con = null;
@@ -138,7 +138,7 @@ public class PessoaDAO extends BaseDAO{
         return pessoas;
 	}
 	
-	public Pessoa carregarPorCodigo(Integer codigo) throws DAOException {
+	public Pessoa carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 
         Connection con = null;
@@ -167,8 +167,40 @@ public class PessoaDAO extends BaseDAO{
         }
         return pessoa;
 	}
+	
+	public Pessoa carregarPorDocumentoENascimento(String documento, Date dataNascimento) throws DAOException, ClassNotFoundException {
+		Pessoa pessoa = new Pessoa();
 
-	private Pessoa gerarPessoa(ResultSet res) throws SQLException, DAOException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM pessoa_pes WHERE (pes_cpf = ? OR pes_documento = ?) AND pes_dtnasc = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, documento);
+            pstmt.setString(2, documento);
+            pstmt.setDate(3, new java.sql.Date(dataNascimento.getTime()));
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	pessoa = gerarPessoa(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava a pessoa (" + documento.toString() +" | " + dataNascimento.toString() + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return pessoa;
+	}
+
+	private Pessoa gerarPessoa(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 		
 		pessoa.setCodigo(res.getInt("pes_codpes"));

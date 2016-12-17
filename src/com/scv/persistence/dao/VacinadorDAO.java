@@ -27,7 +27,7 @@ public class VacinadorDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Vacinador vacinador) throws DAOException {
+	public void inserir(Vacinador vacinador) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -70,7 +70,7 @@ public class VacinadorDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Vacinador vacinador) throws DAOException {
+	public void alterar(Vacinador vacinador) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -113,7 +113,7 @@ public class VacinadorDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Vacinador> carregarTodos() throws DAOException {
+	public List<Vacinador> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Vacinador> vacinadores = new ArrayList<Vacinador>();
 
         Connection con = null;
@@ -139,7 +139,7 @@ public class VacinadorDAO extends BaseDAO{
         return vacinadores;
 	}
 	
-	public Vacinador carregarPorCodigo(Integer codigo) throws DAOException {
+	public Vacinador carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Vacinador vacinador = new Vacinador();
 
         Connection con = null;
@@ -169,7 +169,7 @@ public class VacinadorDAO extends BaseDAO{
         return vacinador;
 	}
 
-	private Vacinador gerarVacinador(ResultSet res) throws SQLException, DAOException {
+	private Vacinador gerarVacinador(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Vacinador vacinador = new Vacinador();
 		
 		vacinador.setCodigo(res.getInt("vac_codvac"));

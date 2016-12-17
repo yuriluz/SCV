@@ -26,7 +26,7 @@ public class RegistroDAO extends BaseDAO{
         return singleton;
     }
 	
-	public void inserir(Registro registro) throws DAOException {
+	public void inserir(Registro registro) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -56,7 +56,7 @@ public class RegistroDAO extends BaseDAO{
 	    }
 	}
 	
-	public void alterar(Registro registro) throws DAOException {
+	public void alterar(Registro registro) throws DAOException, ClassNotFoundException {
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
@@ -87,7 +87,7 @@ public class RegistroDAO extends BaseDAO{
 	    }
 	}
 	
-	public List<Registro> carregarTodos() throws DAOException {
+	public List<Registro> carregarTodos() throws DAOException, ClassNotFoundException {
 		List<Registro> registros = new ArrayList<Registro>();
 
         Connection con = null;
@@ -113,7 +113,7 @@ public class RegistroDAO extends BaseDAO{
         return registros;
 	}
 	
-	public Registro carregarPorCodigo(Integer codigo) throws DAOException {
+	public Registro carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Registro registro = new Registro();
 
         Connection con = null;
@@ -143,7 +143,7 @@ public class RegistroDAO extends BaseDAO{
         return registro;
 	}
 
-	private Registro gerarRegistro(ResultSet res) throws SQLException, DAOException {
+	private Registro gerarRegistro(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Registro registro = new Registro();
 		
 		registro.setCodigo(res.getInt("reg_codreg"));
