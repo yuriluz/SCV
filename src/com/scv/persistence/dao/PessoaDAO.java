@@ -34,8 +34,8 @@ public class PessoaDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO pessoa_pes (pes_nome, pes_dtmat, pes_sexo, pes_nacional, pes_natural, "
 	    		+ "pes_cpf, pes_documento, pes_dtnasc, pes_escolaridade, pes_telefone, pes_email, "
-	    		+ "pes_logradouro, pes_complemento, pes_bairro, pes_codcid, pes_codest, pes_cep) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "pes_logradouro, pes_complemento, pes_bairro, pes_codcid, pes_codest, pes_cep, pes_senha) "
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -58,6 +58,7 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setInt(15, pessoa.getCidade().getCodigo());
 	        pstmt.setInt(16, pessoa.getEstado().getCodigo());
 	        pstmt.setString(17, pessoa.getCep());
+	        pstmt.setString(18, pessoa.getSenha());
 	        
 	        pstmt.execute();
 	        
@@ -76,7 +77,7 @@ public class PessoaDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "UPDATE pessoa_pes SET pes_nome = ?, pes_sexo = ?, pes_nacional = ?, "
 	    		+ "pes_natural = ?, pes_cpf = ?, pes_documento = ?, pes_dtnasc = ?, pes_telefone = ?, pes_email = ?, pes_escolaridade = ?, "
-	    		+ "pes_logradouro = ?, pes_complemento = ?, pes_bairro = ?, pes_codcid = ?, pes_codest = ?, pes_cep = ? "
+	    		+ "pes_logradouro = ?, pes_complemento = ?, pes_bairro = ?, pes_codcid = ?, pes_codest = ?, pes_cep = ?, pes_senha = ? "
 	    		+ "WHERE pes_codpes = ?";	    
 	    
 	    try {
@@ -99,7 +100,8 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setInt(14, pessoa.getCidade().getCodigo());
 	        pstmt.setInt(15, pessoa.getEstado().getCodigo());
 	        pstmt.setString(16, pessoa.getCep());
-	        pstmt.setInt(17, pessoa.getCodigo());
+	        pstmt.setString(17, pessoa.getSenha());
+	        pstmt.setInt(18, pessoa.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -168,13 +170,13 @@ public class PessoaDAO extends BaseDAO{
         return pessoa;
 	}
 	
-	public Pessoa carregarPorDocumentoENascimento(String documento, Date dataNascimento) throws DAOException, ClassNotFoundException {
+	public Pessoa validarAcesso(String documento, String senha) throws DAOException, ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "SELECT * FROM pessoa_pes WHERE (pes_cpf = ? OR pes_documento = ?) AND pes_dtnasc = ?";
+        String query = "SELECT * FROM pessoa_pes WHERE (pes_cpf = ? OR pes_documento = ?) AND pes_senha = MD5(?)";
 
         try {
             con = getConnection();
@@ -182,7 +184,7 @@ public class PessoaDAO extends BaseDAO{
             
             pstmt.setString(1, documento);
             pstmt.setString(2, documento);
-            pstmt.setDate(3, new java.sql.Date(dataNascimento.getTime()));
+            pstmt.setString(3, senha);
             
             res = pstmt.executeQuery();
             
@@ -191,7 +193,7 @@ public class PessoaDAO extends BaseDAO{
             }
             
         } catch (SQLException e) {
-            String msg = "SQLException enquanto carregava a pessoa (" + documento.toString() +" | " + dataNascimento.toString() + ")";
+            String msg = "SQLException enquanto validava acesso da pessoa (" + documento.toString() + ")";
             LOGGER.log(Level.SEVERE, msg, e);
             throw new DAOException(msg, e);
         } finally {
@@ -220,6 +222,7 @@ public class PessoaDAO extends BaseDAO{
 		pessoa.setCidade(CidadeDAO.getInstance().carregarPorCodigo(res.getInt("pes_codcid")));
 		pessoa.setEstado(EstadoDAO.getInstance().carregarPorCodigo(res.getInt("pes_codest")));
 		pessoa.setCep(res.getString("pes_cep"));
+		pessoa.setSenha(res.getString("pes_senha"));
 		
 		return pessoa;
 	}

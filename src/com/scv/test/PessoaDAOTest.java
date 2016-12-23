@@ -50,7 +50,7 @@ public class PessoaDAOTest {
 		Pessoa pessoa = new Pessoa();
 		
 		try {
-			pessoa = PessoaDAO.getInstance().carregarPorDocumentoENascimento("", new Date());
+			pessoa = PessoaDAO.getInstance().validarAcesso("", "");
 		} catch (DAOException e) {
 			fail("PessoaDAO: Falha do teste de carregarPorDocumentoENascimento()");
 		}

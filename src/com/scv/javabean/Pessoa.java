@@ -23,6 +23,7 @@ public class Pessoa {
 	Cidade cidade;
 	Estado estado;
 	String cep;
+	String senha;
 	
 	public Pessoa() {}
 
@@ -188,5 +189,14 @@ public class Pessoa {
             return null;
         }
     }
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 }

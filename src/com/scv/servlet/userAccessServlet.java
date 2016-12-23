@@ -1,10 +1,6 @@
 package com.scv.servlet;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,22 +22,19 @@ public class userAccessServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String documento;
-		Date dataNascimento;
-		DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+		String senha;
 		Pessoa pessoa = new Pessoa();
 		
 		try {
 			documento = request.getParameter("doc");
-			dataNascimento = dateFormat.parse(request.getParameter("data"));
-			pessoa = PessoaDAO.getInstance().carregarPorDocumentoENascimento(documento, dataNascimento);
+			senha = request.getParameter("senha");
+			pessoa = PessoaDAO.getInstance().validarAcesso(documento, senha);
 			if (pessoa.getCodigo() == null) {
 				request.getRequestDispatcher("index.html").forward(request, response);
 			} else {
 				request.setAttribute("usuario", pessoa);
 				request.getRequestDispatcher("WEB-INF/home/user-home.jsp").forward(request, response);
 			}
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} catch (DAOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
