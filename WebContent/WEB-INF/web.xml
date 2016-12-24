@@ -14,4 +14,15 @@
   	<servlet-name>userAccessServlet</servlet-name>
   	<url-pattern>/userAccess</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>admAccessServlet</servlet-name>
+  	<servlet-class>com.scv.servlet.admAccessServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>admAccessServlet</servlet-name>
+  	<url-pattern>/admAccess</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

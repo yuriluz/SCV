@@ -3,7 +3,6 @@ package com.scv.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -46,13 +45,13 @@ public class PessoaDAOTest {
 	}
 	
 	@Test
-	public void testCarregarPorDocumentoENascimento() throws ClassNotFoundException {
+	public void testValidarAcesso() throws ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 		
 		try {
 			pessoa = PessoaDAO.getInstance().validarAcesso("", "");
 		} catch (DAOException e) {
-			fail("PessoaDAO: Falha do teste de carregarPorDocumentoENascimento()");
+			fail("PessoaDAO: Falha do teste de validarAcesso()");
 		}
 		
 		assertNotNull(pessoa);

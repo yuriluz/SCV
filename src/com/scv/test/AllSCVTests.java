@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ CampanhaDAOTest.class, CidadeDAOTest.class, ConnectionFactoryTest.class, ConsultaDAOTest.class,
 		EstadoDAOTest.class, GerenteDAOTest.class, PaisDAOTest.class, PessoaDAOTest.class, RegistroDAOTest.class,
-		UnidadeDAOTest.class, VacinaDAOTest.class, VacinadorDAOTest.class })
+		UnidadeDAOTest.class, UsuarioDAOTest.class,  VacinaDAOTest.class, VacinadorDAOTest.class })
 public class AllSCVTests {
 
 }
