@@ -33,7 +33,12 @@
 		<ul class="w3-navbar w3-white w3-card-2" id="myNavbar">
 			<li><a href="#home" class="w3-wide">SCV</a></li>
 
-			<li class="w3-right w3-hide-small"><a href="">CARTÃO DE VACINAÇÃO</a> <a href="">CALENDÁRIO DE VACINAÇÃO</a></li>
+			<li class="w3-right w3-hide-small">
+				<a href="">CADASTRO</a>
+				<a href="">CARTÃO DE VACINAÇÃO</a>
+				<a href="">CALENDÁRIO DE VACINAÇÃO</a>
+				<a href="/SCV/logout">Sair</a>
+			</li>
 
 			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
 			</a></li>
@@ -45,7 +50,7 @@
 	</nav>
 
 	<%
-		Pessoa usuario = (Pessoa) request.getAttribute("usuario");
+		Pessoa usuario = (Pessoa) session.getAttribute("usuario");
 		String nome = usuario.getNome().substring(0, usuario.getNome().indexOf(" ")).toUpperCase();
 		Sexo genero = usuario.getSexo();
 		Escolaridade escolaridade = usuario.getEscolaridade();

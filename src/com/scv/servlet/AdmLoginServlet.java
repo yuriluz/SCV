@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.scv.javabean.Gerente;
 import com.scv.javabean.Usuario;
@@ -15,10 +16,10 @@ import com.scv.persistence.dao.UsuarioDAO;
 import com.scv.persistence.dao.VacinadorDAO;
 import com.scv.persistence.exception.DAOException;
 
-public class admAccessServlet extends HttpServlet {
+public class AdmLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public admAccessServlet() {
+    public AdmLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,6 +29,7 @@ public class admAccessServlet extends HttpServlet {
 		String email;
 		String senha;
 		Usuario usuario = new Usuario();
+		HttpSession session = request.getSession();
 		
 		try {
 			email = request.getParameter("email");
@@ -36,17 +38,15 @@ public class admAccessServlet extends HttpServlet {
 			if (usuario.getCodigo() == null) {
 				request.getRequestDispatcher("index.html").forward(request, response);
 			} else {
-				request.setAttribute("login", usuario);
-				if (usuario.getTipo().equals(Usuario.TipoUsuario.ADMINISTRATIVO)){
-					request.getRequestDispatcher("WEB-INF/home/adm-home.jsp").forward(request, response);
-				} else if (usuario.getTipo().equals(Usuario.TipoUsuario.GERENTE)){
+				session.setAttribute("login", usuario);
+				if (usuario.getTipo().equals(Usuario.TipoUsuario.GERENTE)){
 					Gerente gerente = GerenteDAO.getInstance().carregarPorCodigo(usuario.getCodUsuario());
-					request.setAttribute("usuario", gerente);
+					session.setAttribute("usuario", gerente);
 				} else if (usuario.getTipo().equals(Usuario.TipoUsuario.VACINADOR)){
 					Vacinador vacinador = VacinadorDAO.getInstance().carregarPorCodigo(usuario.getCodUsuario());
-					request.setAttribute("usuario", vacinador);
+					session.setAttribute("usuario", vacinador);
 				}
-				
+				request.getRequestDispatcher("WEB-INF/home/adm-home.jsp").forward(request, response);
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();

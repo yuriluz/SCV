@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>SCV</display-name>
+  <session-config>
+  	<session-timeout>5</session-timeout>
+  </session-config>
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>userAccessServlet</servlet-name>
-  	<servlet-class>com.scv.servlet.userAccessServlet</servlet-class>
+  	<servlet-name>userLoginServlet</servlet-name>
+  	<servlet-class>com.scv.servlet.UserLoginServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>userAccessServlet</servlet-name>
-  	<url-pattern>/userAccess</url-pattern>
+  	<servlet-name>userLoginServlet</servlet-name>
+  	<url-pattern>/userLogin</url-pattern>
   </servlet-mapping>
   
    <servlet>
-  	<servlet-name>admAccessServlet</servlet-name>
-  	<servlet-class>com.scv.servlet.admAccessServlet</servlet-class>
+  	<servlet-name>admLoginServlet</servlet-name>
+  	<servlet-class>com.scv.servlet.AdmLoginServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>admAccessServlet</servlet-name>
-  	<url-pattern>/admAccess</url-pattern>
+  	<servlet-name>admLoginServlet</servlet-name>
+  	<url-pattern>/admLogin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>logoutServlet</servlet-name>
+  	<servlet-class>com.scv.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>logoutServlet</servlet-name>
+  	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
   
 </web-app>
