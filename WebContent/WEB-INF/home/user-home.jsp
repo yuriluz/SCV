@@ -46,7 +46,7 @@
 	</div>
 
 	<nav class="w3-sidenav w3-margin-0 w3-white w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
-		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> <a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> <a href="" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a>
+		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> <a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> <a href="" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> <a href="/SCV/logout" onclick="w3_close()">Sair</a>
 	</nav>
 
 	<%
