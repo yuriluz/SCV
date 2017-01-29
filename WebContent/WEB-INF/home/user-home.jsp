@@ -36,7 +36,7 @@
 			<li class="w3-right w3-hide-small">
 				<a href="">CADASTRO</a>
 				<a href="">CARTÃO DE VACINAÇÃO</a>
-				<a href="">CALENDÁRIO DE VACINAÇÃO</a>
+				<a href="/SCV/calendar">CALENDÁRIO DE VACINAÇÃO</a>
 				<a href="/SCV/logout">Sair</a>
 			</li>
 

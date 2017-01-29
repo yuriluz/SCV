@@ -36,4 +36,13 @@
   	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+  	<servlet-name>calendarServlet</servlet-name>
+  	<servlet-class>com.scv.servlet.CalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>calendarServlet</servlet-name>
+  	<url-pattern>/calendar</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -36,7 +36,7 @@ public class AdmLoginServlet extends HttpServlet {
 			senha = request.getParameter("senha");
 			usuario = UsuarioDAO.getInstance().validarAcesso(email, senha);
 			if (usuario.getEmail() == null) {
-				request.getRequestDispatcher("acesso-adm.html").forward(request, response);
+				request.getRequestDispatcher("adm-access.html").forward(request, response);
 			} else {
 				session.setAttribute("login", usuario);
 				if (usuario.getTipo().equals(Usuario.TipoUsuario.GERENTE)){

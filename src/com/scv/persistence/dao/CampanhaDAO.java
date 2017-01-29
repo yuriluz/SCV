@@ -90,7 +90,7 @@ public class CampanhaDAO extends BaseDAO{
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "select * from campanha_cam order by campanha_cam";
+        String query = "select * from campanha_cam order by cam_codcam DESC";
 
         try {
             con = getConnection();
