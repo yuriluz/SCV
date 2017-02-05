@@ -9,6 +9,7 @@
 <%@page import="com.scv.javabean.Estado"%>
 <%@page import="com.scv.javabean.Cidade"%>
 <%@page import="java.util.*"%>
+<%@page import="java.text.SimpleDateFormat"%>
 
 <!DOCTYPE html>
 <html>
@@ -30,24 +31,24 @@
 <meta name="description" content="Página do Usuário do Sistema de Controle de Vacinação">
 <meta name="author" content="Yuri Luz">
 </head>
-<body class="w3-light-grey">
+<body class="w3-white">
 	<div id="menu">
-		<ul class="w3-navbar w3-white w3-card-2" id="myNavbar">
-			<li><a href="#home" class="w3-wide">SCV</a></li>
+		<ul class="w3-navbar w3-blue w3-card-2" id="myNavbar">
+			<li><a href="#home" style="color: #ffffff;" class="w3-wide">SCV</a></li>
 
 			<li class="w3-right w3-hide-small">
-				<a href="">CADASTRO</a>
-				<a href="">CARTÃO DE VACINAÇÃO</a>
-				<a href="">CALENDÁRIO DE VACINAÇÃO</a>
-				<a href="/SCV/logout">Sair</a>
+				<a style="color: #ffffff;" href="">CADASTRO</a>
+				<a style="color: #ffffff;" href="">CARTÃO DE VACINAÇÃO</a>
+				<a style="color: #ffffff;" href="">CALENDÁRIO DE VACINAÇÃO</a>
+				<a style="color: #ffffff;" href="/SCV/logout">Sair</a>
 			</li>
 
-			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left w3-text-white"></i>
 			</a></li>
 		</ul>
 	</div>
 
-	<nav class="w3-sidenav w3-margin-0 w3-white w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
+	<nav class="w3-sidenav w3-margin-0 w3-blue w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> <a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> <a href="" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> <a href="/SCV/logout" onclick="w3_close()">Sair</a>
 	</nav>
 
@@ -56,12 +57,19 @@
 		Estado estado = usuario.getEstado();
 		Cidade cidade = usuario.getCidade();
 	
-		List<Campanha> campanhas = CampanhaDAO.getInstance().carregarTodos();
+		List<Campanha> campanhas = CampanhaDAO.getInstance().carregarTodasNacionais();
+		if (!estado.equals(null)){
+			campanhas.addAll(CampanhaDAO.getInstance().carregarTodasPorEstado(estado));
+		}
+		if (!cidade.equals(null)){
+			campanhas.addAll(CampanhaDAO.getInstance().carregarTodasPorCidade(cidade));
+		}
 		List<Campanha> campanhasEmAndamento = new ArrayList<Campanha>();
 		List<Campanha> campanhasFuturas = new ArrayList<Campanha>();
 		List<Campanha> campanhasPassadas = new ArrayList<Campanha>();
 		
 		Date hoje = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		for (Campanha campanha : campanhas) {
 			if (campanha.getDataInicio().compareTo(hoje) <= 0 && campanha.getDataFim().compareTo(hoje) >= 0) {
@@ -75,39 +83,84 @@
 		
 	%>
 
-	<div class="w3-container w3-padding-64">
+	<div class="w3-container w3-center w3-padding-64 w3-margin">
 		<div class="w3-row">
-			<div class="w3-col l6">
-			  <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge">Clique para ver o Calendário de Vacinação de 2017</button>
-			
-			  <div id="id01" class="w3-modal">
+		  	<div class="w3-col l6">
+    			<%if (!campanhasEmAndamento.isEmpty()) {%>
+    			<div>
+					<h6>Campanhas em andamento:</h6>
+					<hr class="w3-margin-0 w3-margin-bottom">
+					<div class="w3-accordion w3-light-grey">
+					<% for (Campanha campanha : campanhasEmAndamento) { %>
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container">
+      						<p><i><%=campanha.getDescricao()%></i></p>
+    					</div>
+					<% } %>
+					</div>
+				</div>
+				<% } %>
+				
+				<%if (!campanhasFuturas.isEmpty()) {%>
+				<div class="w3-margin-top">
+					<h6>Próximas campanhas:</h6>
+					<hr class="w3-margin-0 w3-margin-bottom">
+					<div class="w3-accordion w3-light-grey">
+					<% for (Campanha campanha : campanhasFuturas) { %>
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container">
+      						<p><i><%=campanha.getDescricao()%></i></p>
+    					</div>
+					<% } %>
+					</div>
+				</div>
+				<%}%>
+				
+				<%if (!campanhasPassadas.isEmpty()) {%>
+				<div class="w3-margin-top">
+					<h6>Campanhas encerradas:</h6>
+					<hr class="w3-margin-0 w3-margin-bottom">
+					<div class="w3-accordion w3-light-grey">
+					<% for (Campanha campanha : campanhasPassadas) { %>
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container">
+      						<p><i><%=campanha.getDescricao()%></i></p>
+    					</div>
+					<% } %>
+					</div>
+				</div>
+				<%}%>
+  			</div>
+			<div class="w3-col l6 w3-padding-64">
+			  <button style="width: 70%; white-space: normal;" onclick="document.getElementById('image-modal').style.display='block'" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom">Clique para ver o Calendário de Vacinação</button>
+      		  <a href="./resources/calendars/2017.jpg" download="calendario_de_vacinacao">
+			  	<button style="width: 70%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge">Faça download do Calendário de Vacinação</button>
+			  </a>
+  			</div>
+  			<div id="image-modal" class="w3-modal">
 			    <div class="w3-modal-content w3-animate-opacity w3-card-8">
 			      <header class="w3-container"> 
-			        <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn">&times;</span>
+			        <span onclick="document.getElementById('image-modal').style.display='none'" class="w3-closebtn">&times;</span>
 			      </header>
 			      <div class="w3-container">
 			        <img src="./resources/calendars/2017.jpg" class="w3-image" alt="Calendário Nacional de Vacinação de 2017">
 			      </div>
 			    </div>
-			  </div>
-  			</div>
-  			<div class="w3-col l6">
-    			<%if (!campanhasEmAndamento.isEmpty()) {%>
-					
-				<%}%>
-				
-				<%if (!campanhasFuturas.isEmpty()) {%>
-					
-				<%}%>
-				
-				<%if (!campanhasPassadas.isEmpty()) {%>
-					
-				<%}%>
-  			</div>
+			</div>
   		</div>
 
 	</div>
 	
 	<script src="./resources/scripts/navigation.js"></script>
+	<script>
+		function myFunction(id) {
+		    var x = document.getElementById(id);
+		    if (x.className.indexOf("w3-show") == -1) {
+		        x.className += " w3-show";
+		    } else { 
+		        x.className = x.className.replace(" w3-show", "");
+		    }
+		}
+	</script>
 </body>
 </html>

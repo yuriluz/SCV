@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.scv.javabean.Campanha;
+import com.scv.javabean.Cidade;
+import com.scv.javabean.Estado;
 import com.scv.persistence.exception.DAOException;
 
 import java.sql.Connection;
@@ -90,7 +92,7 @@ public class CampanhaDAO extends BaseDAO{
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "select * from campanha_cam order by cam_codcam DESC";
+        String query = "select * from campanha_cam";
 
         try {
             con = getConnection();
@@ -102,6 +104,87 @@ public class CampanhaDAO extends BaseDAO{
             }
         } catch (SQLException e) {
             String msg = "SQLException enquanto carregava todas as campanhas";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return campanhas;
+	}
+	
+	public List<Campanha> carregarTodasNacionais() throws DAOException, ClassNotFoundException {
+		List<Campanha> campanhas = new ArrayList<Campanha>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "select * from campanha_cam where cam_codcid is null and cam_codest is null";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Campanha campanha = gerarCampanha(res);
+                campanhas.add(campanha);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava todas as campanhas";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return campanhas;
+	}
+	
+	public List<Campanha> carregarTodasPorCidade(Cidade cidade) throws DAOException, ClassNotFoundException {
+		List<Campanha> campanhas = new ArrayList<Campanha>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "select * from campanha_cam where cam_codcid = ? and cam_codest = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, cidade.getCodigo());
+            pstmt.setInt(2, cidade.getEstado().getCodigo());
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Campanha campanha = gerarCampanha(res);
+                campanhas.add(campanha);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava as campanhas para a cidade: " + cidade.getNome() + " (" + cidade.getCodigo()+ ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return campanhas;
+	}
+	
+	public List<Campanha> carregarTodasPorEstado(Estado estado) throws DAOException, ClassNotFoundException {
+		List<Campanha> campanhas = new ArrayList<Campanha>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "select * from campanha_cam where cam_codest = ? and cam_codcid is null";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, estado.getCodigo());
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Campanha campanha = gerarCampanha(res);
+                campanhas.add(campanha);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava as campanhas para o estado: " + estado.getNome() + " (" + estado.getCodigo() + ")" ;
             LOGGER.log(Level.SEVERE, msg, e);
             throw new DAOException(msg, e);
         } finally {
