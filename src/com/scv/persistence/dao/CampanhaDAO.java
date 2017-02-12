@@ -232,6 +232,8 @@ public class CampanhaDAO extends BaseDAO{
 		campanha.setDataInicio(res.getDate("cam_dtinicio"));
 		campanha.setDataFim(res.getDate("cam_dtfim"));
 		campanha.setVacina(VacinaDAO.getInstance().carregarPorCodigo(res.getInt("cam_codvcn")));
+		campanha.setCidade(CidadeDAO.getInstance().carregarPorCodigo(res.getInt("cam_codcid")));
+		campanha.setEstado(EstadoDAO.getInstance().carregarPorCodigo(res.getInt("cam_codest")));
 		
 		return campanha;
 	}

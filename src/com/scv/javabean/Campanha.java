@@ -10,6 +10,8 @@ public class Campanha {
 	private Date dataInicio;
 	private Date dataFim;
 	private Vacina vacina;
+	private Cidade cidade;
+	private Estado estado;
 	
 	public Campanha() {}
 
@@ -59,6 +61,22 @@ public class Campanha {
 
 	public void setVacina(Vacina vacina) {
 		this.vacina = vacina;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 }

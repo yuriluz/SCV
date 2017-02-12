@@ -33,23 +33,27 @@
 </head>
 <body class="w3-white">
 	<div id="menu">
-		<ul class="w3-navbar w3-blue w3-card-2" id="myNavbar">
-			<li><a href="#home" style="color: #ffffff;" class="w3-wide">SCV</a></li>
+		<ul class="w3-navbar w3-light-grey w3-card-2" id="myNavbar">
+			<li><b><a href="/SCV/userLogin" class="w3-wide">SCV</a></b></li>
 
 			<li class="w3-right w3-hide-small">
-				<a style="color: #ffffff;" href="">CADASTRO</a>
-				<a style="color: #ffffff;" href="">CARTÃO DE VACINAÇÃO</a>
-				<a style="color: #ffffff;" href="">CALENDÁRIO DE VACINAÇÃO</a>
-				<a style="color: #ffffff;" href="/SCV/logout">Sair</a>
+				<a href="/info">CADASTRO</a>
+				<a href="">CARTÃO DE VACINAÇÃO</a>
+				<a class="w3-bottombar w3-border-blue" href="/calendar">CALENDÁRIO DE VACINAÇÃO</a>
+				<a href="/logout">Sair</a>
 			</li>
 
-			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left w3-text-white"></i>
+			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
 			</a></li>
 		</ul>
 	</div>
 
-	<nav class="w3-sidenav w3-margin-0 w3-blue w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
-		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> <a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> <a href="" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> <a href="/SCV/logout" onclick="w3_close()">Sair</a>
+	<nav class="w3-sidenav w3-margin-0 w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
+		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
+		<a href="/info" onclick="w3_close()">CADASTRO</a> 
+		<a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
+		<a href="/calendar" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> 
+		<a href="/logout" onclick="w3_close()">Sair</a>
 	</nav>
 
 	<%
@@ -83,17 +87,17 @@
 		
 	%>
 
-	<div class="w3-container w3-center w3-padding-64 w3-margin">
+	<div class="w3-container w3-center w3-padding-64 w3-margin-right w3-margin-left">
 		<div class="w3-row">
 		  	<div class="w3-col l6">
     			<%if (!campanhasEmAndamento.isEmpty()) {%>
     			<div>
-					<h6>Campanhas em andamento:</h6>
+					<h6><b>Campanhas em andamento:</b></h6>
 					<hr class="w3-margin-0 w3-margin-bottom">
-					<div class="w3-accordion w3-light-grey">
+					<div class="w3-accordion w3-light-blue">
 					<% for (Campanha campanha : campanhasEmAndamento) { %>
-						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
-						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container">
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container  w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
     					</div>
 					<% } %>
@@ -102,13 +106,13 @@
 				<% } %>
 				
 				<%if (!campanhasFuturas.isEmpty()) {%>
-				<div class="w3-margin-top">
-					<h6>Próximas campanhas:</h6>
+				<div>
+					<h6><b>Próximas campanhas:</b></h6>
 					<hr class="w3-margin-0 w3-margin-bottom">
-					<div class="w3-accordion w3-light-grey">
+					<div class="w3-accordion w3-light-blue">
 					<% for (Campanha campanha : campanhasFuturas) { %>
-						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
-						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container">
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
     					</div>
 					<% } %>
@@ -117,13 +121,13 @@
 				<%}%>
 				
 				<%if (!campanhasPassadas.isEmpty()) {%>
-				<div class="w3-margin-top">
-					<h6>Campanhas encerradas:</h6>
+				<div>
+					<h6><b>Campanhas encerradas:</b></h6>
 					<hr class="w3-margin-0 w3-margin-bottom">
-					<div class="w3-accordion w3-light-grey">
+					<div class="w3-accordion w3-light-blue">
 					<% for (Campanha campanha : campanhasPassadas) { %>
-						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
-						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container">
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
     					</div>
 					<% } %>
@@ -132,9 +136,9 @@
 				<%}%>
   			</div>
 			<div class="w3-col l6 w3-padding-64">
-			  <button style="width: 70%; white-space: normal;" onclick="document.getElementById('image-modal').style.display='block'" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom">Clique para ver o Calendário de Vacinação</button>
+			  <button style="width: 80%; white-space: normal;" onclick="document.getElementById('image-modal').style.display='block'" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-round">Clique para ver o Calendário de Vacinação</button>
       		  <a href="./resources/calendars/2017.jpg" download="calendario_de_vacinacao">
-			  	<button style="width: 70%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge">Faça download do Calendário de Vacinação</button>
+			  	<button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-round">Faça download do Calendário de Vacinação</button>
 			  </a>
   			</div>
   			<div id="image-modal" class="w3-modal">
@@ -152,15 +156,6 @@
 	</div>
 	
 	<script src="./resources/scripts/navigation.js"></script>
-	<script>
-		function myFunction(id) {
-		    var x = document.getElementById(id);
-		    if (x.className.indexOf("w3-show") == -1) {
-		        x.className += " w3-show";
-		    } else { 
-		        x.className = x.className.replace(" w3-show", "");
-		    }
-		}
-	</script>
+	<script src="./resources/scripts/calendar.js"></script>
 </body>
 </html>

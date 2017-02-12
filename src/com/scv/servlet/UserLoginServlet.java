@@ -45,5 +45,19 @@ public class UserLoginServlet extends HttpServlet {
 		
 		
 	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Pessoa pessoa = new Pessoa();
+		HttpSession session = request.getSession();
+		
+		pessoa = (Pessoa) session.getAttribute("usuario");
+		if (pessoa.getCodigo() == null) {
+			request.getRequestDispatcher("index.html").forward(request, response);
+		} else {
+			request.getRequestDispatcher("WEB-INF/home/user-home.jsp").forward(request, response);
+		}
+		
+	}
 
 }

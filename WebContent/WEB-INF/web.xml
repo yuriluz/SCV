@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>SCV</display-name>
-  <session-config>
-  	<session-timeout>5</session-timeout>
-  </session-config>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>SCV</display-name>
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
 
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-  
-  <servlet>
-  	<servlet-name>userLoginServlet</servlet-name>
-  	<servlet-class>com.scv.servlet.UserLoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>userLoginServlet</servlet-name>
-  	<url-pattern>/userLogin</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-  	<servlet-name>admLoginServlet</servlet-name>
-  	<servlet-class>com.scv.servlet.AdmLoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>admLoginServlet</servlet-name>
-  	<url-pattern>/admLogin</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-  	<servlet-name>logoutServlet</servlet-name>
-  	<servlet-class>com.scv.servlet.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>logoutServlet</servlet-name>
-  	<url-pattern>/logout</url-pattern>
-  </servlet-mapping>
-  
-    <servlet>
-  	<servlet-name>calendarServlet</servlet-name>
-  	<servlet-class>com.scv.servlet.CalendarServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>calendarServlet</servlet-name>
-  	<url-pattern>/calendar</url-pattern>
-  </servlet-mapping>
-  
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>userLoginServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userLoginServlet</servlet-name>
+		<url-pattern>/userLogin</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>admLoginServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admLoginServlet</servlet-name>
+		<url-pattern>/admLogin</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logoutServlet</servlet-name>
+		<servlet-class>com.scv.servlet.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logoutServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>calendarServlet</servlet-name>
+		<servlet-class>com.scv.servlet.CalendarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>calendarServlet</servlet-name>
+		<url-pattern>/calendar</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>infoServlet</servlet-name>
+		<servlet-class>com.scv.servlet.InfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>infoServlet</servlet-name>
+		<url-pattern>/info</url-pattern>
+	</servlet-mapping>
+
 </web-app>

@@ -28,16 +28,18 @@
 <meta name="description" content="Página do Usuário do Sistema de Controle de Vacinação">
 <meta name="author" content="Yuri Luz">
 </head>
-<body class="w3-light-grey">
+<body class="w3-white">
 	<div id="menu">
-		<ul class="w3-navbar w3-blue w3-card-2" id="myNavbar">
-			<li><a href="#home" style="color: #ffffff;" class="w3-wide">SCV</a></li>
+		<ul class="w3-navbar w3-light-grey w3-bottombar w3-border-light-grey w3-card-2" id="myNavbar">
+			<li>
+				<b><a href="/userLogin" class="w3-wide">SCV</a></b>
+			</li>
 
 			<li class="w3-right w3-hide-small">
-				<a style="color: #ffffff;" href="">CADASTRO</a>
-				<a style="color: #ffffff;" href="">CARTÃO DE VACINAÇÃO</a>
-				<a style="color: #ffffff;" href="/SCV/calendar">CALENDÁRIO DE VACINAÇÃO</a>
-				<a style="color: #ffffff;" href="/SCV/logout">Sair</a>
+				<a href="/info">CADASTRO</a> 
+				<a href="">CARTÃO DE VACINAÇÃO</a> 
+				<a href="/calendar">CALENDÁRIO DE VACINAÇÃO</a> 
+				<a href="/logout">Sair</a>
 			</li>
 
 			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
@@ -45,8 +47,12 @@
 		</ul>
 	</div>
 
-	<nav class="w3-sidenav w3-margin-0 w3-blue w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
-		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> <a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> <a href="" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> <a href="/SCV/logout" onclick="w3_close()">Sair</a>
+	<nav class="w3-sidenav w3-margin-0 w3-card-2 w3-white w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
+		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
+		<a href="/info" onclick="w3_close()">CADASTRO</a> 
+		<a href="" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
+		<a href="/calendar" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> 
+		<a href="/logout" onclick="w3_close()">Sair</a>
 	</nav>
 
 	<%
@@ -56,147 +62,33 @@
 		Escolaridade escolaridade = usuario.getEscolaridade();
 		Estado estado = usuario.getEstado();
 		Cidade cidade = usuario.getCidade();
-		String msg = "SEJA BEM VINDX, ";
+		String msg = "SEJA BEM VINDX,";
 		if (genero.getValue().equals("M")) {
-			msg = "SEJA BEM VINDO, ";
+			msg = "SEJA BEM VINDO,";
 		} else if (genero.getValue().equals("F")) {
-			msg = "SEJA BEM VINDA, ";
+			msg = "SEJA BEM VINDA,";
 		}
 	%>
 
-	<div class="w3-container w3-padding-64">
-		<div class="w3-card-2 w3-white w3-animate-opacity" id="userInfo">
-			<header class="w3-container w3-blue">
-				<h3 class="w3-center" style="color: #ffffff;"><%=msg.concat(nome)%>!
-				</h3>
-			</header>
-			<div class="w3-padding">
-				<h5 class="w3-center">
-					<i class="w3-large fa fa-user"></i> Seus dados:
-				</h5>
-				<form class="w3-container" action="">
-					<div class="w3-row">
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Nome</label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=usuario.getNome()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Data de Nascimento</label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=usuario.getDataNascimento()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Gênero</label> <select class="w3-input" id="genero" name="genero" disabled>
-								<option value="M" <%if (genero.getValue().equals("M")) {%> selected <%}%>>Masculino</option>
-								<option value="F" <%if (genero.getValue().equals("F")) {%> selected <%}%>>Feminino</option>
-								<option value="O" <%if (genero.getValue().equals("O")) {%> selected <%}%>>Outro</option>
-							</select>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Nível de Escolaridade</label> <select class="w3-input" id="escolaridade" name="escolaridade" disabled>
-								<option value=0 <%if (escolaridade.getValue() == 0) {%> selected <%}%>>Não possui</option>
-								<option value=1 <%if (escolaridade.getValue() == 1) {%> selected <%}%>>Fundamental</option>
-								<option value=2 <%if (escolaridade.getValue() == 2) {%> selected <%}%>>Médio</option>
-								<option value=3 <%if (escolaridade.getValue() == 3) {%> selected <%}%>>Superior Incompleto</option>
-								<option value=4 <%if (escolaridade.getValue() == 4) {%> selected <%}%>>Superior Completo</option>
-							</select>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>CPF</label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=usuario.getCpf()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Documento de Identidade</label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=usuario.getDocumento()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Naturalidade</label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=usuario.getNaturalidade()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Nacionalidade</label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=usuario.getNacionalidade()%>" disabled>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Endereço</label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=usuario.getLogradouro()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Complemento</label> <input class="w3-input" type="text" id="complemento" name="complemento" value="<%=usuario.getComplemento()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Bairro</label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=usuario.getBairro()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>CEP</label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=usuario.getCep()%>" disabled>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Estado</label> <select class="w3-input" id="estado" name="estado" disabled>
-								<%
-									List<Estado> estados = new ArrayList<Estado>();
-									estados = EstadoDAO.getInstance().carregarTodos();
-
-									for (Estado e : estados) {
-								%>
-								<option value=<%=e.getCodigo()%> <%if (e.getCodigo().equals(estado.getCodigo())) {%> selected <%}%>><%=e.getNome()%></option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Cidade</label> <select class="w3-input" id="cidade" name="cidade" disabled>
-								<%
-									List<Cidade> cidades = new ArrayList<Cidade>();
-									cidades = CidadeDAO.getInstance().carregarPorEstado(estado);
-
-									for (Cidade c : cidades) {
-								%>
-								<option value=<%=c.getCodigo()%> <%if (c.getCodigo().equals(cidade.getCodigo())) {%> selected <%}%>><%=c.getNome()%></option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Telefone</label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=usuario.getTelefone()%>" disabled>
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>E-mail</label> <input class="w3-input" type="text" id="email" name="email" value="<%=usuario.getEmail()%>" disabled>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col m12 l4 w3-padding-tiny">
-							<button type="reset" id="cancelButton" class="w3-btn w3-white w3-border w3-hover-red w3-right" style="display: none" onclick="desabilitarCampos()">
-								CANCELAR <i class="fa fa-close"></i>
-							</button>
-						</div>
-						<div class="w3-col m12 l4 w3-padding-tiny">
-							<button type="reset" id="saveButton" class="w3-btn w3-white w3-border w3-hover-green w3-right" style="display: none" onclick="desabilitarCampos()">
-								GRAVAR <i class="fa fa-floppy-o"></i>
-							</button>
-						</div>
-						<div class="w3-col m12 l4 w3-padding-tiny">
-							<button type="reset" id="editButton" class="w3-btn w3-white w3-border w3-hover-blue w3-right" onclick="habilitarCampos()">
-								EDITAR <i class="fa fa-pencil-square-o"></i>
-							</button>
-						</div>
-					</div>
-				</form>
+	<div class="w3-container w3-center w3-padding-64 w3-margin-right w3-margin-left">
+		<div class="w3-row">
+			<div class="w3-col l6 w3-margin-bottom">
+				<h3><%=msg%></h3>
+				<h1 class="w3-text-shadow">
+					<b><%=nome%>!</b>
+				</h1>
+				<h6>O que você deseja fazer?</h6>
+			</div>
+			<div class="w3-col l6">
+				<a href="/info"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Atualizar meus dados</button></a>
+				<a href=""><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Consultar meu Cartão de Vacinação</button></a>
+				<a href="/calendar"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Consultar o Calendário de Vacinação</button></a>
 			</div>
 		</div>
+
 	</div>
-	<script src="./resources/scripts/user-home.js"></script>
+	
 	<script src="./resources/scripts/navigation.js"></script>
+
 </body>
 </html>
