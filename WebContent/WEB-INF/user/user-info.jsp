@@ -28,16 +28,88 @@
 <script src="./resources/scripts/jquery-1.12.4.js"></script>
 <script src="./resources/scripts/jquery-ui.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	function updateCities(estado) {
+		if (estado == "") {
+			document.getElementById("cidade").innerHTML = "";
+			return;
+		}
+		if (window.XMLHttpRequest) {
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else { // code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("cidade").innerHTML = this.responseText;
+			}
+		}
+		xmlhttp
+				.open("GET", "loadCities?estado=" + estado,
+						true);
+		xmlhttp.send();
+	}
+	
+	function updateUser(usuario) {
+		if (usuario == "") {
+			document.getElementById("formCadastro").innerHTML = "";
+			return;
+		}
+		if (window.XMLHttpRequest) {
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else { // code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("formCadastro").innerHTML = this.responseText;
+			}
+		}
+		xmlhttp
+				.open("GET", "loadUser?usuario=" + usuario,
+						true);
+		xmlhttp.send();
+	}
+	
+	function habilitarBotao() {
+		document.getElementById("saveButton").disabled=false;
+	}
+
+	function desabilitarBotao() {
+		document.getElementById("saveButton").disabled=true;
+	}
+
+	$('#estado').on('change', function() {
+		updateCities(this.value);
+	});
+	
+	$('#usuario').on('change', function() {
+		updateUser(this.value);
+	});
+	
+	$('input, select').on('change', function() {
+		habilitarBotao();
+	});
+	
+	$('#saveButton').on('click', function() {
+		desabilitarBotao();
+	});
+});
+</script>
+
 <meta name="description" content="Página do Usuário do Sistema de Controle de Vacinação">
 <meta name="author" content="Yuri Luz">
 </head>
 <body class="w3-white">
 	<div id="menu">
 		<ul class="w3-navbar w3-light-grey w3-card-2" id="myNavbar">
-			<li><b><a href="/SCV/userLogin" class="w3-wide">SCV</a></b></li>
+			<li><b><a href="/userLogin" class="w3-wide">SCV</a></b></li>
 
 			<li class="w3-right w3-hide-small">
-				<a class="w3-bottombar w3-border-blue" href="/info">CADASTRO</a>
+				<a class="w3-bottombar w3-border-blue" href="/info">MEUS DADOS</a>
 				<a href="">CARTÃO DE VACINAÇÃO</a>
 				<a href="/calendar">CALENDÁRIO DE VACINAÇÃO</a>
 				<a href="/logout">Sair</a>
@@ -56,38 +128,56 @@
 		<a href="/logout" onclick="w3_close()">Sair</a>
 	</nav>
 
-<%
+	<%
 		Pessoa usuario = (Pessoa) session.getAttribute("usuario");
 		String nome = usuario.getNome().substring(0, usuario.getNome().indexOf(" ")).toUpperCase();
 		Sexo genero = usuario.getSexo();
 		Escolaridade escolaridade = usuario.getEscolaridade();
 		Estado estado = usuario.getEstado();
 		Cidade cidade = usuario.getCidade();
-		String msg = "SEJA BEM VINDX, ";
-		if (genero.getValue().equals("M")) {
-			msg = "SEJA BEM VINDO, ";
-		} else if (genero.getValue().equals("F")) {
-			msg = "SEJA BEM VINDA, ";
-		}
+		
+		List<Pessoa> cadastros = new ArrayList<Pessoa>();
+		cadastros.add(usuario);
+
 	%>
 
 	<div class="w3-container w3-padding-64">
 			<div class="w3-padding">
-				<h5 class="w3-center">
-					Usuário:
-				</h5>
-				<form class="w3-container" action="">
+				<div class="w3-row">
+					<div class="w3-col m3 l6 w3-padding-tiny">
+						<table>
+							<tr>
+								<td>
+									<h6><b>Usuário:</b></h6>
+								</td>
+								<td>
+									<select class="w3-input w3-hover-blue" id="usuario" name="usuario">
+									<%
+									for (Pessoa p : cadastros) {
+									%>
+										<option value=<%=p.getCodigo()%> <%if (p.getCodigo().equals(usuario.getCodigo())) {%> selected <%}%>><%=p.getNome()%> - <%=p.getDocumento()%></option>
+									<%
+									}
+									%>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<hr />
+				<form class="w3-container" id="formCadastro" name="formCadastro" action="">
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Nome</label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=usuario.getNome()%>" disabled>
+							<label>Nome</label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=usuario.getNome()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Data de Nascimento</label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=usuario.getDataNascimento()%>" disabled>
+							<label>Data de Nascimento</label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=usuario.getDataNascimento()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Gênero</label> <select class="w3-input" id="genero" name="genero" disabled>
+							<label>Gênero</label> <select class="w3-input" id="genero" name="genero">
 								<option value="M" <%if (genero.getValue().equals("M")) {%> selected <%}%>>Masculino</option>
 								<option value="F" <%if (genero.getValue().equals("F")) {%> selected <%}%>>Feminino</option>
 								<option value="O" <%if (genero.getValue().equals("O")) {%> selected <%}%>>Outro</option>
@@ -95,7 +185,7 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Nível de Escolaridade</label> <select class="w3-input" id="escolaridade" name="escolaridade" disabled>
+							<label>Nível de Escolaridade</label> <select class="w3-input" id="escolaridade" name="escolaridade">
 								<option value=0 <%if (escolaridade.getValue() == 0) {%> selected <%}%>>Não possui</option>
 								<option value=1 <%if (escolaridade.getValue() == 1) {%> selected <%}%>>Fundamental</option>
 								<option value=2 <%if (escolaridade.getValue() == 2) {%> selected <%}%>>Médio</option>
@@ -106,41 +196,41 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>CPF</label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=usuario.getCpf()%>" disabled>
+							<label>CPF</label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=usuario.getCpf()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Documento de Identidade</label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=usuario.getDocumento()%>" disabled>
+							<label>Documento de Identidade</label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=usuario.getDocumento()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Naturalidade</label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=usuario.getNaturalidade()%>" disabled>
+							<label>Naturalidade</label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=usuario.getNaturalidade()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Nacionalidade</label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=usuario.getNacionalidade()%>" disabled>
+							<label>Nacionalidade</label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=usuario.getNacionalidade()%>">
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Endereço</label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=usuario.getLogradouro()%>" disabled>
+							<label>Endereço</label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=usuario.getLogradouro()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Complemento</label> <input class="w3-input" type="text" id="complemento" name="complemento" value="<%=usuario.getComplemento()%>" disabled>
+							<label>Complemento</label> <input class="w3-input" type="text" id="complemento" name="complemento" value="<%=usuario.getComplemento()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Bairro</label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=usuario.getBairro()%>" disabled>
+							<label>Bairro</label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=usuario.getBairro()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>CEP</label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=usuario.getCep()%>" disabled>
+							<label>CEP</label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=usuario.getCep()%>">
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Estado</label> <select class="w3-input" id="estado" name="estado" disabled>
+							<label>Estado</label> <select class="w3-input" id="estado" name="estado">
 								<%
 									List<Estado> estados = new ArrayList<Estado>();
 									estados = EstadoDAO.getInstance().carregarTodos();
@@ -155,7 +245,7 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Cidade</label> <select class="w3-input" id="cidade" name="cidade" disabled>
+							<label>Cidade</label> <select class="w3-input" id="cidade" name="cidade" >
 								<%
 									List<Cidade> cidades = new ArrayList<Cidade>();
 									cidades = CidadeDAO.getInstance().carregarPorEstado(estado);
@@ -170,27 +260,17 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Telefone</label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=usuario.getTelefone()%>" disabled>
+							<label>Telefone</label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=usuario.getTelefone()%>">
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>E-mail</label> <input class="w3-input" type="text" id="email" name="email" value="<%=usuario.getEmail()%>" disabled>
+							<label>E-mail</label> <input class="w3-input" type="text" id="email" name="email" value="<%=usuario.getEmail()%>">
 						</div>
 					</div>
 					<div class="w3-row">
-						<div class="w3-col m12 l4 w3-padding-tiny">
-							<button type="reset" id="cancelButton" class="w3-btn w3-white w3-border w3-hover-red w3-right" style="display: none" onclick="desabilitarCampos()">
-								CANCELAR <i class="fa fa-close"></i>
-							</button>
-						</div>
-						<div class="w3-col m12 l4 w3-padding-tiny">
-							<button type="reset" id="saveButton" class="w3-btn w3-white w3-border w3-hover-green w3-right" style="display: none" onclick="desabilitarCampos()">
-								GRAVAR <i class="fa fa-floppy-o"></i>
-							</button>
-						</div>
-						<div class="w3-col m12 l4 w3-padding-tiny">
-							<button type="reset" id="editButton" class="w3-btn w3-white w3-border w3-hover-blue w3-right" onclick="habilitarCampos()">
-								EDITAR <i class="fa fa-pencil-square-o"></i>
+						<div class="w3-col w3-padding-tiny">
+							<button type="reset" id="saveButton" class="w3-btn w3-white w3-border w3-hover-blue w3-right" disabled>
+								SALVAR ALTERAÇÕES <i class="fa fa-floppy-o"></i>
 							</button>
 						</div>
 					</div>
@@ -198,7 +278,7 @@
 			</div>
 		</div>
 		
-	<script src="./resources/scripts/user-home.js"></script>
 	<script src="./resources/scripts/navigation.js"></script>
+	
 </body>
 </html>

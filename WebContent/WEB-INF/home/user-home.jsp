@@ -36,7 +36,7 @@
 			</li>
 
 			<li class="w3-right w3-hide-small">
-				<a href="/info">CADASTRO</a> 
+				<a href="/info">MEUS DADOS</a> 
 				<a href="">CARTÃO DE VACINAÇÃO</a> 
 				<a href="/calendar">CALENDÁRIO DE VACINAÇÃO</a> 
 				<a href="/logout">Sair</a>

@@ -34,10 +34,10 @@
 <body class="w3-white">
 	<div id="menu">
 		<ul class="w3-navbar w3-light-grey w3-card-2" id="myNavbar">
-			<li><b><a href="/SCV/userLogin" class="w3-wide">SCV</a></b></li>
+			<li><b><a href="/userLogin" class="w3-wide">SCV</a></b></li>
 
 			<li class="w3-right w3-hide-small">
-				<a href="/info">CADASTRO</a>
+				<a href="/info">MEUS DADOS</a>
 				<a href="">CARTÃO DE VACINAÇÃO</a>
 				<a class="w3-bottombar w3-border-blue" href="/calendar">CALENDÁRIO DE VACINAÇÃO</a>
 				<a href="/logout">Sair</a>

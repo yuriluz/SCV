@@ -13,48 +13,66 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>userLoginServlet</servlet-name>
+		<servlet-name>UserLoginServlet</servlet-name>
 		<servlet-class>com.scv.servlet.UserLoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>userLoginServlet</servlet-name>
+		<servlet-name>UserLoginServlet</servlet-name>
 		<url-pattern>/userLogin</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>admLoginServlet</servlet-name>
+		<servlet-name>AdmLoginServlet</servlet-name>
 		<servlet-class>com.scv.servlet.AdmLoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>admLoginServlet</servlet-name>
+		<servlet-name>AdmLoginServlet</servlet-name>
 		<url-pattern>/admLogin</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>logoutServlet</servlet-name>
+		<servlet-name>LogoutServlet</servlet-name>
 		<servlet-class>com.scv.servlet.LogoutServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>logoutServlet</servlet-name>
+		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>calendarServlet</servlet-name>
-		<servlet-class>com.scv.servlet.CalendarServlet</servlet-class>
+		<servlet-name>UserCalendarServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserCalendarServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>calendarServlet</servlet-name>
+		<servlet-name>UserCalendarServlet</servlet-name>
 		<url-pattern>/calendar</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>infoServlet</servlet-name>
-		<servlet-class>com.scv.servlet.InfoServlet</servlet-class>
+		<servlet-name>UserInfoServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserInfoServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>infoServlet</servlet-name>
+		<servlet-name>UserInfoServlet</servlet-name>
 		<url-pattern>/info</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CitiesSelectServlet</servlet-name>
+		<servlet-class>com.scv.servlet.CitiesSelectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CitiesSelectServlet</servlet-name>
+		<url-pattern>/loadCities</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserFormServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserFormServlet</servlet-name>
+		<url-pattern>/loadUser</url-pattern>
 	</servlet-mapping>
 
 </web-app>
