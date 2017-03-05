@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.scv.javabean.Pessoa;
 import com.scv.javabean.Registro;
 import com.scv.persistence.exception.DAOException;
 
@@ -141,6 +142,34 @@ public class RegistroDAO extends BaseDAO{
             close(con, pstmt, res);
         }
         return registro;
+	}
+	
+	public List<Registro> carregarPorPessoa(Pessoa pessoa) throws DAOException, ClassNotFoundException {
+		List<Registro> registros = new ArrayList<Registro>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM registro_reg WHERE reg_codpes = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, pessoa.getCodigo());
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Registro registro = gerarRegistro(res);
+                registros.add(registro);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava os registros da pessoa (" + pessoa.getCodigo().toString() + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return registros;
 	}
 
 	private Registro gerarRegistro(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {

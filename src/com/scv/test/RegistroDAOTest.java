@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.scv.javabean.Pessoa;
 import com.scv.javabean.Registro;
+import com.scv.persistence.dao.PessoaDAO;
 import com.scv.persistence.dao.RegistroDAO;
 import com.scv.persistence.exception.DAOException;
 
@@ -42,6 +44,20 @@ public class RegistroDAOTest {
 		}
 		
 		assertNotNull(registro);
+	}
+	
+	@Test
+	public void testCarregarPorPessoa() throws ClassNotFoundException, DAOException {
+		ArrayList<Registro> registros = new ArrayList<Registro>();
+		Pessoa pessoa = PessoaDAO.getInstance().carregarPorCodigo(1);
+		
+		try {
+			registros = (ArrayList<Registro>) RegistroDAO.getInstance().carregarPorPessoa(pessoa);
+		} catch (DAOException e) {
+			fail("RegistroDAO: Falha do teste de carregarPorCodigo()");
+		}
+		
+		assertNotNull(registros);
 	}
 
 }
