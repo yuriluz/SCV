@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.scv.entities.enums.Sexo;
+import com.scv.entities.enums.TipoDocumento;
 import com.scv.javabean.Vacinador;
 import com.scv.persistence.exception.DAOException;
 
@@ -32,9 +33,9 @@ public class VacinadorDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO vacinador_vac (vac_matvac, vac_nome, vac_dtmat, vac_sexo,"
-	    		+ "vac_nacional, vac_natural, vac_cpf, vac_documento, vac_dtnasc, vac_telefone, vac_email,"
+	    		+ "vac_nacional, vac_natural, vac_cpf, vac_documento, vac_tipodoc, vac_emissordoc, vac_dtnasc, vac_telefone, vac_email,"
 	    		+ "vac_logradouro, vac_complemento, vac_bairro, vac_codcid, vac_codest, vac_cep, vac_coduni) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -48,16 +49,18 @@ public class VacinadorDAO extends BaseDAO{
 	        pstmt.setString(6, vacinador.getNaturalidade());
 	        pstmt.setString(7, vacinador.getCpf());
 	        pstmt.setString(8, vacinador.getDocumento());
-	        pstmt.setDate(9, (java.sql.Date) vacinador.getDataNascimento());
-	        pstmt.setString(10, vacinador.getTelefone());
-	        pstmt.setString(11, vacinador.getEmail());
-	        pstmt.setString(12, vacinador.getLogradouro());
-	        pstmt.setString(13, vacinador.getComplemento());
-	        pstmt.setString(14, vacinador.getBairro());
-	        pstmt.setInt(15, vacinador.getCidade().getCodigo());
-	        pstmt.setInt(16, vacinador.getEstado().getCodigo());
-	        pstmt.setString(17, vacinador.getCep());
-	        pstmt.setInt(17, vacinador.getUnidade().getCodigo());
+	        pstmt.setInt(9, vacinador.getTipoDocumento().getValue());
+	        pstmt.setString(10, vacinador.getEmissor());
+	        pstmt.setDate(11, (java.sql.Date) vacinador.getDataNascimento());
+	        pstmt.setString(12, vacinador.getTelefone());
+	        pstmt.setString(13, vacinador.getEmail());
+	        pstmt.setString(14, vacinador.getLogradouro());
+	        pstmt.setString(15, vacinador.getComplemento());
+	        pstmt.setString(16, vacinador.getBairro());
+	        pstmt.setInt(17, vacinador.getCidade().getCodigo());
+	        pstmt.setInt(18, vacinador.getEstado().getCodigo());
+	        pstmt.setString(19, vacinador.getCep());
+	        pstmt.setInt(20, vacinador.getUnidade().getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -75,7 +78,7 @@ public class VacinadorDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "UPDATE vacinador_vac SET vac_matvac = ?, vac_nome = ?, "
-	    		+ "vac_sexo = ?, vac_nacional = ?, vac_natural = ?, vac_cpf = ?, vac_documento = ?, vac_dtnasc = ?, "
+	    		+ "vac_sexo = ?, vac_nacional = ?, vac_natural = ?, vac_cpf = ?, vac_documento = ?, vac_tipodoc = ?, vac_emissordoc = ?, vac_dtnasc = ?, "
 	    		+ "vac_telefone = ?, vac_email = ?, vac_logradouro = ?, vac_complemento = ?, vac_bairro = ?, vac_codcid = ?, "
 	    		+ "vac_codest = ?, vac_cep = ?, vac_coduni = ? WHERE vac_codvac = ?";	    
 	    
@@ -90,17 +93,19 @@ public class VacinadorDAO extends BaseDAO{
 	        pstmt.setString(5, vacinador.getNaturalidade());
 	        pstmt.setString(6, vacinador.getCpf());
 	        pstmt.setString(7, vacinador.getDocumento());
-	        pstmt.setDate(8, (java.sql.Date) vacinador.getDataNascimento());
-	        pstmt.setString(9, vacinador.getTelefone());
-	        pstmt.setString(10, vacinador.getEmail());
-	        pstmt.setString(11, vacinador.getLogradouro());
-	        pstmt.setString(12, vacinador.getComplemento());
-	        pstmt.setString(13, vacinador.getBairro());
-	        pstmt.setInt(14, vacinador.getCidade().getCodigo());
-	        pstmt.setInt(15, vacinador.getEstado().getCodigo());
-	        pstmt.setString(16, vacinador.getCep());
-	        pstmt.setInt(17, vacinador.getUnidade().getCodigo());
-	        pstmt.setInt(18, vacinador.getCodigo());
+	        pstmt.setInt(8, vacinador.getTipoDocumento().getValue());
+	        pstmt.setString(9, vacinador.getEmissor());
+	        pstmt.setDate(10, (java.sql.Date) vacinador.getDataNascimento());
+	        pstmt.setString(11, vacinador.getTelefone());
+	        pstmt.setString(12, vacinador.getEmail());
+	        pstmt.setString(13, vacinador.getLogradouro());
+	        pstmt.setString(14, vacinador.getComplemento());
+	        pstmt.setString(15, vacinador.getBairro());
+	        pstmt.setInt(16, vacinador.getCidade().getCodigo());
+	        pstmt.setInt(17, vacinador.getEstado().getCodigo());
+	        pstmt.setString(18, vacinador.getCep());
+	        pstmt.setInt(19, vacinador.getUnidade().getCodigo());
+	        pstmt.setInt(20, vacinador.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -180,6 +185,8 @@ public class VacinadorDAO extends BaseDAO{
 		vacinador.setNaturalidade(res.getString("vac_natural"));
 		vacinador.setCpf(res.getString("vac_cpf"));
 		vacinador.setDocumento(res.getString("vac_documento"));
+		vacinador.setTipoDocumento(TipoDocumento.getByValue(res.getInt("vac_tipodoc")));
+		vacinador.setEmissor(res.getString("vac_emissordoc"));
 		vacinador.setDataNascimento(res.getDate("vac_dtnasc"));
 		vacinador.setTelefone(res.getString("vac_telefone"));
 		vacinador.setEmail(res.getString("vac_email"));

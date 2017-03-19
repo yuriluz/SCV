@@ -2,12 +2,14 @@
 <%@page import="com.scv.persistence.dao.EstadoDAO"%>
 <%@page import="com.scv.persistence.dao.CidadeDAO"%>
 <%@page import="com.scv.persistence.dao.CampanhaDAO"%>
+<%@page import="com.scv.persistence.dao.CalendarioDAO"%>
 <%@page import="com.scv.javabean.Pessoa.Escolaridade"%>
 <%@page import="com.scv.entities.enums.Sexo"%>
 <%@page import="com.scv.javabean.Pessoa"%>
 <%@page import="com.scv.javabean.Campanha"%>
 <%@page import="com.scv.javabean.Estado"%>
 <%@page import="com.scv.javabean.Cidade"%>
+<%@page import="com.scv.javabean.Calendario"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
@@ -60,6 +62,7 @@
 		Pessoa usuario = (Pessoa) session.getAttribute("usuario");
 		Estado estado = usuario.getEstado();
 		Cidade cidade = usuario.getCidade();
+		Calendario calendarioAtual = CalendarioDAO.getInstance().carregarMaisAtual();
 	
 		List<Campanha> campanhas = CampanhaDAO.getInstance().carregarTodasNacionais();
 		if (!estado.equals(null)){
@@ -136,9 +139,9 @@
 				<%}%>
   			</div>
 			<div class="w3-col l6 w3-padding-64">
-			  <button style="width: 80%; white-space: normal;" onclick="document.getElementById('image-modal').style.display='block'" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-round">Clique para ver o Calendário de Vacinação</button>
-      		  <a href="./resources/calendars/2017.jpg" download="calendario_de_vacinacao">
-			  	<button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-round">Faça download do Calendário de Vacinação</button>
+			  <button style="width: 80%; white-space: normal;" onclick="document.getElementById('image-modal').style.display='block'" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-round">Clique para ver o Calendário de Vacinação de <%=calendarioAtual.getAno()%></button>
+      		  <a href=<%=calendarioAtual.getImagem()%> download="calendario_de_vacinacao">
+			  	<button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-round">Faça download do Calendário de Vacinação de <%=calendarioAtual.getAno()%></button>
 			  </a>
   			</div>
   			<div id="image-modal" class="w3-modal">
@@ -147,7 +150,7 @@
 			        <span onclick="document.getElementById('image-modal').style.display='none'" class="w3-closebtn">&times;</span>
 			      </header>
 			      <div class="w3-container">
-			        <img src="./resources/calendars/2017.jpg" class="w3-image" alt="Calendário Nacional de Vacinação de 2017">
+			        <img src=<%=calendarioAtual.getImagem()%> class="w3-image" alt="Calendário Nacional de Vacinação de <%=calendarioAtual.getAno()%>">
 			      </div>
 			    </div>
 			</div>

@@ -3,6 +3,7 @@ package com.scv.javabean;
 import java.util.Date;
 
 import com.scv.entities.enums.Sexo;
+import com.scv.entities.enums.TipoDocumento;
 
 public class Pessoa {
 	
@@ -13,6 +14,8 @@ public class Pessoa {
 	String naturalidade;
 	String cpf;
 	String documento;
+	TipoDocumento tipoDocumento;
+	String emissor;
 	Date dataNascimento;
 	Escolaridade escolaridade;
 	String telefone;
@@ -81,6 +84,22 @@ public class Pessoa {
 
 	public void setDocumento(String documento) {
 		this.documento = documento;
+	}
+
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getEmissor() {
+		return emissor;
+	}
+
+	public void setEmissor(String emissor) {
+		this.emissor = emissor;
 	}
 
 	public Date getDataNascimento() {

@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.scv.entities.enums.Sexo;
+import com.scv.entities.enums.TipoDocumento;
 import com.scv.javabean.Gerente;
 import com.scv.persistence.exception.DAOException;
 
@@ -32,9 +33,9 @@ public class GerenteDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO gerente_ger (ger_matger, ger_nome, ger_dtmat, ger_sexo,"
-	    		+ "ger_nacional, ger_natural, ger_cpf, ger_documento, ger_dtnasc, ger_telefone, ger_email,"
+	    		+ "ger_nacional, ger_natural, ger_cpf, ger_documento, ger_tipodoc, ger_emissordoc, ger_dtnasc, ger_telefone, ger_email,"
 	    		+ "ger_logradouro, ger_complemento, ger_bairro, ger_codcid, ger_codest, ger_cep) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -48,15 +49,17 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setString(6, gerente.getNaturalidade());
 	        pstmt.setString(7, gerente.getCpf());
 	        pstmt.setString(8, gerente.getDocumento());
-	        pstmt.setDate(9, (java.sql.Date) gerente.getDataNascimento());
-	        pstmt.setString(10, gerente.getTelefone());
-	        pstmt.setString(11, gerente.getEmail());
-	        pstmt.setString(12, gerente.getLogradouro());
-	        pstmt.setString(13, gerente.getComplemento());
-	        pstmt.setString(14, gerente.getBairro());
-	        pstmt.setInt(15, gerente.getCidade().getCodigo());
-	        pstmt.setInt(16, gerente.getEstado().getCodigo());
-	        pstmt.setString(17, gerente.getCep());
+	        pstmt.setInt(9, gerente.getTipoDocumento().getValue());
+	        pstmt.setString(10, gerente.getEmissor());
+	        pstmt.setDate(11, (java.sql.Date) gerente.getDataNascimento());
+	        pstmt.setString(12, gerente.getTelefone());
+	        pstmt.setString(13, gerente.getEmail());
+	        pstmt.setString(14, gerente.getLogradouro());
+	        pstmt.setString(15, gerente.getComplemento());
+	        pstmt.setString(16, gerente.getBairro());
+	        pstmt.setInt(17, gerente.getCidade().getCodigo());
+	        pstmt.setInt(18, gerente.getEstado().getCodigo());
+	        pstmt.setString(19, gerente.getCep());
 	        
 	        pstmt.execute();
 	        
@@ -74,7 +77,7 @@ public class GerenteDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "UPDATE gerente_ger SET ger_matger = ?, ger_nome = ?, "
-	    		+ "ger_sexo = ?, ger_nacional = ?, ger_natural = ?, ger_ cpf = ?, ger_documento = ?, ger_dtnasc = ?, "
+	    		+ "ger_sexo = ?, ger_nacional = ?, ger_natural = ?, ger_ cpf = ?, ger_documento = ?, ger_tipodoc = ?, ger_emissordoc = ?, ger_dtnasc = ?, "
 	    		+ "ger_telefone = ?, ger_email = ?, ger_logradouro = ?, ger_complemento = ?, ger_bairro = ?, ger_codcid = ?, "
 	    		+ "ger_codest = ?, ger_cep = ? WHERE ger_codger = ?";	    
 	    
@@ -89,16 +92,18 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setString(5, gerente.getNaturalidade());
 	        pstmt.setString(6, gerente.getCpf());
 	        pstmt.setString(7, gerente.getDocumento());
-	        pstmt.setDate(8, (java.sql.Date) gerente.getDataNascimento());
-	        pstmt.setString(9, gerente.getTelefone());
-	        pstmt.setString(10, gerente.getEmail());
-	        pstmt.setString(11, gerente.getLogradouro());
-	        pstmt.setString(12, gerente.getComplemento());
-	        pstmt.setString(13, gerente.getBairro());
-	        pstmt.setInt(14, gerente.getCidade().getCodigo());
-	        pstmt.setInt(15, gerente.getEstado().getCodigo());
-	        pstmt.setString(16, gerente.getCep());
-	        pstmt.setInt(17, gerente.getCodigo());
+	        pstmt.setInt(8, gerente.getTipoDocumento().getValue());
+	        pstmt.setString(9, gerente.getEmissor());
+	        pstmt.setDate(10, (java.sql.Date) gerente.getDataNascimento());
+	        pstmt.setString(11, gerente.getTelefone());
+	        pstmt.setString(12, gerente.getEmail());
+	        pstmt.setString(13, gerente.getLogradouro());
+	        pstmt.setString(14, gerente.getComplemento());
+	        pstmt.setString(15, gerente.getBairro());
+	        pstmt.setInt(16, gerente.getCidade().getCodigo());
+	        pstmt.setInt(17, gerente.getEstado().getCodigo());
+	        pstmt.setString(18, gerente.getCep());
+	        pstmt.setInt(19, gerente.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -178,6 +183,8 @@ public class GerenteDAO extends BaseDAO{
 		gerente.setNaturalidade(res.getString("ger_natural"));
 		gerente.setCpf(res.getString("ger_cpf"));
 		gerente.setDocumento(res.getString("ger_documento"));
+		gerente.setTipoDocumento(TipoDocumento.getByValue(res.getInt("ger_tipodoc")));
+		gerente.setEmissor(res.getString("ger_emissordoc"));
 		gerente.setDataNascimento(res.getDate("ger_dtnasc"));
 		gerente.setTelefone(res.getString("ger_telefone"));
 		gerente.setEmail(res.getString("ger_email"));

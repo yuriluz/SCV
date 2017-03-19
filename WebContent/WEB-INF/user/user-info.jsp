@@ -4,6 +4,7 @@
 <%@page import="com.scv.persistence.dao.CampanhaDAO"%>
 <%@page import="com.scv.javabean.Pessoa.Escolaridade"%>
 <%@page import="com.scv.entities.enums.Sexo"%>
+<%@page import="com.scv.entities.enums.TipoDocumento"%>
 <%@page import="com.scv.javabean.Pessoa"%>
 <%@page import="com.scv.javabean.Campanha"%>
 <%@page import="com.scv.javabean.Estado"%>
@@ -135,6 +136,7 @@ $(document).ready(function() {
 		Escolaridade escolaridade = usuario.getEscolaridade();
 		Estado estado = usuario.getEstado();
 		Cidade cidade = usuario.getCidade();
+		TipoDocumento tipoDocumento = usuario.getTipoDocumento();
 		
 		List<Pessoa> cadastros = new ArrayList<Pessoa>();
 		cadastros.add(usuario);
@@ -195,20 +197,34 @@ $(document).ready(function() {
 						</div>
 					</div>
 					<div class="w3-row">
-						<div class="w3-col m6 l3 w3-padding-tiny">
+						<div class="w3-col m4 l4 w3-padding-tiny">
 							<label>CPF</label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=usuario.getCpf()%>">
 						</div>
 
-						<div class="w3-col m6 l3 w3-padding-tiny">
-							<label>Documento de Identidade</label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=usuario.getDocumento()%>">
-						</div>
-
-						<div class="w3-col m6 l3 w3-padding-tiny">
+						<div class="w3-col m4 l4 w3-padding-tiny">
 							<label>Naturalidade</label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=usuario.getNaturalidade()%>">
 						</div>
 
-						<div class="w3-col m6 l3 w3-padding-tiny">
+						<div class="w3-col m4 l4 w3-padding-tiny">
 							<label>Nacionalidade</label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=usuario.getNacionalidade()%>">
+						</div>
+					</div>
+					<div class="w3-row">
+						<div class="w3-col m4 l4 w3-padding-tiny">
+							<label>Tipo do Documento</label> <select class="w3-input" id="tipodoc" name="tipodoc">
+								<option value="1" <%if (tipoDocumento.getValue().equals(1)) {%> selected <%}%>>RG</option>
+								<option value="2" <%if (tipoDocumento.getValue().equals(2)) {%> selected <%}%>>Passaporte</option>
+								<option value="3" <%if (tipoDocumento.getValue().equals(3)) {%> selected <%}%>>CNH</option>
+								<option value="4" <%if (tipoDocumento.getValue().equals(4)) {%> selected <%}%>>CTPS</option>
+							</select>
+						</div>
+
+						<div class="w3-col m4 l4 w3-padding-tiny">
+							<label>Número do Documento</label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=usuario.getDocumento()%>">
+						</div>
+						
+						<div class="w3-col m4 l4 w3-padding-tiny">
+							<label>Órgão Emissor</label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=usuario.getEmissor()%>">
 						</div>
 					</div>
 					<div class="w3-row">

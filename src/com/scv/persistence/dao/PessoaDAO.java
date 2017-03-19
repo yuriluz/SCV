@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.scv.entities.enums.Sexo;
+import com.scv.entities.enums.TipoDocumento;
 import com.scv.javabean.Pessoa;
 import com.scv.javabean.Pessoa.Escolaridade;
 import com.scv.persistence.exception.DAOException;
@@ -33,9 +34,9 @@ public class PessoaDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO pessoa_pes (pes_nome, pes_dtmat, pes_sexo, pes_nacional, pes_natural, "
-	    		+ "pes_cpf, pes_documento, pes_dtnasc, pes_escolaridade, pes_telefone, pes_email, "
+	    		+ "pes_cpf, pes_documento, pes_tipodoc, pes_emissordoc, pes_dtnasc, pes_escolaridade, pes_telefone, pes_email, "
 	    		+ "pes_logradouro, pes_complemento, pes_bairro, pes_codcid, pes_codest, pes_cep, pes_senha) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -48,17 +49,19 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setString(5, pessoa.getNaturalidade());
 	        pstmt.setString(6, pessoa.getCpf());
 	        pstmt.setString(7, pessoa.getDocumento());
-	        pstmt.setDate(8, (java.sql.Date) pessoa.getDataNascimento());
-	        pstmt.setInt(9, pessoa.getEscolaridade().getValue());
-	        pstmt.setString(10, pessoa.getTelefone());
-	        pstmt.setString(11, pessoa.getEmail());
-	        pstmt.setString(12, pessoa.getLogradouro());
-	        pstmt.setString(13, pessoa.getComplemento());
-	        pstmt.setString(14, pessoa.getBairro());
-	        pstmt.setInt(15, pessoa.getCidade().getCodigo());
-	        pstmt.setInt(16, pessoa.getEstado().getCodigo());
-	        pstmt.setString(17, pessoa.getCep());
-	        pstmt.setString(18, pessoa.getSenha());
+	        pstmt.setInt(8, pessoa.getTipoDocumento().getValue());
+	        pstmt.setString(9, pessoa.getEmissor());
+	        pstmt.setDate(10, (java.sql.Date) pessoa.getDataNascimento());
+	        pstmt.setInt(11, pessoa.getEscolaridade().getValue());
+	        pstmt.setString(12, pessoa.getTelefone());
+	        pstmt.setString(13, pessoa.getEmail());
+	        pstmt.setString(14, pessoa.getLogradouro());
+	        pstmt.setString(15, pessoa.getComplemento());
+	        pstmt.setString(16, pessoa.getBairro());
+	        pstmt.setInt(17, pessoa.getCidade().getCodigo());
+	        pstmt.setInt(18, pessoa.getEstado().getCodigo());
+	        pstmt.setString(19, pessoa.getCep());
+	        pstmt.setString(20, pessoa.getSenha());
 	        
 	        pstmt.execute();
 	        
@@ -76,7 +79,7 @@ public class PessoaDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "UPDATE pessoa_pes SET pes_nome = ?, pes_sexo = ?, pes_nacional = ?, "
-	    		+ "pes_natural = ?, pes_cpf = ?, pes_documento = ?, pes_dtnasc = ?, pes_telefone = ?, pes_email = ?, pes_escolaridade = ?, "
+	    		+ "pes_natural = ?, pes_cpf = ?, pes_documento = ?, pes_tipodoc = ?, pes_emissordoc = ?, pes_dtnasc = ?, pes_telefone = ?, pes_email = ?, pes_escolaridade = ?, "
 	    		+ "pes_logradouro = ?, pes_complemento = ?, pes_bairro = ?, pes_codcid = ?, pes_codest = ?, pes_cep = ?, pes_senha = ? "
 	    		+ "WHERE pes_codpes = ?";	    
 	    
@@ -90,18 +93,20 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setString(4, pessoa.getNaturalidade());
 	        pstmt.setString(5, pessoa.getCpf());
 	        pstmt.setString(6, pessoa.getDocumento());
-	        pstmt.setDate(7, new java.sql.Date(pessoa.getDataNascimento().getTime()));
-	        pstmt.setString(8, pessoa.getTelefone());
-	        pstmt.setString(9, pessoa.getEmail());
-	        pstmt.setInt(10, pessoa.getEscolaridade().getValue());
-	        pstmt.setString(11, pessoa.getLogradouro());
-	        pstmt.setString(12, pessoa.getComplemento());
-	        pstmt.setString(13, pessoa.getBairro());
-	        pstmt.setInt(14, pessoa.getCidade().getCodigo());
-	        pstmt.setInt(15, pessoa.getEstado().getCodigo());
-	        pstmt.setString(16, pessoa.getCep());
-	        pstmt.setString(17, pessoa.getSenha());
-	        pstmt.setInt(18, pessoa.getCodigo());
+	        pstmt.setInt(7, pessoa.getTipoDocumento().getValue());
+	        pstmt.setString(8, pessoa.getEmissor());
+	        pstmt.setDate(9, new java.sql.Date(pessoa.getDataNascimento().getTime()));
+	        pstmt.setString(10, pessoa.getTelefone());
+	        pstmt.setString(11, pessoa.getEmail());
+	        pstmt.setInt(12, pessoa.getEscolaridade().getValue());
+	        pstmt.setString(13, pessoa.getLogradouro());
+	        pstmt.setString(14, pessoa.getComplemento());
+	        pstmt.setString(15, pessoa.getBairro());
+	        pstmt.setInt(16, pessoa.getCidade().getCodigo());
+	        pstmt.setInt(17, pessoa.getEstado().getCodigo());
+	        pstmt.setString(18, pessoa.getCep());
+	        pstmt.setString(19, pessoa.getSenha());
+	        pstmt.setInt(20, pessoa.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -212,6 +217,8 @@ public class PessoaDAO extends BaseDAO{
 		pessoa.setNaturalidade(res.getString("pes_natural"));
 		pessoa.setCpf(res.getString("pes_cpf"));
 		pessoa.setDocumento(res.getString("pes_documento"));
+		pessoa.setTipoDocumento(TipoDocumento.getByValue(res.getInt("pes_tipodoc")));
+		pessoa.setEmissor(res.getString("pes_emissordoc"));
 		pessoa.setDataNascimento(res.getDate("pes_dtnasc"));
 		pessoa.setTelefone(res.getString("pes_telefone"));
 		pessoa.setEmail(res.getString("pes_email"));
