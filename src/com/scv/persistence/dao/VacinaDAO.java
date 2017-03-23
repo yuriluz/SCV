@@ -29,9 +29,9 @@ public class VacinaDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "INSERT INTO vacina_vcn (vcn_nome, vcn_descricao, vcn_nodoses, "
+	    String query = "INSERT INTO vacina_vcn (vcn_nome, vcn_descricao, vcn_sexo, vcn_nodoses, "
 	    		+ "vcn_idademin, vcn_idademax, vcn_validade, vcn_obrigatoria) "
-	    		+ "VALUES(?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -39,11 +39,12 @@ public class VacinaDAO extends BaseDAO{
 
 	        pstmt.setString(1, vacina.getNome());
 	        pstmt.setString(2, vacina.getDescricao());
-	        pstmt.setInt(3, vacina.getNumeroDoses());
-	        pstmt.setInt(4, vacina.getIdadeMin());
-	        pstmt.setInt(5, vacina.getIdadeMax());
-	        pstmt.setInt(6, vacina.getValidade());
-	        pstmt.setBoolean(7, vacina.getObrigatoria());
+	        pstmt.setString(3, vacina.getSexo());
+	        pstmt.setInt(4, vacina.getNumeroDoses());
+	        pstmt.setInt(5, vacina.getIdadeMin());
+	        pstmt.setInt(6, vacina.getIdadeMax());
+	        pstmt.setInt(7, vacina.getValidade());
+	        pstmt.setBoolean(8, vacina.getObrigatoria());
 
 	        pstmt.execute();
 	        
@@ -60,7 +61,7 @@ public class VacinaDAO extends BaseDAO{
 		
 		Connection con = null;
         PreparedStatement pstmt = null;
-	    String query = "UPDATE vacina_vcn SET vcn_nome = ?, vcn_descricao = ?, "
+	    String query = "UPDATE vacina_vcn SET vcn_nome = ?, vcn_descricao = ?, vcn_sexo = ?, "
 	    		+ "vcn_nodoses = ?, vcn_idademin = ?, vcn_idademax = ?, vcn_validade = ?, vcn_obrigatoria = ? "
 	    		+ "WHERE vcn_codvcn = ?";	    
 	    
@@ -70,12 +71,13 @@ public class VacinaDAO extends BaseDAO{
 
 	        pstmt.setString(1, vacina.getNome());
 	        pstmt.setString(2, vacina.getDescricao());
-	        pstmt.setInt(3, vacina.getNumeroDoses());
-	        pstmt.setInt(4, vacina.getIdadeMin());
-	        pstmt.setInt(5, vacina.getIdadeMax());
-	        pstmt.setInt(6, vacina.getValidade());
-	        pstmt.setBoolean(7, vacina.getObrigatoria());
-	        pstmt.setInt(8, vacina.getCodigo());
+	        pstmt.setString(3, vacina.getSexo());
+	        pstmt.setInt(4, vacina.getNumeroDoses());
+	        pstmt.setInt(5, vacina.getIdadeMin());
+	        pstmt.setInt(6, vacina.getIdadeMax());
+	        pstmt.setInt(7, vacina.getValidade());
+	        pstmt.setBoolean(8, vacina.getObrigatoria());
+	        pstmt.setInt(9, vacina.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -149,6 +151,7 @@ public class VacinaDAO extends BaseDAO{
 		
 		vacina.setCodigo(res.getInt("vcn_codvcn"));
 		vacina.setNome(res.getString("vcn_nome"));
+		vacina.setSexo(res.getString("vcn_sexo"));
 		vacina.setDescricao(res.getString("vcn_descricao"));
 		vacina.setNumeroDoses(res.getInt("vcn_nodoses"));
 		vacina.setIdadeMin(res.getInt("vcn_idademin"));

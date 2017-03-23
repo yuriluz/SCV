@@ -5,6 +5,7 @@ public class Vacina {
 	private Integer codigo;
 	private String nome;
 	private String descricao;
+	private String sexo;
 	private Integer numeroDoses;
 	private Integer idadeMin;
 	private Integer idadeMax;
@@ -35,6 +36,14 @@ public class Vacina {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	public Integer getNumeroDoses() {
