@@ -34,8 +34,8 @@ public class VacinadorDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO vacinador_vac (vac_matvac, vac_nome, vac_dtmat, vac_sexo,"
 	    		+ "vac_nacional, vac_natural, vac_cpf, vac_documento, vac_tipodoc, vac_emissordoc, vac_dtnasc, vac_telefone, vac_email,"
-	    		+ "vac_logradouro, vac_complemento, vac_bairro, vac_codcid, vac_codest, vac_cep, vac_coduni) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "vac_logradouro, vac_complemento, vac_bairro, vac_codcid, vac_codest, vac_cep, vac_coduni, vac_status) "
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -61,6 +61,7 @@ public class VacinadorDAO extends BaseDAO{
 	        pstmt.setInt(18, vacinador.getEstado().getCodigo());
 	        pstmt.setString(19, vacinador.getCep());
 	        pstmt.setInt(20, vacinador.getUnidade().getCodigo());
+	        pstmt.setBoolean(21, vacinador.getStatus());
 	        
 	        pstmt.execute();
 	        
@@ -80,7 +81,7 @@ public class VacinadorDAO extends BaseDAO{
 	    String query = "UPDATE vacinador_vac SET vac_matvac = ?, vac_nome = ?, "
 	    		+ "vac_sexo = ?, vac_nacional = ?, vac_natural = ?, vac_cpf = ?, vac_documento = ?, vac_tipodoc = ?, vac_emissordoc = ?, vac_dtnasc = ?, "
 	    		+ "vac_telefone = ?, vac_email = ?, vac_logradouro = ?, vac_complemento = ?, vac_bairro = ?, vac_codcid = ?, "
-	    		+ "vac_codest = ?, vac_cep = ?, vac_coduni = ? WHERE vac_codvac = ?";	    
+	    		+ "vac_codest = ?, vac_cep = ?, vac_coduni = ?, vac_status = ? WHERE vac_codvac = ?";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -105,7 +106,8 @@ public class VacinadorDAO extends BaseDAO{
 	        pstmt.setInt(17, vacinador.getEstado().getCodigo());
 	        pstmt.setString(18, vacinador.getCep());
 	        pstmt.setInt(19, vacinador.getUnidade().getCodigo());
-	        pstmt.setInt(20, vacinador.getCodigo());
+	        pstmt.setBoolean(20, vacinador.getStatus());
+	        pstmt.setInt(21, vacinador.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -197,6 +199,7 @@ public class VacinadorDAO extends BaseDAO{
 		vacinador.setEstado(EstadoDAO.getInstance().carregarPorCodigo(res.getInt("vac_codest")));
 		vacinador.setCep(res.getString("vac_cep"));
 		vacinador.setUnidade(UnidadeDAO.getInstance().carregarPorCodigo(res.getInt("vac_coduni")));
+		vacinador.setStatus(res.getBoolean("vac_status"));
 		
 		return vacinador;
 	}

@@ -87,12 +87,25 @@ $(document).ready(function() {
 			sexo = "Masculino";
 		} else if (userSexo.getValue().equals("F")) {
 			sexo = "Feminino";
-		} else if (userSexo.getValue().equals("O")) { 
+		} else if (userSexo.getValue().equals("")) { 
 			sexo = "Outro";
 		}
 		
 		if (!usuario.getDocumento().isEmpty()) {
-			tipoDoc = "RG/CNH/CTPS/PASSAPORTE";
+			switch(usuario.getTipoDocumento()) {
+			case RG:
+				tipoDoc = "RG";
+				break;
+			case CNH:
+				tipoDoc = "CNH";
+				break;
+			case CTPS:
+				tipoDoc = "CTPS";
+				break;
+			case PASSAPORTE:
+				tipoDoc = "Passaporte";
+				break;
+			}
 			nDoc = usuario.getDocumento();
 		} else {
 			tipoDoc = "CPF";
@@ -157,7 +170,7 @@ $(document).ready(function() {
 					</div>
 					<div class="w3-row">
 						<div class="w3-col">
-							<p><b>Documento nacional de identificação: </b><%=tipoDoc%> - <%=nDoc%></p>
+							<p><b>Documento nacional de identificação: </b><%=tipoDoc%> - <%=nDoc%> - <%=usuario.getEmissor()%></p>
 						</div>
 					</div>
 					<div class="w3-row">
@@ -175,7 +188,7 @@ $(document).ready(function() {
 									for (Registro r : registros) {
 								%>
 									<tr>
-										<td>r.getVacina().getNome()</td><td>r.getDataVacina()</td><td>r.getConsulta().getVacinador().getNome()</td><td>r.getLote()</td><td>r.getDataValidade()</td><td>r.getConsulta().getUnidade().getNomeFantasia()</td>
+										<td><%=r.getVacina().getNome()%></td><td><%=r.getDataVacina()%></td><td><%=r.getConsulta().getVacinador().getNome()%></td><td><%=r.getLote()%></td><td><%=r.getDataValidade()%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
 									</tr>
 								<%
 									}

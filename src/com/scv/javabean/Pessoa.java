@@ -7,26 +7,26 @@ import com.scv.entities.enums.TipoDocumento;
 
 public class Pessoa {
 	
-	Integer codigo;
-	String nome;
-	Sexo sexo;
-	String nacionalidade;
-	String naturalidade;
-	String cpf;
-	String documento;
-	TipoDocumento tipoDocumento;
-	String emissor;
-	Date dataNascimento;
-	Escolaridade escolaridade;
-	String telefone;
-	String email;
-	String logradouro;
-	String complemento;
-	String bairro;
-	Cidade cidade;
-	Estado estado;
-	String cep;
-	String senha;
+	private Integer codigo;
+	private String nome;
+	private Sexo sexo;
+	private String nacionalidade;
+	private String naturalidade;
+	private String cpf;
+	private String documento;
+	private TipoDocumento tipoDocumento;
+	private String emissor;
+	private Date dataNascimento;
+	private Escolaridade escolaridade;
+	private String telefone;
+	private String email;
+	private String logradouro;
+	private String complemento;
+	private String bairro;
+	private Cidade cidade;
+	private Estado estado;
+	private String cep;
+	private String senha;
 	
 	public Pessoa() {}
 

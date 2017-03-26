@@ -41,8 +41,8 @@ public class VacinaDAO extends BaseDAO{
 	        pstmt.setString(2, vacina.getDescricao());
 	        pstmt.setString(3, vacina.getSexo());
 	        pstmt.setInt(4, vacina.getNumeroDoses());
-	        pstmt.setInt(5, vacina.getIdadeMin());
-	        pstmt.setInt(6, vacina.getIdadeMax());
+	        pstmt.setDouble(5, vacina.getIdadeMin());
+	        pstmt.setDouble(6, vacina.getIdadeMax());
 	        pstmt.setInt(7, vacina.getValidade());
 	        pstmt.setBoolean(8, vacina.getObrigatoria());
 
@@ -73,8 +73,8 @@ public class VacinaDAO extends BaseDAO{
 	        pstmt.setString(2, vacina.getDescricao());
 	        pstmt.setString(3, vacina.getSexo());
 	        pstmt.setInt(4, vacina.getNumeroDoses());
-	        pstmt.setInt(5, vacina.getIdadeMin());
-	        pstmt.setInt(6, vacina.getIdadeMax());
+	        pstmt.setDouble(5, vacina.getIdadeMin());
+	        pstmt.setDouble(6, vacina.getIdadeMax());
 	        pstmt.setInt(7, vacina.getValidade());
 	        pstmt.setBoolean(8, vacina.getObrigatoria());
 	        pstmt.setInt(9, vacina.getCodigo());
@@ -154,8 +154,8 @@ public class VacinaDAO extends BaseDAO{
 		vacina.setSexo(res.getString("vcn_sexo"));
 		vacina.setDescricao(res.getString("vcn_descricao"));
 		vacina.setNumeroDoses(res.getInt("vcn_nodoses"));
-		vacina.setIdadeMin(res.getInt("vcn_idademin"));
-		vacina.setIdadeMax(res.getInt("vcn_idademax"));
+		vacina.setIdadeMin(res.getDouble("vcn_idademin"));
+		vacina.setIdadeMax(res.getDouble("vcn_idademax"));
 		vacina.setValidade(res.getInt("vcn_validade"));
 		vacina.setObrigatoria(res.getBoolean("vcn_obrigatoria"));
 		

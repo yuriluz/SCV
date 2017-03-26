@@ -179,8 +179,8 @@ public class RegistroDAO extends BaseDAO{
 		registro.setPessoa(PessoaDAO.getInstance().carregarPorCodigo(res.getInt("reg_codpes")));
 		registro.setVacina(VacinaDAO.getInstance().carregarPorCodigo(res.getInt("reg_codvcn")));
 		registro.setConsulta(ConsultaDAO.getInstance().carregarPorCodigo(res.getInt("reg_codcon")));
-		registro.setDataVacina((res.getDate("con_dtvacina")));
-		registro.setDataValidade((res.getDate("con_dtvalidade")));
+		registro.setDataVacina((res.getDate("reg_dtvacina")));
+		registro.setDataValidade((res.getDate("reg_dtvalidade")));
 		registro.setLote(res.getString("reg_lote"));
 		registro.setDose(res.getInt("reg_dose"));
 		

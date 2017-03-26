@@ -7,26 +7,27 @@ import com.scv.entities.enums.TipoDocumento;
 
 public class Vacinador {
 	
-	Integer codigo;
-	String matricula;
-	String nome;
-	Sexo sexo;
-	String nacionalidade;
-	String naturalidade;
-	String cpf;
-	String documento;
-	TipoDocumento tipoDocumento;
-	String emissor;
-	Date dataNascimento;
-	String telefone;
-	String email;
-	String logradouro;
-	String complemento;
-	String bairro;
-	Cidade cidade;
-	Estado estado;
-	String cep;
-	Unidade unidade;
+	private Integer codigo;
+	private String matricula;
+	private String nome;
+	private Sexo sexo;
+	private String nacionalidade;
+	private String naturalidade;
+	private String cpf;
+	private String documento;
+	private TipoDocumento tipoDocumento;
+	private String emissor;
+	private Date dataNascimento;
+	private String telefone;
+	private String email;
+	private String logradouro;
+	private String complemento;
+	private String bairro;
+	private Cidade cidade;
+	private Estado estado;
+	private String cep;
+	private Unidade unidade;
+	private Boolean status;
 	
 	public Vacinador() {}
 
@@ -189,7 +190,13 @@ public class Vacinador {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	
-	
 
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+	
 }

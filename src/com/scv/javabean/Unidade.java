@@ -16,6 +16,7 @@ public class Unidade {
 	private Estado estado;
 	private String cep;
 	private Gerente gerente;
+	private Boolean status;
 	
 	public Unidade() {}
 
@@ -130,12 +131,20 @@ public class Unidade {
 	public void setGerente(Gerente gerente) {
 		this.gerente = gerente;
 	}
+		
+    public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 	
 	////////////////////////////////////////////////////////////////////////////
-	
-    public enum TipoUnidade {
+
+	public enum TipoUnidade {
         
-        HOSPITAL("H"), POSTO("P"), CLINICA("C");
+        HOSPITAL("H"), CENTRO_DE_SAUDE("P"), CLINICA("C");
         private String value;
         
         private TipoUnidade(String value) {
@@ -160,7 +169,7 @@ public class Unidade {
     
     public enum Gestao {
         
-        PARTICULAR("P"), MUNICIPAL("M"), ESTADUAL("E"), FEDERAL("F");
+        PARTICULAR("P"), MUNICIPAL("M"), ESTADUAL("E"), DUPLA("D"), FEDERAL("F");
         private String value;
         
         private Gestao(String value) {

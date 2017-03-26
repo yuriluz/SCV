@@ -34,7 +34,7 @@ public class UnidadeDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO unidade_uni (uni_nomefant, uni_razao, uni_dtcad, uni_cnes, uni_cnpj,"
 	    	    + "uni_telefone, uni_tipo, uni_gestao, uni_logradouro, uni_bairro, uni_codcid,"
-	    	    + "uni_codest, uni_cep, uni_codger) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    	    + "uni_codest, uni_cep, uni_codger, uni_status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -54,6 +54,7 @@ public class UnidadeDAO extends BaseDAO{
 	        pstmt.setInt(12, unidade.getEstado().getCodigo());
 	        pstmt.setString(13, unidade.getCep());
 	        pstmt.setInt(14, unidade.getGerente().getCodigo());
+	        pstmt.setBoolean(15, unidade.getStatus());
 	        
 	        pstmt.execute();
 	        
@@ -72,7 +73,7 @@ public class UnidadeDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "UPDATE unidade_uni SET uni_nomefant=?, uni_razao=?, uni_cnes=?, uni_cnpj=?,"
 	    	    + "uni_telefone=?, uni_tipo=?, uni_gestao=?, uni_logradouro=?, uni_bairro=?, uni_codcid=?,"
-	    	    + "uni_codest=?, uni_cep=?, uni_codger=? WHERE uni_coduni=?)";	    
+	    	    + "uni_codest=?, uni_cep=?, uni_codger=?, uni_status=? WHERE uni_coduni=?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -91,7 +92,8 @@ public class UnidadeDAO extends BaseDAO{
 	        pstmt.setInt(11, unidade.getEstado().getCodigo());
 	        pstmt.setString(12, unidade.getCep());
 	        pstmt.setInt(13, unidade.getGerente().getCodigo());
-	        pstmt.setInt(14, unidade.getCodigo());
+	        pstmt.setBoolean(14, unidade.getStatus());
+	        pstmt.setInt(15, unidade.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -177,6 +179,7 @@ public class UnidadeDAO extends BaseDAO{
 		unidade.setEstado(EstadoDAO.getInstance().carregarPorCodigo(res.getInt("uni_codest")));
 		unidade.setCep(res.getString("uni_cep"));
 		unidade.setGerente(GerenteDAO.getInstance().carregarPorCodigo(res.getInt("uni_codger")));
+		unidade.setStatus(res.getBoolean("uni_status"));
 		
 		return unidade;
 	}

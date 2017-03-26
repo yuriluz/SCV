@@ -7,8 +7,8 @@ public class Vacina {
 	private String descricao;
 	private String sexo;
 	private Integer numeroDoses;
-	private Integer idadeMin;
-	private Integer idadeMax;
+	private Double idadeMin;
+	private Double idadeMax;
 	private Integer validade;
 	private Boolean obrigatoria;
 	
@@ -54,19 +54,19 @@ public class Vacina {
 		this.numeroDoses = numeroDoses;
 	}
 
-	public Integer getIdadeMin() {
+	public Double getIdadeMin() {
 		return idadeMin;
 	}
 
-	public void setIdadeMin(Integer idadeMin) {
+	public void setIdadeMin(Double idadeMin) {
 		this.idadeMin = idadeMin;
 	}
 
-	public Integer getIdadeMax() {
+	public Double getIdadeMax() {
 		return idadeMax;
 	}
 
-	public void setIdadeMax(Integer idadeMax) {
+	public void setIdadeMax(Double idadeMax) {
 		this.idadeMax = idadeMax;
 	}
 
