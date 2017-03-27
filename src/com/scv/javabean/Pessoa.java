@@ -1,6 +1,8 @@
 package com.scv.javabean;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.scv.entities.enums.Sexo;
 import com.scv.entities.enums.TipoDocumento;
@@ -181,7 +183,22 @@ public class Pessoa {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	
+	public String getSenha() {
+		return senha;
+	}
 
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Integer getIdade() {
+		Calendar hoje = Calendar.getInstance();
+		Calendar nascimento = new GregorianCalendar();
+		nascimento.setTime(dataNascimento);
+		
+		return hoje.get(Calendar.YEAR) - nascimento.get(Calendar.YEAR);
+	}
 	
 	///////////////////////////////////////////////////////////////
 	
@@ -209,13 +226,4 @@ public class Pessoa {
         }
     }
 
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
 }

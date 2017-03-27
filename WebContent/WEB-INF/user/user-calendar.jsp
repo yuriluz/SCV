@@ -3,6 +3,7 @@
 <%@page import="com.scv.persistence.dao.CidadeDAO"%>
 <%@page import="com.scv.persistence.dao.CampanhaDAO"%>
 <%@page import="com.scv.persistence.dao.CalendarioDAO"%>
+<%@page import="com.scv.persistence.dao.RegistroDAO"%>
 <%@page import="com.scv.javabean.Pessoa.Escolaridade"%>
 <%@page import="com.scv.entities.enums.Sexo"%>
 <%@page import="com.scv.javabean.Pessoa"%>
@@ -10,6 +11,7 @@
 <%@page import="com.scv.javabean.Estado"%>
 <%@page import="com.scv.javabean.Cidade"%>
 <%@page import="com.scv.javabean.Calendario"%>
+<%@page import="com.scv.javabean.Registro"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
@@ -74,6 +76,7 @@
 		List<Campanha> campanhasEmAndamento = new ArrayList<Campanha>();
 		List<Campanha> campanhasFuturas = new ArrayList<Campanha>();
 		List<Campanha> campanhasPassadas = new ArrayList<Campanha>();
+		List<Registro> registros = RegistroDAO.getInstance().carregarPorPessoa(usuario);
 		
 		Date hoje = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -102,6 +105,9 @@
 						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
 						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container  w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
+      						<%if (!campanha.isUpToDate(usuario, registros)) {%>
+      							<p><i>Oi</i></p>
+      						<% } %>
     					</div>
 					<% } %>
 					</div>
@@ -117,6 +123,9 @@
 						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
 						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
+      						<%if (!campanha.isUpToDate(usuario, registros)) {%>
+      							<p><i>Oi</i></p>
+      						<% } %>
     					</div>
 					<% } %>
 					</div>

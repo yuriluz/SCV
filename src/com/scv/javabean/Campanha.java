@@ -1,6 +1,9 @@
 package com.scv.javabean;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Campanha {
 	
@@ -77,6 +80,35 @@ public class Campanha {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+	
+	public boolean isUpToDate(Pessoa pessoa, List<Registro> registros) {
+				
+		if (registros.isEmpty()) {
+			return false;
+		} else if (pessoa.getIdade() < this.getVacina().getIdadeMin() 
+				||  pessoa.getIdade() > this.getVacina().getIdadeMax()) {
+			return true;
+		} else {			
+			for (Registro registro: registros) {
+				 if (registro.getVacina().equals(this.getVacina())) {
+					if (this.getVacina().getNumeroDoses() <= registro.getDose()) {
+						return true;
+					} else if (this.getVacina().getNumeroDoses() > registro.getDose() && registro.getDataValidade().after((Calendar.getInstance().getTime()))) {
+						return true;
+					} else if (this.getVacina().getNumeroDoses() == null && registro.getDataValidade().before((Calendar.getInstance().getTime()))) {
+						return false;
+					} else if (this.getVacina().getNumeroDoses() == null && registro.getDataValidade().after((Calendar.getInstance().getTime()))) {
+						return true;
+					}				
+				} 
+				
+			}
+			
+		}
+		
+		return false;
+		
 	}
 
 }
