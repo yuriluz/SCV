@@ -175,6 +175,37 @@ public class PessoaDAO extends BaseDAO{
         return pessoa;
 	}
 	
+	public Pessoa carregarPorDocumento(String documento) throws DAOException, ClassNotFoundException {
+		Pessoa pessoa = new Pessoa();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM pessoa_pes WHERE pes_cpf = ? or pes_documento = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, documento);
+            pstmt.setString(2, documento);
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	pessoa = gerarPessoa(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava a pessoa (" + documento + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return pessoa;
+	}
+	
 	public Pessoa validarAcesso(String documento, String senha) throws DAOException, ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 

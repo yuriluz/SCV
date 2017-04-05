@@ -41,10 +41,14 @@ public class AdmLoginServlet extends HttpServlet {
 				session.setAttribute("login", usuario);
 				if (usuario.getTipo().equals(Usuario.TipoUsuario.GERENTE)){
 					Gerente gerente = GerenteDAO.getInstance().carregarPorCodigo(usuario.getCodUsuario());
-					session.setAttribute("usuario", gerente);
+					session.setAttribute("gerente", gerente);
+					session.setAttribute("tipoUsuario", Usuario.TipoUsuario.GERENTE);
 				} else if (usuario.getTipo().equals(Usuario.TipoUsuario.VACINADOR)){
 					Vacinador vacinador = VacinadorDAO.getInstance().carregarPorCodigo(usuario.getCodUsuario());
-					session.setAttribute("usuario", vacinador);
+					session.setAttribute("vacinador", vacinador);
+					session.setAttribute("tipoUsuario", Usuario.TipoUsuario.VACINADOR);
+				} else if (usuario.getTipo().equals(Usuario.TipoUsuario.ADMINISTRADOR)){
+					session.setAttribute("tipoUsuario", Usuario.TipoUsuario.ADMINISTRADOR);
 				}
 				request.getRequestDispatcher("WEB-INF/home/adm-home.jsp").forward(request, response);
 			}

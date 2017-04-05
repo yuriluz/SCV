@@ -27,7 +27,7 @@
 	%>
 
 	<jsp:include page="/WEB-INF/includes/menu/adm-menu.jsp">
-		<jsp:param name="tipo" value="0"/>
+		<jsp:param name="selecionado" value="0"/>
 	</jsp:include>
 
 	<div class="w3-container w3-padding-64">

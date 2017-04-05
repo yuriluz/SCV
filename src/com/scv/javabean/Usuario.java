@@ -47,7 +47,7 @@ public class Usuario {
 
 	public enum TipoUsuario {
 
-    	ADMINISTRATIVO("1"), GERENTE("2"), VACINADOR("3");
+    	ADMINISTRADOR("1"), GERENTE("2"), VACINADOR("3");
         private String value;
         
         private TipoUsuario(String value) {

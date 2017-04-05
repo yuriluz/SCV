@@ -45,7 +45,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserCalendarServlet</servlet-name>
-		<url-pattern>/calendario</url-pattern>
+		<url-pattern>/usuario-calendario</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -54,7 +54,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserInfoServlet</servlet-name>
-		<url-pattern>/dados</url-pattern>
+		<url-pattern>/usuario-dados</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -81,7 +81,25 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserCardServlet</servlet-name>
+		<url-pattern>/usuario-cartao</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CalendarServlet</servlet-name>
+		<servlet-class>com.scv.servlet.CalendarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CalendarServlet</servlet-name>
+		<url-pattern>/calendario</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CardServlet</servlet-name>
+		<servlet-class>com.scv.servlet.CardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CardServlet</servlet-name>
 		<url-pattern>/cartao</url-pattern>
 	</servlet-mapping>
-
+	
 </web-app>

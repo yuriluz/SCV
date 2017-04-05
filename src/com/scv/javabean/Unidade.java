@@ -15,7 +15,6 @@ public class Unidade {
 	private Cidade cidade;
 	private Estado estado;
 	private String cep;
-	private Gerente gerente;
 	private Boolean status;
 	
 	public Unidade() {}
@@ -122,14 +121,6 @@ public class Unidade {
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
-	
-	public Gerente getGerente() {
-		return gerente;
-	}
-
-	public void setGerente(Gerente gerente) {
-		this.gerente = gerente;
 	}
 		
     public Boolean getStatus() {

@@ -34,8 +34,8 @@ public class GerenteDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO gerente_ger (ger_matger, ger_nome, ger_dtmat, ger_sexo,"
 	    		+ "ger_nacional, ger_natural, ger_cpf, ger_documento, ger_tipodoc, ger_emissordoc, ger_dtnasc, ger_telefone, ger_email,"
-	    		+ "ger_logradouro, ger_complemento, ger_bairro, ger_codcid, ger_codest, ger_cep, ger_status) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "ger_logradouro, ger_complemento, ger_bairro, ger_codcid, ger_codest, ger_cep, ger_coduni, ger_status) "
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -60,7 +60,8 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setInt(17, gerente.getCidade().getCodigo());
 	        pstmt.setInt(18, gerente.getEstado().getCodigo());
 	        pstmt.setString(19, gerente.getCep());
-	        pstmt.setBoolean(20, gerente.getStatus());
+	        pstmt.setInt(20, gerente.getUnidade().getCodigo());
+	        pstmt.setBoolean(21, gerente.getStatus());
 	        
 	        pstmt.execute();
 	        
@@ -80,7 +81,7 @@ public class GerenteDAO extends BaseDAO{
 	    String query = "UPDATE gerente_ger SET ger_matger = ?, ger_nome = ?, "
 	    		+ "ger_sexo = ?, ger_nacional = ?, ger_natural = ?, ger_ cpf = ?, ger_documento = ?, ger_tipodoc = ?, ger_emissordoc = ?, ger_dtnasc = ?, "
 	    		+ "ger_telefone = ?, ger_email = ?, ger_logradouro = ?, ger_complemento = ?, ger_bairro = ?, ger_codcid = ?, "
-	    		+ "ger_codest = ?, ger_cep = ?, ger_status = ? WHERE ger_codger = ?";	    
+	    		+ "ger_codest = ?, ger_cep = ?, ger_coduni = ?, ger_status = ? WHERE ger_codger = ?";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -104,8 +105,9 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setInt(16, gerente.getCidade().getCodigo());
 	        pstmt.setInt(17, gerente.getEstado().getCodigo());
 	        pstmt.setString(18, gerente.getCep());
-	        pstmt.setBoolean(19, gerente.getStatus());
-	        pstmt.setInt(20, gerente.getCodigo());
+	        pstmt.setInt(19, gerente.getUnidade().getCodigo());
+	        pstmt.setBoolean(20, gerente.getStatus());
+	        pstmt.setInt(21, gerente.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -196,6 +198,7 @@ public class GerenteDAO extends BaseDAO{
 		gerente.setCidade(CidadeDAO.getInstance().carregarPorCodigo(res.getInt("ger_codcid")));
 		gerente.setEstado(EstadoDAO.getInstance().carregarPorCodigo(res.getInt("ger_codest")));
 		gerente.setCep(res.getString("ger_cep"));
+		gerente.setUnidade(UnidadeDAO.getInstance().carregarPorCodigo(res.getInt("ger_coduni")));
 		gerente.setStatus(res.getBoolean("ger_status"));
 		
 		return gerente;

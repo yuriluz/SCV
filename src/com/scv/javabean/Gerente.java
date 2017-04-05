@@ -26,6 +26,7 @@ public class Gerente {
 	private Cidade cidade;
 	private Estado estado;
 	private String cep;
+	private Unidade unidade;
 	private Boolean status;
 	
 	public Gerente() {}
@@ -181,6 +182,14 @@ public class Gerente {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+	
+	public Unidade getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 
 	public Boolean getStatus() {

@@ -2,19 +2,19 @@
     pageEncoding="ISO-8859-1"%>
     
     <%
-		String tipo = request.getParameter("tipo");
+		String selecionado = request.getParameter("selecionado");
     %>
     
 	<div id="w3-top menu">
 		<ul class="w3-navbar w3-light-grey w3-card-2" id="myNavbar">
 			<li>
-				<b><a href="/userLogin" class="w3-large w3-wide">SCV</a></b>
+				<b><a href="/principal" class="w3-large w3-wide">SCV</a></b>
 			</li>
 
 			<li class="w3-right w3-hide-small">
-				<a <%if (tipo.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/dados">MEUS DADOS</a> 
-				<a <%if (tipo.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
-				<a <%if (tipo.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
+				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/dados">MEUS DADOS</a> 
+				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
+				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
 
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
