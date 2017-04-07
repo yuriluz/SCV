@@ -85,20 +85,20 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>CalendarServlet</servlet-name>
-		<servlet-class>com.scv.servlet.CalendarServlet</servlet-class>
+		<servlet-name>AdmCalendarServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmCalendarServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CalendarServlet</servlet-name>
+		<servlet-name>AdmCalendarServlet</servlet-name>
 		<url-pattern>/calendario</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>CardServlet</servlet-name>
-		<servlet-class>com.scv.servlet.CardServlet</servlet-class>
+		<servlet-name>AdmCardServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmCardServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CardServlet</servlet-name>
+		<servlet-name>AdmCardServlet</servlet-name>
 		<url-pattern>/cartao</url-pattern>
 	</servlet-mapping>
 	

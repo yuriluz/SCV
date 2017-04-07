@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CalendarServlet extends HttpServlet {
+public class AdmCalendarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CalendarServlet() {
+    public AdmCalendarServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("WEB-INF/adm/calendar.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/adm/page-calendar.jsp").forward(request, response);
 	
 	}
 

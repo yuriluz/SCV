@@ -60,7 +60,7 @@
 			<div class="w3-padding">
 				<div class="w3-row">
 						<div class="w3-col w3-padding-tiny w3-center">
-							<h5><b>CARTÃO DE VACINAÇÃO</b></h5>
+							<h5><b>CARTÃO DE VACINAÇÃO (NÃO OFICIAL)</b></h5>
 						</div>
 				</div>
 					<div class="w3-row">

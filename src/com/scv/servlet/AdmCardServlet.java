@@ -11,17 +11,17 @@ import com.scv.javabean.Pessoa;
 import com.scv.persistence.dao.PessoaDAO;
 import com.scv.persistence.exception.DAOException;
 
-public class CardServlet extends HttpServlet {
+public class AdmCardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CardServlet() {
+    public AdmCardServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("WEB-INF/adm/card.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/adm/page-card.jsp").forward(request, response);
 	
 	}
 	
@@ -43,7 +43,7 @@ public class CardServlet extends HttpServlet {
 			request.setAttribute("pessoa", pessoa);
 		}
 
-		request.getRequestDispatcher("WEB-INF/adm/card.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/adm/page-card.jsp").forward(request, response);
 	
 	}
 

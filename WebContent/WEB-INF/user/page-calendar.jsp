@@ -1,11 +1,6 @@
-<%@page import="com.scv.persistence.dao.PaisDAO"%>
-<%@page import="com.scv.persistence.dao.EstadoDAO"%>
-<%@page import="com.scv.persistence.dao.CidadeDAO"%>
 <%@page import="com.scv.persistence.dao.CampanhaDAO"%>
 <%@page import="com.scv.persistence.dao.CalendarioDAO"%>
 <%@page import="com.scv.persistence.dao.RegistroDAO"%>
-<%@page import="com.scv.javabean.Pessoa.Escolaridade"%>
-<%@page import="com.scv.entities.enums.Sexo"%>
 <%@page import="com.scv.javabean.Pessoa"%>
 <%@page import="com.scv.javabean.Campanha"%>
 <%@page import="com.scv.javabean.Estado"%>
@@ -64,8 +59,20 @@
 		
 		for (Campanha campanha : campanhas) {
 			if (campanha.getDataInicio().compareTo(hoje) <= 0 && campanha.getDataFim().compareTo(hoje) >= 0) {
+				if (usuario.getIdade() < campanha.getVacina().getIdadeMin() 
+						||  usuario.getIdade() > campanha.getVacina().getIdadeMax()) {
+					campanha.setMissingShot(false);
+				} else {
+					campanha.isUpToDate(registros);
+				}
 				campanhasEmAndamento.add(campanha);
 			} else if (campanha.getDataInicio().after(hoje)) {
+				if (usuario.getIdade() < campanha.getVacina().getIdadeMin() 
+						||  usuario.getIdade() > campanha.getVacina().getIdadeMax()) {
+					campanha.setMissingShot(false);
+				} else {
+					campanha.isUpToDate(registros);
+				}
 				campanhasFuturas.add(campanha);
 			} else if (campanha.getDataFim().before(hoje)) {
 				campanhasPassadas.add(campanha);
@@ -83,11 +90,11 @@
 					<hr class="w3-margin-0 w3-margin-bottom">
 					<div class="w3-accordion w3-light-blue">
 					<% for (Campanha campanha : campanhasEmAndamento) { %>
-						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%if (campanha.getMissingShot()) {%><i class="w3-text-yellow fa fa-exclamation-triangle"></i><% } %> <%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
 						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container  w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
-      						<%if (!campanha.isUpToDate(usuario, registros)) {%>
-      							<p><i>Oi</i></p>
+      						<%if (campanha.getMissingShot()) {%>
+      							<i class="fa fa-exclamation-triangle"></i> Você e/ou seu(s) dependente(s) precisam de uma dose dessa vacina!
       						<% } %>
     					</div>
 					<% } %>
@@ -101,11 +108,11 @@
 					<hr class="w3-margin-0 w3-margin-bottom">
 					<div class="w3-accordion w3-light-blue">
 					<% for (Campanha campanha : campanhasFuturas) { %>
-						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
+						<button style="white-space: normal;" onclick="myFunction('<%=campanha.getCodigo()%>')" class="w3-btn-block w3-left-align w3-text-blue w3-white w3-leftbar w3-border-blue"><%if (campanha.getMissingShot()) {%><i class="w3-text-yellow fa fa-exclamation-triangle"></i><% } %> <%=campanha.getNome()%> - De <%=df.format(campanha.getDataInicio())%> até <%=df.format(campanha.getDataFim())%> <i class="fa fa-caret-down"></i></button>
 						<div id="<%=campanha.getCodigo()%>" class="w3-accordion-content w3-container w3-left-align">
       						<p><i><%=campanha.getDescricao()%></i></p>
-      						<%if (!campanha.isUpToDate(usuario, registros)) {%>
-      							<p><i>Oi</i></p>
+      						<%if (campanha.getMissingShot()) {%>
+      							<i class="fa fa-exclamation-triangle"> </i> Você e/ou seu(s) dependente(s) precisam de uma dose dessa vacina!
       						<% } %>
     					</div>
 					<% } %>

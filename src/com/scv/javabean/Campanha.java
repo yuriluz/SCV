@@ -14,6 +14,7 @@ public class Campanha {
 	private Vacina vacina;
 	private Cidade cidade;
 	private Estado estado;
+	private Boolean missingShot = true;
 	
 	public Campanha() {}
 
@@ -81,33 +82,33 @@ public class Campanha {
 		this.estado = estado;
 	}
 	
-	public boolean isUpToDate(Pessoa pessoa, List<Registro> registros) {
+	public Boolean getMissingShot() {
+		return missingShot;
+	}
+
+	public void setMissingShot(Boolean missingShot) {
+		this.missingShot = missingShot;
+	}
+
+	public void isUpToDate(List<Registro> registros) {
 				
 		if (registros.isEmpty()) {
-			return false;
-		} else if (pessoa.getIdade() < this.getVacina().getIdadeMin() 
-				||  pessoa.getIdade() > this.getVacina().getIdadeMax()) {
-			return true;
+			this.setMissingShot(false); 
 		} else {			
 			for (Registro registro: registros) {
 				 if (registro.getVacina().equals(this.getVacina())) {
 					if (this.getVacina().getNumeroDoses() <= registro.getDose()) {
-						return true;
+						this.setMissingShot(false);
 					} else if (this.getVacina().getNumeroDoses() > registro.getDose() && registro.getDataValidade().after((Calendar.getInstance().getTime()))) {
-						return true;
+						this.setMissingShot(false);
 					} else if (this.getVacina().getNumeroDoses() == null && registro.getDataValidade().before((Calendar.getInstance().getTime()))) {
-						return false;
+						this.setMissingShot(true);
 					} else if (this.getVacina().getNumeroDoses() == null && registro.getDataValidade().after((Calendar.getInstance().getTime()))) {
-						return true;
+						this.setMissingShot(false);
 					}				
 				} 
-				
 			}
-			
-		}
-		
-		return false;
-		
+		}		
 	}
 
 }

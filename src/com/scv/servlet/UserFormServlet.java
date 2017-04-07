@@ -36,7 +36,7 @@ public class UserFormServlet extends HttpServlet {
 			request.setAttribute("estado", estado);
 		}
 
-		request.getRequestDispatcher("WEB-INF/user/cities-select.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/includes/cities-select.jsp").forward(request, response);
 	
 	}
 
