@@ -2,6 +2,7 @@ package com.scv.persistence.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -123,6 +124,62 @@ public class CampanhaDAO extends BaseDAO{
         try {
             con = getConnection();
             pstmt = con.prepareStatement(query);
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Campanha campanha = gerarCampanha(res);
+                campanhas.add(campanha);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava todas as campanhas";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return campanhas;
+	}
+	
+	public List<Campanha> carregarTodasEmAndamento() throws DAOException, ClassNotFoundException {
+		List<Campanha> campanhas = new ArrayList<Campanha>();
+		
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "select * from campanha_cam where cam_codcid is null and cam_codest is null "
+        		+ "and cam_dtinicio <= curdate() and cam_dtfim >= curdate()";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Campanha campanha = gerarCampanha(res);
+                campanhas.add(campanha);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava todas as campanhas";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return campanhas;
+	}
+	
+	public List<Campanha> carregarTodasEmAndamento(Estado estado, Cidade cidade) throws DAOException, ClassNotFoundException {
+		List<Campanha> campanhas = new ArrayList<Campanha>();
+		
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "select * from campanha_cam where cam_codcid = ? and cam_codest = ? "
+        		+ "and cam_dtinicio <= curdate() and cam_dtfim >= curdate()";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, cidade.getCodigo());
+            pstmt.setInt(2, estado.getCodigo());
             res = pstmt.executeQuery();
             while (res.next()) {
                 Campanha campanha = gerarCampanha(res);

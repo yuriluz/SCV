@@ -39,7 +39,7 @@
 	<div class="w3-container w3-padding-64">
 			<div class="w3-padding">
 				<div class="w3-row">
-					<div class="w3-col m3 l6 w3-padding-tiny">
+					<div class="w3-col l6 w3-padding-tiny">
 						<form id="buscaUsuario" method="POST" action="/cartao">
 							<label>Informe o número do documento:</label>
 							<div class="w3-bar">

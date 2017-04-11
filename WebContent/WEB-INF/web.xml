@@ -102,4 +102,13 @@
 		<url-pattern>/cartao</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>AdmRegisterServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmRegisterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmRegisterServlet</servlet-name>
+		<url-pattern>/registro</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

@@ -15,6 +15,7 @@
 				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/dados">MEUS DADOS</a> 
 				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
 				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
+				<a <%if (selecionado.equals("4")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/registro">REGISTRAR VACINAÇÃO</a>
 
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
@@ -28,6 +29,7 @@
 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
 		<a href="/dados" onclick="w3_close()">MEUS DADOS</a> 
 		<a href="/cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
-		<a href="/calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> 
+		<a href="/calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a>
+		<a href="/registro" onclick="w3_close()">REGISTRAR VACINAÇÃO</a>  
 		<a href="/logout" onclick="w3_close()">Sair</a>
 	</nav>
