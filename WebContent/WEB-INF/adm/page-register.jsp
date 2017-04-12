@@ -32,29 +32,32 @@
 <script src="./resources/scripts/jquery-ui.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		function updateUser(documento) {
-			if (documento == "") {
-				document.getElementById("nomePessoa").text = "Informe os dados da pessoa!";
-				return;
-			} else {
-				Pessoa pessoa;
-				pessoa = PessoaDAO.getInstance().carregarPorDocumento(documento);
-				
-				if (pessoa != null) {
-					document.getElementById("nomePessoa").text = pessoa.getNome();
-				} else {
-					document.getElementById("nomePessoa").text = "Pessoa não encontrada.";
-				}
-				
-				return;
+$(document).ready(function() {
+	function updatePessoa(documento) {
+		if (documento == "") {
+			document.getElementById("nomePessoa").innerHTML = "Informe os dados do paciente!";
+			return;
+		}
+		if (window.XMLHttpRequest) {
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else { // code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("dadosPessoa").innerHTML = this.responseText;
 			}
 		}
-		
-		$('#searchButton').on('click', function() {
-			updatePessoa($('#searchPessoa').value);
-		});
+		xmlhttp.open("GET", "searchPessoa?documento=" + documento, true);
+		xmlhttp.send();
+	}
+	
+	$(document).on('click', '#searchButton', function() {
+		updatePessoa($('#searchPessoa').val());
 	});
+	
+});
 </script>
 
 <meta name="description" content="Sistema de Controle de Vacinação">
@@ -107,31 +110,29 @@
 	<div class="w3-container w3-padding-64">
 			<div class="w3-padding">
 				<form id="buscaUsuario" method="POST" action="/vacinacao">
-					<div class="w3-row">
-						<div class="w3-col l6 w3-padding-tiny">
-							<label>Informe o número do documento</label>
+					<div id="dadosPessoa" class="w3-row">
+						<div class="w3-col m6 l5">
+							<label>Informe o número do documento</label><br/>
+							<input id="searchPessoa" class="w3-padding w3-section w3-border" style="width:80%;" type="text" placeholder="CPF, RG, CNH, CTPS, Passaporte ou Certidão de Nasc." autocomplete="off">
+							<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
+								<i class="fa fa-search"></i>
+							</a>
 							<input type="hidden" name="codPessoa" value="">
-							<div class="w3-bar">
-								<input id="searchPessoa" class="w3-bar-item w3-input w3-border" style="width:72%; min-width:120px;" type="text" placeholder="CPF, RG, CNH, CTPS, Passaporte ou Certidão de Nascimento" autocomplete="off">
-								<a id="searchButton" class="w3-bar-item w3-button w3-white w3-border w3-hover-blue">
-									<i class="fa fa-search"></i>
-								</a>
-								<label id="nomePessoa"></label>
-							</div>
+							<label id="nomePessoa"></label>
 						</div>
 					</div>
 					<hr />
 					<div class="w3-row">
-							<div class="w3-col m4 l4 w3-padding-tiny w3-center">
+							<div class="w3-col m4 l4 w3-padding-tiny">
 								<label>Data da consulta</label>
 								<input class="w3-input" type="text" name="dtConsulta" value=<%=df.format(hoje) %> disabled>
 							</div>
-							<div class="w3-col m4 l4 w3-padding-tiny w3-center">
+							<div class="w3-col m4 l4 w3-padding-tiny">
 								<label>Unidade de Saúde</label>
 								<input type="hidden" name="codUnidade" value=<%=unidade.getCodigo()%>>
 								<input class="w3-input" type="text" name="nomeUnidade" value=<%=unidade.getNomeFantasia()%> disabled>
 							</div>
-							<div class="w3-col m4 l4 w3-padding-tiny w3-center">
+							<div class="w3-col m4 l4 w3-padding-tiny">
 								<label>Campanha</label>
 								<select class="w3-input" id="campanha" name="campanha">
 									<option value=""></option>
