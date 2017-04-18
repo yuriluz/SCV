@@ -1,6 +1,10 @@
 package com.scv.javabean;
 
+import java.util.Calendar;
 import java.util.Date;
+
+import com.scv.persistence.dao.RegistroDAO;
+import com.scv.persistence.exception.DAOException;
 
 public class Registro {
 	
@@ -14,6 +18,28 @@ public class Registro {
 	private Integer dose;
 	
 	public Registro() {}
+
+	public Registro(Pessoa pessoa, Vacina vacina, Consulta consulta, Date dataVacina, String lote) {
+		this.pessoa = pessoa;
+		this.vacina = vacina;
+		this.consulta = consulta;
+		this.dataVacina = dataVacina;
+		if (!vacina.getValidade().equals(null)) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dataVacina);
+			cal.add(Calendar.MONTH, vacina.getValidade());
+			this.dataValidade = cal.getTime();
+		} else {
+			this.dataValidade = null;
+		}
+		this.lote = lote;
+		try {
+			this.dose = RegistroDAO.getInstance().carregarNumeroDaUltimaDose(pessoa, vacina) + 1;
+		} catch (ClassNotFoundException | DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Integer getCodigo() {
 		return codigo;

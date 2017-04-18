@@ -53,10 +53,41 @@ $(document).ready(function() {
 		xmlhttp.send();
 	}
 	
+	var counter = 1;
+
+	function addItem(){
+		counter++;
+		var div = document.getElementById('item').cloneNode(true);
+		div.id = '';
+		var newItem = div.childNodes;
+		for (var i=0; i<newItem.length; i++) {
+			
+			var fields = newItem[i].childNodes;
+			for (var j=0; j<fields.length; j++) {
+				var fieldName = fields[j].name
+				if (fieldName) {
+					fields[j].name = fields[j].id + counter;
+					fields[j].setAttribute("class", "w3-input w3-margin-top");
+				}
+				if (fields[j].tagName == "LABEL")
+					fields[j].setAttribute("class", "w3-margin-top w3-hide-medium w3-hide-large");
+				if (fields[j].tagName == "BUTTON")
+					fields[j].removeAttribute("disabled");
+			}
+		}
+		
+		document.getElementById("nVacinas").setAttribute("value", counter);
+		document.getElementById("vacinas").appendChild(div);
+	}
+	
 	$(document).on('click', '#searchButton', function() {
 		updatePessoa($('#searchPessoa').val());
 	});
 	
+	$(document).on('click', '#addButton', function() {
+		addItem();
+	});
+
 });
 </script>
 
@@ -107,9 +138,9 @@ $(document).ready(function() {
 
 	%>
 
-	<div class="w3-container w3-padding-64">
+	<div class="w3-container w3-padding-32">
 			<div class="w3-padding">
-				<form id="buscaUsuario" method="POST" action="/vacinacao">
+				<form id="registroVacina" method="POST" action="/registro">
 					<div id="dadosPessoa" class="w3-row">
 						<div class="w3-col m6 l5">
 							<label>Informe o número do documento</label><br/>
@@ -135,7 +166,7 @@ $(document).ready(function() {
 							<div class="w3-col m4 l4 w3-padding-tiny">
 								<label>Campanha</label>
 								<select class="w3-input" id="campanha" name="campanha">
-									<option value=""></option>
+									<option value="0"></option>
 									<%
 										for (Campanha c : campanhas) {
 									%>
@@ -150,40 +181,44 @@ $(document).ready(function() {
 					<div class="w3-row">
 						<div class="w3-col">
 							<h6><b>Vacinas</b></h6> 
+							<input type="hidden" id="nVacinas" name="nVacinas" value="1">
 						</div>
 					</div>
-					<div class="w3-row">
-						<div class="w3-col m3 l3 w3-padding-small">
-							<label>Vacina</label>
-							<select class="w3-input" id="vacina_1" name="vacina_1">
-								<%
-									for (Vacina v : vacinas) {
-								%>
-								<option value=<%=v.getCodigo()%>><%=v.getNome()%></option>
-								<%
-									}
-								%>
-							</select>
-						</div>
-						<div class="w3-col m3 l3 w3-padding-small">
-							<label>Data da Vacinação</label>
-							<input class="w3-input" type="text" name="dataVacina_1" value="">
-						</div>
-						<div class="w3-col m3 l3 w3-padding-small">
-							<label>Lote</label>
-							<input class="w3-input" type="text" name="loteVacina_1" value="">
-						</div>
-						<div class="w3-rest w3-padding-large w3-margin-top">
-							<a><i class="fa fa-close w3-text-red"></i></a>
+					<div id="vacinas" class="w3-row w3-border w3-padding">
+						<div class="w3-row" id="item">
+							<div class="w3-col m3 l3 w3-padding-small">
+								<label>Vacina</label>
+								<select class="w3-input" id="vacina" name="vacina1">
+									<% for (Vacina v : vacinas) { %>
+										<option value=<%=v.getCodigo()%>><%=v.getNome()%></option>
+									<% } %>
+								</select>
+							</div>
+							<div class="w3-col m3 l3 w3-padding-small">
+								<label>Data da Vacinação</label>
+								<input class="w3-input" type="text" id="dataVacina" name="dataVacina1" value="">
+							</div>
+							<div class="w3-col m3 l3 w3-padding-small">
+								<label>Lote</label>
+								<input class="w3-input" type="text" id="loteVacina" name="loteVacina1" value="">
+							</div>
+							<div class="w3-col m3 l3 w3-padding-small w3-margin-top">
+								<button class="w3-button w3-white w3-border w3-hover-red" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);" disabled>
+									<i class="fa fa-trash"></i> REMOVER
+								</button>
+							</div>
 						</div>
 					</div>
+					<div class="w3-row w3-padding">
+							<a id="addButton" class="w3-button w3-white w3-border w3-hover-blue">
+								<i class="fa fa-plus-circle"></i> VACINAS
+							</a>
+					</div>	
 					<hr />
 					<div class="w3-row">
-						<div class="w3-col">
-							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-blue">
-									REGISTRAR
+							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green">
+								<i class="fa fa-check"></i> REGISTRAR
 							</button>
-						</div>
 					</div>
 				</form>
 			</div>

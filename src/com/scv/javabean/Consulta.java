@@ -12,6 +12,14 @@ public class Consulta {
 	private Date dataConsulta;
 	
 	public Consulta() {}
+	
+	public Consulta(Pessoa pessoa, Unidade unidade, Vacinador vacinador, Campanha campanha, Date dataConsulta) {
+		this.pessoa = pessoa;
+		this.unidade = unidade;
+		this.vacinador = vacinador;
+		this.campanha = campanha;
+		this.dataConsulta = dataConsulta;
+	}
 
 	public Integer getCodigo() {
 		return codigo;

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import com.scv.javabean.Pessoa;
 import com.scv.javabean.Registro;
+import com.scv.javabean.Vacina;
 import com.scv.persistence.exception.DAOException;
 
 import java.sql.Connection;
@@ -41,8 +42,8 @@ public class RegistroDAO extends BaseDAO{
 	        pstmt.setInt(1, registro.getPessoa().getCodigo());
 	        pstmt.setInt(2, registro.getVacina().getCodigo());
 	        pstmt.setInt(3, registro.getConsulta().getCodigo());
-	        pstmt.setDate(4, (Date) registro.getDataVacina());
-	        pstmt.setDate(5, (Date) registro.getDataValidade());
+	        pstmt.setDate(4, new java.sql.Date(registro.getDataVacina().getTime()));
+	        pstmt.setDate(5, new java.sql.Date(registro.getDataValidade().getTime()));
 	        pstmt.setString(6, registro.getLote());
 	        pstmt.setInt(7, registro.getDose());
 
@@ -142,6 +143,37 @@ public class RegistroDAO extends BaseDAO{
             close(con, pstmt, res);
         }
         return registro;
+	}
+	
+	public Integer carregarNumeroDaUltimaDose(Pessoa pessoa, Vacina vacina) throws DAOException, ClassNotFoundException {
+		Integer dose = 0;
+		
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT MAX(reg_dose) reg_dose FROM registro_reg WHERE reg_codpes = ? AND reg_codvcn = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setInt(1, pessoa.getCodigo());
+            pstmt.setInt(2, vacina.getCodigo());
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	dose = res.getInt("reg_dose");
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava a última dose registrada.";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return dose;
 	}
 	
 	public List<Registro> carregarPorPessoa(Pessoa pessoa) throws DAOException, ClassNotFoundException {

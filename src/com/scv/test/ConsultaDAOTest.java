@@ -43,5 +43,19 @@ public class ConsultaDAOTest {
 		
 		assertNotNull(consulta);
 	}
+	
+	@Test
+	public void testCarregarCodigoPorConsulta() throws ClassNotFoundException, DAOException {
+		Integer codigo = null;
+		Consulta consulta = ConsultaDAO.getInstance().carregarPorCodigo(1);
+		
+		try {
+			codigo = ConsultaDAO.getInstance().carregarCodigoPorConsulta(consulta);
+		} catch (DAOException e) {
+			fail("ConsultaDAO: Falha do teste de carregarPorCodigo()");
+		}
+		
+		assertNotNull(codigo);
+	}
 
 }

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.scv.javabean.Pessoa;
 import com.scv.javabean.Registro;
+import com.scv.javabean.Vacina;
 import com.scv.persistence.dao.PessoaDAO;
 import com.scv.persistence.dao.RegistroDAO;
 import com.scv.persistence.exception.DAOException;
@@ -58,6 +59,23 @@ public class RegistroDAOTest {
 		}
 		
 		assertNotNull(registros);
+	}
+	
+	@Test
+	public void testCarregarNumeroDaUltimaDose() throws ClassNotFoundException {
+		Pessoa pessoa = new Pessoa();
+		Vacina vacina = new Vacina();
+		pessoa.setCodigo(1);
+		vacina.setCodigo(1);
+		Integer dose = null;
+		
+		try {
+			dose = RegistroDAO.getInstance().carregarNumeroDaUltimaDose(pessoa, vacina);
+		} catch (DAOException e) {
+			fail("RegistroDAO: Falha do teste de carregarPorCodigo()");
+		}
+		
+		assertNotNull(dose);
 	}
 
 }

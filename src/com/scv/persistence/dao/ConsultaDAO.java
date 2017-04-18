@@ -2,6 +2,7 @@ package com.scv.persistence.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +42,10 @@ public class ConsultaDAO extends BaseDAO{
 	        pstmt.setInt(2, consulta.getUnidade().getCodigo());
 	        pstmt.setInt(3, consulta.getVacinador().getCodigo());
 	        pstmt.setInt(4, consulta.getCampanha().getCodigo());
-	        pstmt.setDate(5, (Date) consulta.getDataConsulta());
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTime(consulta.getDataConsulta());
+	        cal.set(Calendar.MILLISECOND, 0);
+	        pstmt.setTimestamp(5, new java.sql.Timestamp(cal.getTimeInMillis()));
 
 	        pstmt.execute();
 	        
@@ -137,6 +141,44 @@ public class ConsultaDAO extends BaseDAO{
             close(con, pstmt, res);
         }
         return consulta;
+	}
+	
+	public Integer carregarCodigoPorConsulta(Consulta consulta) throws DAOException, ClassNotFoundException {
+		Integer codigo = null;
+		
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT MAX(con_codcon) con_codcon FROM consulta_con WHERE con_codpes = ? AND con_coduni = ? AND "
+	    		+ "con_codvac = ? AND con_codcam = ? AND con_dtconsulta = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setInt(1, consulta.getPessoa().getCodigo());
+	        pstmt.setInt(2, consulta.getUnidade().getCodigo());
+	        pstmt.setInt(3, consulta.getVacinador().getCodigo());
+	        pstmt.setInt(4, consulta.getCampanha().getCodigo());
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTime(consulta.getDataConsulta());
+	        cal.set(Calendar.MILLISECOND, 0);
+	        pstmt.setTimestamp(5, new java.sql.Timestamp(cal.getTimeInMillis()));
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	codigo = res.getInt("con_codcon");
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava codigo da consulta.";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return codigo;
 	}
 
 	private Consulta gerarConsulta(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
