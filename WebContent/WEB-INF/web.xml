@@ -67,6 +67,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>CentersSelectServlet</servlet-name>
+		<servlet-class>com.scv.servlet.CentersSelectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CentersSelectServlet</servlet-name>
+		<url-pattern>/loadCenters</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>UserFormServlet</servlet-name>
 		<servlet-class>com.scv.servlet.UserFormServlet</servlet-class>
 	</servlet>
@@ -118,6 +127,15 @@
 	<servlet-mapping>
 		<servlet-name>SearchPessoaServlet</servlet-name>
 		<url-pattern>/searchPessoa</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserRegisterServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserRegisterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserRegisterServlet</servlet-name>
+		<url-pattern>/usuario-registro</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

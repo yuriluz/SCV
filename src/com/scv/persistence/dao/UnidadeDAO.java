@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.scv.javabean.Cidade;
 import com.scv.javabean.Unidade;
 import com.scv.javabean.Unidade.Gestao;
 import com.scv.javabean.Unidade.TipoUnidade;
@@ -122,6 +123,33 @@ public class UnidadeDAO extends BaseDAO{
             }
         } catch (SQLException e) {
             String msg = "SQLException enquanto carregava todas as unidades";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return unidades;
+	}
+	
+	public List<Unidade> carregarPorCidade(Cidade cidade) throws DAOException, ClassNotFoundException {
+		List<Unidade> unidades = new ArrayList<Unidade>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM unidade_uni WHERE uni_codcid = ? ORDER BY uni_nomefant";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, cidade.getCodigo());
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Unidade unidade = gerarUnidade(res);
+                unidades.add(unidade);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava todas as unidades da cidade " + cidade.getCodigo();
             LOGGER.log(Level.SEVERE, msg, e);
             throw new DAOException(msg, e);
         } finally {

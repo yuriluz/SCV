@@ -33,7 +33,7 @@ public class RegistroDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO registro_reg(reg_codpes, reg_codvcn, reg_codcon, reg_dtvacina, "
-	    		+ "reg_dtvalidade, reg_lote, reg_dose) VALUES(?,?,?,?,?,?,?)";	    
+	    		+ "reg_dtvalidade, reg_lote, reg_dose, reg_verificado) VALUES(?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -46,6 +46,7 @@ public class RegistroDAO extends BaseDAO{
 	        pstmt.setDate(5, new java.sql.Date(registro.getDataValidade().getTime()));
 	        pstmt.setString(6, registro.getLote());
 	        pstmt.setInt(7, registro.getDose());
+	        pstmt.setBoolean(8, registro.getVerificado());
 
 	        pstmt.execute();
 	        

@@ -16,10 +16,13 @@ public class Registro {
 	private Date dataValidade;
 	private String lote;
 	private Integer dose;
+	private Boolean verificado;
+	private Date dtVerificacao;
+	private Vacinador verificador;
 	
 	public Registro() {}
 
-	public Registro(Pessoa pessoa, Vacina vacina, Consulta consulta, Date dataVacina, String lote) {
+	public Registro(Pessoa pessoa, Vacina vacina, Consulta consulta, Date dataVacina, String lote, Boolean verificado) {
 		this.pessoa = pessoa;
 		this.vacina = vacina;
 		this.consulta = consulta;
@@ -36,9 +39,10 @@ public class Registro {
 		try {
 			this.dose = RegistroDAO.getInstance().carregarNumeroDaUltimaDose(pessoa, vacina) + 1;
 		} catch (ClassNotFoundException | DAOException e) {
-			// TODO Auto-generated catch block
+			this.dose = 1;
 			e.printStackTrace();
 		}
+		this.verificado = verificado;
 	}
 
 	public Integer getCodigo() {
@@ -103,6 +107,30 @@ public class Registro {
 
 	public void setDose(Integer dose) {
 		this.dose = dose;
+	}
+
+	public Boolean getVerificado() {
+		return verificado;
+	}
+
+	public void setVerificado(Boolean verificado) {
+		this.verificado = verificado;
+	}
+
+	public Date getDtVerificacao() {
+		return dtVerificacao;
+	}
+
+	public void setDtVerificacao(Date dtVerificacao) {
+		this.dtVerificacao = dtVerificacao;
+	}
+
+	public Vacinador getVerificador() {
+		return verificador;
+	}
+
+	public void setVerificador(Vacinador verificador) {
+		this.verificador = verificador;
 	}
 	
 }

@@ -14,7 +14,8 @@
 			<li class="w3-right w3-hide-small">
 				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/usuario-dados">MEUS DADOS</a> 
 				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/usuario-cartao">CARTÃO DE VACINAÇÃO</a> 
-				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/usuario-calendario">CALENDÁRIO DE VACINAÇÃO</a> 
+				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/usuario-calendario">CALENDÁRIO DE VACINAÇÃO</a>
+				<a <%if (selecionado.equals("4")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/usuario-registro">REGISTRAR VACINAÇÃO</a>  
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
 
@@ -25,8 +26,9 @@
 
 	<nav class="w3-sidenav w3-margin-0 w3-card-2 w3-white w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
-		<a href="/dados" onclick="w3_close()">MEUS DADOS</a> 
-		<a href="/cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
-		<a href="/calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a> 
+		<a href="/usuario-dados" onclick="w3_close()">MEUS DADOS</a> 
+		<a href="/usuario-cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
+		<a href="/usuario-calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a>
+		<a href="/usuario-registro" onclick="w3_close()">REGISTRAR VACINAÇÃO</a>  
 		<a href="/logout" onclick="w3_close()">Sair</a>
 	</nav>

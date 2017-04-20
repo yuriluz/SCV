@@ -1,6 +1,7 @@
 package com.scv.persistence.dao;
 
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,7 +33,8 @@ public class ConsultaDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO consulta_con(con_codpes, con_coduni, con_codvac, "
-	    		+ "con_codcam, con_dtconsulta) VALUES(?, ?, ?, ?, ?)";	    
+	    		+ "con_codcam, con_dtconsulta) VALUES(?, ?, ?, ?, ?)";
+	    
 	    
 	    try {
 	    	con = getConnection();
@@ -40,8 +42,19 @@ public class ConsultaDAO extends BaseDAO{
 
 	        pstmt.setInt(1, consulta.getPessoa().getCodigo());
 	        pstmt.setInt(2, consulta.getUnidade().getCodigo());
-	        pstmt.setInt(3, consulta.getVacinador().getCodigo());
-	        pstmt.setInt(4, consulta.getCampanha().getCodigo());
+	        
+		    if (consulta.getVacinador().getCodigo() != null) {
+		        pstmt.setInt(3, consulta.getVacinador().getCodigo());
+		    } else {
+		    	pstmt.setNull(3, Types.INTEGER);
+		    }
+		    
+		    if (consulta.getCampanha().getCodigo() != null) {
+		        pstmt.setInt(4, consulta.getCampanha().getCodigo());
+		    } else {
+		    	pstmt.setNull(4, Types.INTEGER);
+		    }
+
 	        Calendar cal = Calendar.getInstance();
 	        cal.setTime(consulta.getDataConsulta());
 	        cal.set(Calendar.MILLISECOND, 0);
@@ -150,7 +163,7 @@ public class ConsultaDAO extends BaseDAO{
         PreparedStatement pstmt = null;
         ResultSet res = null;
         String query = "SELECT MAX(con_codcon) con_codcon FROM consulta_con WHERE con_codpes = ? AND con_coduni = ? AND "
-	    		+ "con_codvac = ? AND con_codcam = ? AND con_dtconsulta = ?";
+	    		+ "con_codvac = ? AND con_dtconsulta = ?";
 
         try {
             con = getConnection();
@@ -158,12 +171,17 @@ public class ConsultaDAO extends BaseDAO{
             
             pstmt.setInt(1, consulta.getPessoa().getCodigo());
 	        pstmt.setInt(2, consulta.getUnidade().getCodigo());
-	        pstmt.setInt(3, consulta.getVacinador().getCodigo());
-	        pstmt.setInt(4, consulta.getCampanha().getCodigo());
+	        
+		    if (consulta.getVacinador().getCodigo() != null) {
+		        pstmt.setInt(3, consulta.getVacinador().getCodigo());
+		    } else {
+		    	pstmt.setNull(3, Types.INTEGER);
+		    }
+	        
 	        Calendar cal = Calendar.getInstance();
 	        cal.setTime(consulta.getDataConsulta());
 	        cal.set(Calendar.MILLISECOND, 0);
-	        pstmt.setTimestamp(5, new java.sql.Timestamp(cal.getTimeInMillis()));
+	        pstmt.setTimestamp(4, new java.sql.Timestamp(cal.getTimeInMillis()));
             
             res = pstmt.executeQuery();
             

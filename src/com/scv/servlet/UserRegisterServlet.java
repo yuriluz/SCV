@@ -25,17 +25,17 @@ import com.scv.persistence.dao.UnidadeDAO;
 import com.scv.persistence.dao.VacinaDAO;
 import com.scv.persistence.exception.DAOException;
 
-public class AdmRegisterServlet extends HttpServlet {
+public class UserRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AdmRegisterServlet() {
+    public UserRegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("WEB-INF/adm/page-register.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/user/page-register.jsp").forward(request, response);
 	
 	}
 	
@@ -93,7 +93,7 @@ public class AdmRegisterServlet extends HttpServlet {
 		}
 
 		
-		request.getRequestDispatcher("WEB-INF/adm/page-register.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/user/page-register.jsp").forward(request, response);
 		
 	}
 
