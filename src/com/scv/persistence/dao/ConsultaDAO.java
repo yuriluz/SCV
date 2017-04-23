@@ -162,8 +162,13 @@ public class ConsultaDAO extends BaseDAO{
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "SELECT MAX(con_codcon) con_codcon FROM consulta_con WHERE con_codpes = ? AND con_coduni = ? AND "
-	    		+ "con_codvac = ? AND con_dtconsulta = ?";
+        String query = "SELECT MAX(con_codcon) con_codcon FROM consulta_con WHERE con_codpes = ? AND con_coduni = ? AND con_dtconsulta = ? AND ";
+        		
+        if (consulta.getVacinador().getCodigo() != null) {
+        	query += "con_codvac = ?";
+        } else {
+        	query += "con_codvac IS NULL";
+        }
 
         try {
             con = getConnection();
@@ -172,17 +177,15 @@ public class ConsultaDAO extends BaseDAO{
             pstmt.setInt(1, consulta.getPessoa().getCodigo());
 	        pstmt.setInt(2, consulta.getUnidade().getCodigo());
 	        
-		    if (consulta.getVacinador().getCodigo() != null) {
-		        pstmt.setInt(3, consulta.getVacinador().getCodigo());
-		    } else {
-		    	pstmt.setNull(3, Types.INTEGER);
-		    }
-	        
 	        Calendar cal = Calendar.getInstance();
 	        cal.setTime(consulta.getDataConsulta());
 	        cal.set(Calendar.MILLISECOND, 0);
-	        pstmt.setTimestamp(4, new java.sql.Timestamp(cal.getTimeInMillis()));
-            
+	        pstmt.setTimestamp(3, new java.sql.Timestamp(cal.getTimeInMillis()));
+	        
+		    if (consulta.getVacinador().getCodigo() != null) {
+		        pstmt.setInt(4, consulta.getVacinador().getCodigo());
+		    } 
+	        
             res = pstmt.executeQuery();
             
             if (res.next()) {

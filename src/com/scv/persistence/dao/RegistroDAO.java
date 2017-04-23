@@ -2,6 +2,7 @@ package com.scv.persistence.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,7 +65,8 @@ public class RegistroDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "UPDATE registro_reg SET reg_codpes = ?, reg_codvcn = ?, reg_codcon = ?, "
-	    		+ "reg_dtvacina = ?, reg_dtvalidade = ?, reg_lote = ?, reg_dose = ? WHERE reg_codreg = ?";	    
+	    		+ "reg_dtvacina = ?, reg_dtvalidade = ?, reg_lote = ?, reg_dose = ?, reg_verificado = ?, reg_vacverificador = ?, "
+	    		+ "reg_dtverificacao = ? WHERE reg_codreg = ?";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -77,7 +79,15 @@ public class RegistroDAO extends BaseDAO{
 	        pstmt.setDate(5, (Date) registro.getDataValidade());
 	        pstmt.setString(6, registro.getLote());
 	        pstmt.setInt(7, registro.getDose());
-	        pstmt.setInt(8, registro.getCodigo());
+	        pstmt.setBoolean(8, registro.getVerificado());
+	        pstmt.setInt(9, registro.getVerificador().getCodigo());
+	        
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTime(registro.getDataVerificacao());
+	        cal.set(Calendar.MILLISECOND, 0);
+	        pstmt.setTimestamp(10, new java.sql.Timestamp(cal.getTimeInMillis()));
+	        
+	        pstmt.setInt(11, registro.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -216,6 +226,9 @@ public class RegistroDAO extends BaseDAO{
 		registro.setDataValidade((res.getDate("reg_dtvalidade")));
 		registro.setLote(res.getString("reg_lote"));
 		registro.setDose(res.getInt("reg_dose"));
+		registro.setVerificado(res.getBoolean("reg_verificado"));
+		registro.setVerificador(VacinadorDAO.getInstance().carregarPorCodigo(res.getInt("reg_vacverificador")));
+		registro.setDataVerificacao(res.getDate("reg_dtverificacao"));
 		
 		return registro;
 	}

@@ -124,7 +124,7 @@ $(document).ready(function() {
 <body class="w3-white">
 
 <jsp:include page="/WEB-INF/includes/menu/user-menu.jsp">
-	<jsp:param name="tipo" value="4"/>
+	<jsp:param name="tipo" value="2"/>
 </jsp:include>
 
 	<%
@@ -142,11 +142,11 @@ $(document).ready(function() {
 
 	<div class="w3-container w3-padding-32">
 			<div class="w3-padding">
-				<form id="registroVacina" method="POST" action="/registro">
+				<form id="registroVacina" method="POST" action="/usuario-registro">
 					<div id="dadosPessoa" class="w3-row">
 						<div class="w3-col m6 l5">
 							<label>Selecione o Cartão de Vacinação</label><br/>
-							<select class="w3-input w3-hover-blue" id="usuario" name="usuario">
+							<select class="w3-input w3-hover-blue" id="pessoa" name="pessoa">
 									<%
 									for (Pessoa p : cadastros) {
 									%>
@@ -155,13 +155,12 @@ $(document).ready(function() {
 									}
 									%>
 							</select>
-							<input type="hidden" name="codPessoa" value="1">
 						</div>
 					</div>
 					<hr />
 					<div class="w3-row">
 							<div class="w3-col m3 l3 w3-padding-tiny">
-								<label>Data da consulta</label>
+								<label>Data do registro</label>
 								<input class="w3-input" type="text" name="dtConsulta" value=<%=df.format(hoje) %> disabled>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-tiny">

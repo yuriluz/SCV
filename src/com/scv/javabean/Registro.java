@@ -17,7 +17,7 @@ public class Registro {
 	private String lote;
 	private Integer dose;
 	private Boolean verificado;
-	private Date dtVerificacao;
+	private Date dataVerificacao;
 	private Vacinador verificador;
 	
 	public Registro() {}
@@ -117,12 +117,12 @@ public class Registro {
 		this.verificado = verificado;
 	}
 
-	public Date getDtVerificacao() {
-		return dtVerificacao;
+	public Date getDataVerificacao() {
+		return dataVerificacao;
 	}
 
-	public void setDtVerificacao(Date dtVerificacao) {
-		this.dtVerificacao = dtVerificacao;
+	public void setDataVerificacao(Date dataVerificacao) {
+		this.dataVerificacao = dataVerificacao;
 	}
 
 	public Vacinador getVerificador() {

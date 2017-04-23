@@ -54,7 +54,7 @@ $(document).ready(function() {
 <body class="w3-white">
 
 <jsp:include page="/WEB-INF/includes/menu/user-menu.jsp">
-	<jsp:param name="tipo" value="2"/>
+	<jsp:param name="tipo" value="3"/>
 </jsp:include>
 
 	<%

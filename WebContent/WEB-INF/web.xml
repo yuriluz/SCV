@@ -20,6 +20,15 @@
 		<servlet-name>UserLoginServlet</servlet-name>
 		<url-pattern>/userLogin</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserHomeServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserHomeServlet</servlet-name>
+		<url-pattern>/usuario-home</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>AdmLoginServlet</servlet-name>
@@ -136,6 +145,24 @@
 	<servlet-mapping>
 		<servlet-name>UserRegisterServlet</servlet-name>
 		<url-pattern>/usuario-registro</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdmConfirmationServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmConfirmationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmConfirmationServlet</servlet-name>
+		<url-pattern>/confirmacao</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SearchRegistroServlet</servlet-name>
+		<servlet-class>com.scv.servlet.SearchRegistroServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchRegistroServlet</servlet-name>
+		<url-pattern>/searchRegistro</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

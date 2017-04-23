@@ -3,10 +3,12 @@ package com.scv.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.scv.javabean.Cidade;
 import com.scv.javabean.Unidade;
 import com.scv.persistence.dao.UnidadeDAO;
 import com.scv.persistence.exception.DAOException;
@@ -42,6 +44,21 @@ public class UnidadeDAOTest {
 		}
 		
 		assertNotNull(unidade);
+	}
+	
+	@Test
+	public void testCarregarPorCidade() throws ClassNotFoundException {
+		List<Unidade> unidades = new ArrayList<Unidade>();
+		Cidade cidade = new Cidade();
+		cidade.setCodigo(3658);
+		
+		try {
+			unidades = UnidadeDAO.getInstance().carregarPorCidade(cidade);
+		} catch (DAOException e) {
+			fail("UnidadeDAO: Falha do teste de carregarPorCidade()");
+		}
+		
+		assertNotNull(unidades);
 	}
 
 }
