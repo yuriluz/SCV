@@ -12,7 +12,7 @@
 			</li>
 
 			<li class="w3-right w3-hide-small">
-				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/dados">MEUS DADOS</a> 
+				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/pessoa">CADASTRO DE PESSOA</a> 
 				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
 				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
 				<a <%if (selecionado.equals("4")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/registro">REGISTRAR VACINAÇÃO</a>
@@ -28,7 +28,7 @@
 
 	<nav class="w3-sidenav w3-margin-0 w3-card-2 w3-white w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
-		<a href="/dados" onclick="w3_close()">MEUS DADOS</a> 
+		<a href="/pessoa" onclick="w3_close()">CADASTRO DE PESSOA</a> 
 		<a href="/cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
 		<a href="/calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a>
 		<a href="/registro" onclick="w3_close()">REGISTRAR VACINAÇÃO</a> 

@@ -36,7 +36,7 @@ public class PessoaDAO extends BaseDAO{
 	    String query = "INSERT INTO pessoa_pes (pes_nome, pes_dtmat, pes_sexo, pes_nacional, pes_natural, "
 	    		+ "pes_cpf, pes_documento, pes_tipodoc, pes_emissordoc, pes_dtnasc, pes_escolaridade, pes_telefone, pes_email, "
 	    		+ "pes_logradouro, pes_complemento, pes_bairro, pes_codcid, pes_codest, pes_cep, pes_senha) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -51,7 +51,7 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setString(7, pessoa.getDocumento());
 	        pstmt.setInt(8, pessoa.getTipoDocumento().getValue());
 	        pstmt.setString(9, pessoa.getEmissor());
-	        pstmt.setDate(10, (java.sql.Date) pessoa.getDataNascimento());
+	        pstmt.setDate(10, new java.sql.Date(pessoa.getDataNascimento().getTime()));
 	        pstmt.setInt(11, pessoa.getEscolaridade().getValue());
 	        pstmt.setString(12, pessoa.getTelefone());
 	        pstmt.setString(13, pessoa.getEmail());

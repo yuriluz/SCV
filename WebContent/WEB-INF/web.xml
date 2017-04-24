@@ -165,4 +165,22 @@
 		<url-pattern>/searchRegistro</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AdmPessoaServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmPessoaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmPessoaServlet</servlet-name>
+		<url-pattern>/pessoa</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>PessoaFormServlet</servlet-name>
+		<servlet-class>com.scv.servlet.PessoaFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PessoaFormServlet</servlet-name>
+		<url-pattern>/loadPessoa</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

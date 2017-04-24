@@ -2,7 +2,7 @@ package com.scv.entities.enums;
 
 public enum Sexo {
 
-	MASCULINO("M"), FEMININO("F"), OUTROS("");
+	MASCULINO("M"), FEMININO("F"), OUTROS("O");
     private String value;
     
     private Sexo(String value) {

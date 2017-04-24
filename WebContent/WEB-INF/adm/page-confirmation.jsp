@@ -85,7 +85,7 @@ $(document).ready(function() {
 					</div>
 					<hr />
 					<div class="w3-row">
-							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green" disabled>
+							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green w3-right w3-hide" disabled>
 								<i class="fa fa-check"></i> CONFIRMAR VACINAÇÕES
 							</button>
 					</div>

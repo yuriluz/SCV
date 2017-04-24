@@ -216,7 +216,7 @@ $(document).ready(function() {
 					</div>	
 					<hr />
 					<div class="w3-row">
-							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green">
+							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green w3-right">
 								<i class="fa fa-check"></i> REGISTRAR
 							</button>
 					</div>
