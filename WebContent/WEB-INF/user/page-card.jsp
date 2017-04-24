@@ -100,31 +100,8 @@ $(document).ready(function() {
 
 	%>
 
-	<div class="w3-container w3-padding-64">
+	<div class="w3-container w3-padding-32">
 			<div class="w3-padding">
-				<div class="w3-row">
-					<div class="w3-col m3 l6 w3-padding-tiny">
-						<table>
-							<tr>
-								<td>
-									<h6><b>Selecione um cartão de vacinação:</b></h6>
-								</td>
-								<td>
-									<select class="w3-input w3-hover-blue" id="usuario" name="usuario">
-									<%
-									for (Pessoa p : cadastros) {
-									%>
-										<option value=<%=p.getCodigo()%> <%if (p.getCodigo().equals(usuario.getCodigo())) {%> selected <%}%>><%=p.getNome()%> - <%=p.getDocumento()%></option>
-									<%
-									}
-									%>
-									</select>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				<hr />
 				<div class="w3-row">
 						<div class="w3-col w3-padding-tiny w3-center">
 							<h5><b>CARTÃO DE VACINAÇÃO (NÃO OFICIAL)</b></h5>

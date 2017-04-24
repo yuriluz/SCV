@@ -143,7 +143,7 @@ $(document).ready(function() {
 				<form id="registroVacina" method="POST" action="/registro">
 					<div id="dadosPessoa" class="w3-row">
 						<div class="w3-col m6 l5">
-							<label>Informe o número do documento</label><br/>
+							<label><b>Informe o número do documento</b></label><br/>
 							<input id="searchPessoa" class="w3-padding w3-section w3-border" style="width:80%;" type="text" placeholder="CPF, RG, CNH, CTPS, Passaporte ou Certidão de Nasc." autocomplete="off">
 							<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 								<i class="fa fa-search"></i>
@@ -155,16 +155,16 @@ $(document).ready(function() {
 					<hr />
 					<div class="w3-row">
 							<div class="w3-col m4 l4 w3-padding-tiny">
-								<label>Data da consulta</label>
+								<label><b>Data da consulta</b></label>
 								<input class="w3-input" type="text" name="dtConsulta" value=<%=df.format(hoje) %> disabled>
 							</div>
 							<div class="w3-col m4 l4 w3-padding-tiny">
-								<label>Unidade de Saúde</label>
+								<label><b>Unidade de Saúde</b></label>
 								<input type="hidden" name="codUnidade" value=<%=unidade.getCodigo()%>>
 								<input class="w3-input" type="text" name="nomeUnidade" value=<%=unidade.getNomeFantasia()%> disabled>
 							</div>
 							<div class="w3-col m4 l4 w3-padding-tiny">
-								<label>Campanha</label>
+								<label><b>Campanha</b></label>
 								<select class="w3-input" id="campanha" name="campanha">
 									<option value="0"></option>
 									<%
@@ -187,7 +187,7 @@ $(document).ready(function() {
 					<div id="vacinas" class="w3-row w3-border w3-padding">
 						<div class="w3-row" id="item">
 							<div class="w3-col m3 l3 w3-padding-small">
-								<label>Vacina</label>
+								<label><b>Vacina</b></label>
 								<select class="w3-input" id="vacina" name="vacina1">
 									<% for (Vacina v : vacinas) { %>
 										<option value=<%=v.getCodigo()%>><%=v.getNome()%></option>
@@ -195,11 +195,11 @@ $(document).ready(function() {
 								</select>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small">
-								<label>Data da Vacinação</label>
+								<label><b>Data da Vacinação</b></label>
 								<input class="w3-input" type="text" id="dataVacina" name="dataVacina1" value="">
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small">
-								<label>Lote</label>
+								<label><b>Lote</b></label>
 								<input class="w3-input" type="text" id="loteVacina" name="loteVacina1" value="">
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small w3-margin-top">

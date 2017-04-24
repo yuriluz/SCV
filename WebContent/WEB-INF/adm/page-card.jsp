@@ -41,7 +41,7 @@
 				<div class="w3-row">
 					<div class="w3-col l6 w3-padding-tiny">
 						<form id="buscaUsuario" method="POST" action="/cartao">
-							<label>Informe o número do documento:</label>
+							<label><b>Informe o número do documento</b></label>
 							<div class="w3-bar">
 								<input id="idPessoa" name="idPessoa" class="w3-bar-item w3-input w3-border" style="width:72%; min-width:120px;" type="text" placeholder="CPF, RG, CNH, CTPS, Passaporte ou Certidão de Nascimento" autocomplete="off">
 								<button type="submit" id="searchButton" class="w3-bar-item w3-button w3-white w3-border w3-hover-blue">
@@ -87,6 +87,8 @@
 						nDoc = pessoa.getCpf();
 					}
 					
+					SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					
 					List<Registro> registros = RegistroDAO.getInstance().carregarPorPessoa(pessoa);
 					
 			%>
@@ -107,7 +109,7 @@
 						</div>
 					
 						<div class="w3-col m4 l4">
-							<p><b>Data de Nascimento: </b><%=pessoa.getDataNascimento()%></p>
+							<p><b>Data de Nascimento: </b><%=df.format(pessoa.getDataNascimento())%></p>
 						</div>
 						
 						<div class="w3-col m4 l4">
@@ -132,11 +134,13 @@
 								</tr>
 								<%
 									for (Registro r : registros) {
+										if (r.getVerificado()) {
 								%>
 									<tr>
-										<td><%=r.getVacina().getNome()%></td><td><%=r.getDataVacina()%></td><td><%=r.getConsulta().getVacinador().getNome()%></td><td><%=r.getLote()%></td><td><%=r.getDataValidade()%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
+										<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td><%=r.getConsulta().getVacinador().getNome() == null ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : r.getConsulta().getVacinador().getNome() %></td><td><%=r.getLote()%></td><td><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
 									</tr>
 								<%
+										}
 									}
 								%>
 							</table>

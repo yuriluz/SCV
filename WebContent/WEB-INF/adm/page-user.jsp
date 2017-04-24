@@ -97,7 +97,7 @@ $(document).ready(function() {
 			<div id="dadosPessoa" class="w3-padding">
 				<div class="w3-row">
 					<div class="w3-col m6 l5">
-						<label>Busca por pessoa</label><br/>
+						<label><b>Busca por pessoa</b></label><br/>
 						<input id="searchPessoa" class="w3-padding w3-section w3-border" style="width:80%;" type="text" placeholder="CPF, RG, CNH, CTPS, Passaporte ou Certidão de Nasc." autocomplete="off">
 						<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 							<i class="fa fa-search"></i>
@@ -110,15 +110,15 @@ $(document).ready(function() {
 					<input type="hidden" name="codPessoa" value="">
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Nome</label> <input class="w3-input" type="text" id="nome" name="nome" value="">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Data de Nascimento</label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="">
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label>Gênero</label> <select class="w3-input" id="genero" name="genero">
+							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero">
 								<option value="M">Masculino</option>
 								<option value="F">Feminino</option>
 								<option value="O">Outro</option>
@@ -127,15 +127,15 @@ $(document).ready(function() {
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Naturalidade</label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="">
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Nacionalidade</label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="">
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label>Nível de Escolaridade</label> <select class="w3-input" id="escolaridade" name="escolaridade">
+							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade">
 								<option value=0>Não possui</option>
 								<option value=1>Fundamental</option>
 								<option value=2>Médio</option>
@@ -146,11 +146,11 @@ $(document).ready(function() {
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label>CPF</label> <input class="w3-input" type="text" id="cpf" name="cpf" value="">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="">
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
-							<label>Outro Documento</label> <select class="w3-input" id="tipodoc" name="tipodoc">
+							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc">
 								<option value="1">RG</option>
 								<option value="2">Passaporte</option>
 								<option value="3">CNH</option>
@@ -159,33 +159,33 @@ $(document).ready(function() {
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label>Número do Documento</label> <input class="w3-input" type="text" id="documento" name="documento" value="">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="">
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label>Órgão Emissor</label> <input class="w3-input" type="text" id="emissor" name="emissor" value="">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="">
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Endereço</label> <input class="w3-input" type="text" id="endereco" name="endereco" value="">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="">
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Complemento</label> <input class="w3-input" type="text" id="complemento" name="complemento" value="">
+							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="">
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>CEP</label> <input class="w3-input" type="text" id="cep" name="cep" value="">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="">
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label>Bairro</label> <input class="w3-input" type="text" id="bairro" name="bairro" value="">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="">
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label>Estado</label> <select class="w3-input" id="estado" name="estado">
+							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado">
 								<option value=""></option>
 								<%
 									List<Estado> estados = new ArrayList<Estado>();
@@ -201,18 +201,18 @@ $(document).ready(function() {
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label>Cidade</label> <select class="w3-input" id="cidade" name="cidade" >
+							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" >
 								<option value=""></option>
 							</select>
 						</div>
 					</div>
 					<div class="w3-row">
-						<div class="w3-col m6 l3 w3-padding-small">
-							<label>Telefone</label> <input class="w3-input" type="text" id="telefone" name="telefone" value="">
+						<div class="w3-col m5 l3 w3-padding-small">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="">
 						</div>
 
-						<div class="w3-col m6 l4 w3-padding-small">
-							<label>E-mail</label> <input class="w3-input" type="text" id="email" name="email" value="">
+						<div class="w3-col m7 l4 w3-padding-small">
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="">
 						</div>
 					</div>
 					<hr />

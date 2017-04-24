@@ -34,7 +34,7 @@ public class PessoaFormServlet extends HttpServlet {
 		
 		request.setAttribute("pessoa", pessoa);
 		
-		request.getRequestDispatcher("WEB-INF/includes/page-user-form.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/adm/page-user-form.jsp").forward(request, response);
 	
 	}
 

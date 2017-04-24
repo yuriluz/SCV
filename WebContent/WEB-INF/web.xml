@@ -174,13 +174,22 @@
 		<url-pattern>/pessoa</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>PessoaFormServlet</servlet-name>
 		<servlet-class>com.scv.servlet.PessoaFormServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PessoaFormServlet</servlet-name>
 		<url-pattern>/loadPessoa</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdmHomeServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmHomeServlet</servlet-name>
+		<url-pattern>/inicial</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.scv.javabean.Gerente;
+import com.scv.javabean.Pessoa;
 import com.scv.javabean.Usuario;
 import com.scv.javabean.Vacinador;
 import com.scv.persistence.dao.GerenteDAO;
@@ -56,8 +57,21 @@ public class AdmLoginServlet extends HttpServlet {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
+		}	
 		
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Usuario usuario = new Usuario();
+		HttpSession session = request.getSession();
+		
+		usuario = (Usuario) session.getAttribute("login");
+		if (usuario.getCodigo() == null) {
+			request.getRequestDispatcher("index.html").forward(request, response);
+		} else {
+			request.getRequestDispatcher("WEB-INF/home/adm-home.jsp").forward(request, response);
+		}
 		
 	}
 

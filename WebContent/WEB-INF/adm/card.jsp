@@ -52,6 +52,8 @@
 			nDoc = pessoa.getCpf();
 		}
 		
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
 		List<Registro> registros = RegistroDAO.getInstance().carregarPorPessoa(pessoa);
 		
 	%>
@@ -75,7 +77,7 @@
 						</div>
 					
 						<div class="w3-col m4 l4">
-							<p><b>Data de Nascimento: </b><%=pessoa.getDataNascimento()%></p>
+							<p><b>Data de Nascimento: </b><%=df.format(pessoa.getDataNascimento())%></p>
 						</div>
 						
 						<div class="w3-col m4 l4">
@@ -100,11 +102,13 @@
 								</tr>
 								<%
 									for (Registro r : registros) {
+										if (r.getVerificado()) {
 								%>
-									<tr>
-										<td><%=r.getVacina().getNome()%></td><td><%=r.getDataVacina()%></td><td><%=r.getConsulta().getVacinador().getNome()%></td><td><%=r.getLote()%></td><td><%=r.getDataValidade()%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
-									</tr>
+										<tr>
+											<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td><%=r.getConsulta().getVacinador().getNome() == null ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : r.getConsulta().getVacinador().getNome() %></td><td><%=r.getLote()%></td><td><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
+										</tr>
 								<%
+										}
 									}
 								%>
 							</table>

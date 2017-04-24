@@ -8,10 +8,10 @@
 	<div id="w3-top menu">
 		<ul class="w3-navbar w3-light-grey w3-card-2" id="myNavbar">
 			<li>
-				<b><a href="/principal" class="w3-large w3-wide">SCV</a></b>
+				<b><a href="/inicial" class="w3-large w3-wide">SCV</a></b>
 			</li>
 
-			<li class="w3-right w3-hide-small">
+			<li class="w3-right w3-hide-medium w3-hide-small">
 				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/pessoa">CADASTRO DE PESSOA</a> 
 				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
 				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
@@ -21,12 +21,12 @@
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
 
-			<li><a href="javascript:void(0)" class="w3-right w3-hide-large w3-hide-medium" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
+			<li class="w3-right"><a href="javascript:void(0)" class="w3-right w3-hide-large" onclick="w3_open()"> <i class="fa fa-bars w3-padding-right w3-padding-left"></i>
 			</a></li>
 		</ul>
 	</div>
 
-	<nav class="w3-sidenav w3-margin-0 w3-card-2 w3-white w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidenav">
+	<nav class="w3-sidenav w3-margin-0 w3-card-2 w3-blue w3-animate-left w3-hide-large" style="display: none" id="mySidenav">
 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
 		<a href="/pessoa" onclick="w3_close()">CADASTRO DE PESSOA</a> 
 		<a href="/cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 

@@ -135,9 +135,6 @@ $(document).ready(function() {
 	Unidade unidade = new Unidade();
 	Estado estado = pessoa.getEstado();
 	Cidade cidade = pessoa.getCidade();
-	
-	List<Pessoa> cadastros = new ArrayList<Pessoa>();
-	cadastros.add(pessoa);
 	%>
 
 	<div class="w3-container w3-padding-32">
@@ -145,26 +142,17 @@ $(document).ready(function() {
 				<form id="registroVacina" method="POST" action="/usuario-registro">
 					<div id="dadosPessoa" class="w3-row">
 						<div class="w3-col m6 l5">
-							<label>Selecione o Cartão de Vacinação</label><br/>
-							<select class="w3-input w3-hover-blue" id="pessoa" name="pessoa">
-									<%
-									for (Pessoa p : cadastros) {
-									%>
-										<option value=<%=p.getCodigo()%> <%if (p.getCodigo().equals(pessoa.getCodigo())) {%> selected <%}%>><%=p.getNome()%> - <%=p.getDocumento()%></option>
-									<%
-									}
-									%>
-							</select>
+							<h6><b>Cartão de Vacinação:</b> <%=pessoa.getNome()%></h6>
 						</div>
 					</div>
 					<hr />
 					<div class="w3-row">
 							<div class="w3-col m3 l3 w3-padding-tiny">
-								<label>Data do registro</label>
+								<label><b>Data do registro</b></label>
 								<input class="w3-input" type="text" name="dtConsulta" value=<%=df.format(hoje) %> disabled>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-tiny">
-								<label>Estado da Unidade de Saúde</label>
+								<label><b>Estado da Unidade de Saúde</b></label>
 									<select class="w3-input" id="estado" name="estado">
 									<%
 										List<Estado> estados = new ArrayList<Estado>();
@@ -179,7 +167,7 @@ $(document).ready(function() {
 								</select>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-tiny">
-								<label>Cidade da Unidade de Saúde</label>
+								<label><b>Cidade da Unidade de Saúde</b></label>
 								<select class="w3-input" id="cidade" name="cidade" >
 								<%
 									List<Cidade> cidades = new ArrayList<Cidade>();
@@ -194,7 +182,7 @@ $(document).ready(function() {
 								</select>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-tiny">
-								<label>Unidade de Saúde</label>
+								<label><b>Unidade de Saúde</b></label>
 								<select class="w3-input" id="unidade" name="unidade" >
 								<%
 									List<Unidade> unidades = new ArrayList<Unidade>();
@@ -219,7 +207,7 @@ $(document).ready(function() {
 					<div id="vacinas" class="w3-row w3-border w3-padding">
 						<div class="w3-row" id="item">
 							<div class="w3-col m3 l3 w3-padding-small">
-								<label>Vacina</label>
+								<label><b>Vacina</b></label>
 								<select class="w3-input" id="vacina" name="vacina1">
 									<% for (Vacina v : vacinas) { %>
 										<option value=<%=v.getCodigo()%>><%=v.getNome()%> | <%=v.getDescricao()%></option>
@@ -227,11 +215,11 @@ $(document).ready(function() {
 								</select>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small">
-								<label>Data da Vacinação</label>
+								<label><b>Data da Vacinação</b></label>
 								<input class="w3-input" type="text" id="dataVacina" name="dataVacina1" value="">
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small">
-								<label>Lote</label>
+								<label><b>Lote</b></label>
 								<input class="w3-input" type="text" id="loteVacina" name="loteVacina1" value="">
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small w3-margin-top">
@@ -248,7 +236,7 @@ $(document).ready(function() {
 					</div>	
 					<hr />
 					<div class="w3-row">
-							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green">
+							<button type="submit" id="registerButton" class="w3-button w3-white w3-border w3-hover-green w3-right">
 								<i class="fa fa-check"></i> REGISTRAR
 							</button>
 					</div>
