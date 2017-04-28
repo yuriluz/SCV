@@ -14,6 +14,8 @@ public class Vacinador {
 	private String nacionalidade;
 	private String naturalidade;
 	private String cpf;
+	private TipoVacinador tipoVacinador;
+	private String crm;
 	private String documento;
 	private TipoDocumento tipoDocumento;
 	private String emissor;
@@ -30,6 +32,34 @@ public class Vacinador {
 	private Boolean status;
 	
 	public Vacinador() {}
+
+	public Vacinador(String matricula, String nome, Sexo sexo, String nacionalidade, String naturalidade, 
+			String cpf, TipoVacinador tipoVacinador, String crm, String documento, TipoDocumento tipoDocumento, 
+			String emissor, Date dataNascimento, String telefone, String email, String logradouro, String complemento, 
+			String bairro, Cidade cidade, Estado estado, String cep, Unidade unidade, Boolean status) {
+		this.matricula = matricula;
+		this.nome = nome;
+		this.sexo = sexo;
+		this.nacionalidade = nacionalidade;
+		this.naturalidade = naturalidade;
+		this.cpf = cpf;
+		this.tipoVacinador = tipoVacinador;
+		this.crm = crm;
+		this.documento = documento;
+		this.tipoDocumento = tipoDocumento;
+		this.emissor = emissor;
+		this.dataNascimento = dataNascimento;
+		this.telefone = telefone;
+		this.email = email;
+		this.logradouro = logradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.unidade = unidade;
+		this.status = status;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
@@ -197,6 +227,47 @@ public class Vacinador {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}	
+	
+    public TipoVacinador getTipoVacinador() {
+		return tipoVacinador;
 	}
+
+	public void setTipoVacinador(TipoVacinador tipoVacinador) {
+		this.tipoVacinador = tipoVacinador;
+	}
+
+	public String getCrm() {
+		return crm;
+	}
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////
+
+	public enum TipoVacinador {
+        
+        AGENTE_DE_SAUDE(0), ENFERMEIRO(1), MEDICO(2);
+        private Integer value;
+        
+        private TipoVacinador(Integer value) {
+            this.value = value;
+        }
+        
+        public Integer getValue() {
+            return value;
+        }
+        
+        public static TipoVacinador getByValue(Integer value) {
+            for (TipoVacinador tipo : TipoVacinador.values()) {
+                if (tipo.getValue() == value) {
+                    return tipo;
+                }
+            }
+            return null;
+        }
+    }
 	
 }

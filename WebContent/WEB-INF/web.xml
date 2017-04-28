@@ -192,4 +192,22 @@
 		<url-pattern>/inicial</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AdmVacinadorServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmVacinadorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmVacinadorServlet</servlet-name>
+		<url-pattern>/agente</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>VacinadorFormServlet</servlet-name>
+		<servlet-class>com.scv.servlet.VacinadorFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VacinadorFormServlet</servlet-name>
+		<url-pattern>/loadVacinador</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

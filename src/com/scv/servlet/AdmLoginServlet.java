@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.scv.javabean.Gerente;
-import com.scv.javabean.Pessoa;
 import com.scv.javabean.Usuario;
 import com.scv.javabean.Vacinador;
 import com.scv.persistence.dao.GerenteDAO;

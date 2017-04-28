@@ -110,19 +110,7 @@ $(document).ready(function() {
 	Estado estado;
 	Cidade cidade;
 
-	if (tipoUsuario.equals(TipoUsuario.GERENTE)) {
-		Gerente gerente = (Gerente) session.getAttribute("gerente");
-		estado = gerente.getUnidade().getEstado();
-		cidade = gerente.getUnidade().getCidade();
-		unidade = gerente.getUnidade();
-		
-		if (!estado.equals(null) && !cidade.equals(null)){
-			campanhas.addAll(CampanhaDAO.getInstance().carregarTodasEmAndamento());
-			campanhas.addAll(CampanhaDAO.getInstance().carregarTodasEmAndamento(estado, cidade));
-		} else {
-			campanhas.addAll(CampanhaDAO.getInstance().carregarTodasEmAndamento());
-		}
-	} else if (tipoUsuario.equals(TipoUsuario.VACINADOR)) {
+	if (tipoUsuario.equals(TipoUsuario.VACINADOR)) {
 		Vacinador vacinador = (Vacinador) session.getAttribute("vacinador");
 		estado = vacinador.getUnidade().getEstado();
 		cidade = vacinador.getUnidade().getCidade();

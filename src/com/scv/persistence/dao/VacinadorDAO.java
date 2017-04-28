@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import com.scv.entities.enums.Sexo;
 import com.scv.entities.enums.TipoDocumento;
 import com.scv.javabean.Vacinador;
+import com.scv.javabean.Vacinador.TipoVacinador;
 import com.scv.persistence.exception.DAOException;
 
 import java.sql.Connection;
@@ -33,9 +34,9 @@ public class VacinadorDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO vacinador_vac (vac_matvac, vac_nome, vac_dtmat, vac_sexo,"
-	    		+ "vac_nacional, vac_natural, vac_cpf, vac_documento, vac_tipodoc, vac_emissordoc, vac_dtnasc, vac_telefone, vac_email,"
+	    		+ "vac_nacional, vac_natural, vac_cpf, vac_tipo, vac_crm, vac_documento, vac_tipodoc, vac_emissordoc, vac_dtnasc, vac_telefone, vac_email,"
 	    		+ "vac_logradouro, vac_complemento, vac_bairro, vac_codcid, vac_codest, vac_cep, vac_coduni, vac_status) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -43,25 +44,27 @@ public class VacinadorDAO extends BaseDAO{
 
 	        pstmt.setString(1, vacinador.getMatricula());
 	        pstmt.setString(2, vacinador.getNome());
-	        pstmt.setDate(3, (java.sql.Date) new Date());
+	        pstmt.setDate(3, new java.sql.Date(new Date().getTime()));
 	        pstmt.setString(4, vacinador.getSexo().getValue());
 	        pstmt.setString(5, vacinador.getNacionalidade());
 	        pstmt.setString(6, vacinador.getNaturalidade());
 	        pstmt.setString(7, vacinador.getCpf());
-	        pstmt.setString(8, vacinador.getDocumento());
-	        pstmt.setInt(9, vacinador.getTipoDocumento().getValue());
-	        pstmt.setString(10, vacinador.getEmissor());
-	        pstmt.setDate(11, (java.sql.Date) vacinador.getDataNascimento());
-	        pstmt.setString(12, vacinador.getTelefone());
-	        pstmt.setString(13, vacinador.getEmail());
-	        pstmt.setString(14, vacinador.getLogradouro());
-	        pstmt.setString(15, vacinador.getComplemento());
-	        pstmt.setString(16, vacinador.getBairro());
-	        pstmt.setInt(17, vacinador.getCidade().getCodigo());
-	        pstmt.setInt(18, vacinador.getEstado().getCodigo());
-	        pstmt.setString(19, vacinador.getCep());
-	        pstmt.setInt(20, vacinador.getUnidade().getCodigo());
-	        pstmt.setBoolean(21, vacinador.getStatus());
+	        pstmt.setInt(8, vacinador.getTipoVacinador().getValue());
+	        pstmt.setString(9, vacinador.getCrm());
+	        pstmt.setString(10, vacinador.getDocumento());
+	        pstmt.setInt(11, vacinador.getTipoDocumento().getValue());
+	        pstmt.setString(12, vacinador.getEmissor());
+	        pstmt.setDate(13, new java.sql.Date(vacinador.getDataNascimento().getTime()));
+	        pstmt.setString(14, vacinador.getTelefone());
+	        pstmt.setString(15, vacinador.getEmail());
+	        pstmt.setString(16, vacinador.getLogradouro());
+	        pstmt.setString(17, vacinador.getComplemento());
+	        pstmt.setString(18, vacinador.getBairro());
+	        pstmt.setInt(19, vacinador.getCidade().getCodigo());
+	        pstmt.setInt(20, vacinador.getEstado().getCodigo());
+	        pstmt.setString(21, vacinador.getCep());
+	        pstmt.setInt(22, vacinador.getUnidade().getCodigo());
+	        pstmt.setBoolean(23, vacinador.getStatus().booleanValue());
 	        
 	        pstmt.execute();
 	        
@@ -79,7 +82,7 @@ public class VacinadorDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "UPDATE vacinador_vac SET vac_matvac = ?, vac_nome = ?, "
-	    		+ "vac_sexo = ?, vac_nacional = ?, vac_natural = ?, vac_cpf = ?, vac_documento = ?, vac_tipodoc = ?, vac_emissordoc = ?, vac_dtnasc = ?, "
+	    		+ "vac_sexo = ?, vac_nacional = ?, vac_natural = ?, vac_cpf = ?, vac_tipo = ?, vac_crm = ?, vac_documento = ?, vac_tipodoc = ?, vac_emissordoc = ?, vac_dtnasc = ?, "
 	    		+ "vac_telefone = ?, vac_email = ?, vac_logradouro = ?, vac_complemento = ?, vac_bairro = ?, vac_codcid = ?, "
 	    		+ "vac_codest = ?, vac_cep = ?, vac_coduni = ?, vac_status = ? WHERE vac_codvac = ?";	    
 	    
@@ -93,21 +96,23 @@ public class VacinadorDAO extends BaseDAO{
 	        pstmt.setString(4, vacinador.getNacionalidade());
 	        pstmt.setString(5, vacinador.getNaturalidade());
 	        pstmt.setString(6, vacinador.getCpf());
-	        pstmt.setString(7, vacinador.getDocumento());
-	        pstmt.setInt(8, vacinador.getTipoDocumento().getValue());
-	        pstmt.setString(9, vacinador.getEmissor());
-	        pstmt.setDate(10, (java.sql.Date) vacinador.getDataNascimento());
-	        pstmt.setString(11, vacinador.getTelefone());
-	        pstmt.setString(12, vacinador.getEmail());
-	        pstmt.setString(13, vacinador.getLogradouro());
-	        pstmt.setString(14, vacinador.getComplemento());
-	        pstmt.setString(15, vacinador.getBairro());
-	        pstmt.setInt(16, vacinador.getCidade().getCodigo());
-	        pstmt.setInt(17, vacinador.getEstado().getCodigo());
-	        pstmt.setString(18, vacinador.getCep());
-	        pstmt.setInt(19, vacinador.getUnidade().getCodigo());
-	        pstmt.setBoolean(20, vacinador.getStatus());
-	        pstmt.setInt(21, vacinador.getCodigo());
+	        pstmt.setInt(7, vacinador.getTipoVacinador().getValue());
+	        pstmt.setString(8, vacinador.getCrm());
+	        pstmt.setString(9, vacinador.getDocumento());
+	        pstmt.setInt(10, vacinador.getTipoDocumento().getValue());
+	        pstmt.setString(11, vacinador.getEmissor());
+	        pstmt.setDate(12, new java.sql.Date(vacinador.getDataNascimento().getTime()));
+	        pstmt.setString(13, vacinador.getTelefone());
+	        pstmt.setString(14, vacinador.getEmail());
+	        pstmt.setString(15, vacinador.getLogradouro());
+	        pstmt.setString(16, vacinador.getComplemento());
+	        pstmt.setString(17, vacinador.getBairro());
+	        pstmt.setInt(18, vacinador.getCidade().getCodigo());
+	        pstmt.setInt(19, vacinador.getEstado().getCodigo());
+	        pstmt.setString(20, vacinador.getCep());
+	        pstmt.setInt(21, vacinador.getUnidade().getCodigo());
+	        pstmt.setBoolean(22, vacinador.getStatus().booleanValue());
+	        pstmt.setInt(23, vacinador.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -175,6 +180,38 @@ public class VacinadorDAO extends BaseDAO{
         }
         return vacinador;
 	}
+	
+	public Vacinador carregarPorDocumento(String documento) throws DAOException, ClassNotFoundException {
+		Vacinador vacinador = new Vacinador();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM vacinador_vac WHERE vac_matvac = ? OR vac_cpf = ? OR vac_documento = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, documento);
+            pstmt.setString(2, documento);
+            pstmt.setString(3, documento);
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	vacinador = gerarVacinador(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava o vacinador (" + documento + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return vacinador;
+	}
 
 	private Vacinador gerarVacinador(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Vacinador vacinador = new Vacinador();
@@ -186,6 +223,8 @@ public class VacinadorDAO extends BaseDAO{
 		vacinador.setNacionalidade(res.getString("vac_nacional"));
 		vacinador.setNaturalidade(res.getString("vac_natural"));
 		vacinador.setCpf(res.getString("vac_cpf"));
+		vacinador.setTipoVacinador(TipoVacinador.getByValue(res.getInt("vac_tipo")));
+		vacinador.setCrm(res.getString("vac_crm"));
 		vacinador.setDocumento(res.getString("vac_documento"));
 		vacinador.setTipoDocumento(TipoDocumento.getByValue(res.getInt("vac_tipodoc")));
 		vacinador.setEmissor(res.getString("vac_emissordoc"));
