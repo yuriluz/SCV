@@ -201,7 +201,7 @@
 		<url-pattern>/agente</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>VacinadorFormServlet</servlet-name>
 		<servlet-class>com.scv.servlet.VacinadorFormServlet</servlet-class>
 	</servlet>
@@ -210,4 +210,39 @@
 		<url-pattern>/loadVacinador</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AdmGerenteServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmGerenteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmGerenteServlet</servlet-name>
+		<url-pattern>/gerente</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GerenteFormServlet</servlet-name>
+		<servlet-class>com.scv.servlet.GerenteFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GerenteFormServlet</servlet-name>
+		<url-pattern>/loadGerente</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdmUnidadeServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmUnidadeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmUnidadeServlet</servlet-name>
+		<url-pattern>/unidade</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UnidadeFormServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UnidadeFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UnidadeFormServlet</servlet-name>
+		<url-pattern>/loadUnidade</url-pattern>
+	</servlet-mapping>
 </web-app>

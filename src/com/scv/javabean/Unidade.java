@@ -15,9 +15,29 @@ public class Unidade {
 	private Cidade cidade;
 	private Estado estado;
 	private String cep;
+	private Usuario usuario;
 	private Boolean status;
 	
 	public Unidade() {}
+
+	public Unidade(String nomeFantasia, String razaoSocial, String cnes, String cnpj, 
+			String telefone, TipoUnidade tipo, Gestao gestao, String logradouro, String bairro, 
+			Cidade cidade, Estado estado, String cep, Usuario usuario, Boolean status) {
+		this.nomeFantasia = nomeFantasia;
+		this.razaoSocial = razaoSocial;
+		this.cnes = cnes;
+		this.cnpj = cnpj;
+		this.telefone = telefone;
+		this.tipo = tipo;
+		this.gestao = gestao;
+		this.logradouro = logradouro;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.usuario = usuario;
+		this.status = status;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
@@ -123,7 +143,15 @@ public class Unidade {
 		this.cep = cep;
 	}
 		
-    public Boolean getStatus() {
+    public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Boolean getStatus() {
 		return status;
 	}
 
@@ -148,7 +176,7 @@ public class Unidade {
         
         public static TipoUnidade getByValue(String value) {
             for (TipoUnidade tipo : TipoUnidade.values()) {
-                if (tipo.getValue() == value) {
+                if (tipo.getValue().equals(value)) {
                     return tipo;
                 }
             }
@@ -160,7 +188,7 @@ public class Unidade {
     
     public enum Gestao {
         
-        PARTICULAR("P"), MUNICIPAL("M"), ESTADUAL("E"), DUPLA("D"), FEDERAL("F");
+        PARTICULAR("P"), MUNICIPAL("M"), ESTADUAL("E"), DUPLA("D"), FEDERAL("F"), MILITAR("T");
         private String value;
         
         private Gestao(String value) {
@@ -173,7 +201,7 @@ public class Unidade {
         
         public static Gestao getByValue(String value) {
             for (Gestao gestao : Gestao.values()) {
-                if (gestao.getValue() == value) {
+                if (gestao.getValue().equals(value)) {
                     return gestao;
                 }
             }

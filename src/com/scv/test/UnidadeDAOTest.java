@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.scv.javabean.Cidade;
 import com.scv.javabean.Unidade;
+import com.scv.javabean.Usuario;
 import com.scv.persistence.dao.UnidadeDAO;
 import com.scv.persistence.exception.DAOException;
 
@@ -54,6 +55,21 @@ public class UnidadeDAOTest {
 		
 		try {
 			unidades = UnidadeDAO.getInstance().carregarPorCidade(cidade);
+		} catch (DAOException e) {
+			fail("UnidadeDAO: Falha do teste de carregarPorCidade()");
+		}
+		
+		assertNotNull(unidades);
+	}
+	
+	@Test
+	public void testCarregarPorUsuario() throws ClassNotFoundException {
+		List<Unidade> unidades = new ArrayList<Unidade>();
+		Usuario usuario = new Usuario();
+		usuario.setCodigo(1);
+		
+		try {
+			unidades = UnidadeDAO.getInstance().carregarPorUsuario(usuario);
 		} catch (DAOException e) {
 			fail("UnidadeDAO: Falha do teste de carregarPorCidade()");
 		}

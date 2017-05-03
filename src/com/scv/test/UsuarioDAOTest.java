@@ -28,5 +28,18 @@ public class UsuarioDAOTest {
 		assertNotNull(usuario);
 	}
 	
+	@Test
+	public void testCarregarPorCodigo() throws ClassNotFoundException {
+		Usuario usuario = new Usuario();
+		
+		try {
+			usuario = UsuarioDAO.getInstance().carregarPorCodigo(1);
+		} catch (DAOException e) {
+			fail("UsuarioDAO: Falha do teste de validarAcesso()");
+		}
+		
+		assertNotNull(usuario);
+	}
+	
 
 }

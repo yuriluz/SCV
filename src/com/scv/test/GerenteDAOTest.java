@@ -43,5 +43,18 @@ public class GerenteDAOTest {
 		
 		assertNotNull(gerente);
 	}
+	
+	@Test
+	public void testCarregarPorDocumento() throws ClassNotFoundException {
+		Gerente gerente = new Gerente();
+		
+		try {
+			gerente = GerenteDAO.getInstance().carregarPorDocumento("1");
+		} catch (DAOException e) {
+			fail("GerenteDAO: Falha do teste de carregarPorCodigo()");
+		}
+		
+		assertNotNull(gerente);
+	}
 
 }

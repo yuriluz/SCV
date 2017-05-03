@@ -54,6 +54,36 @@ public class UsuarioDAO extends BaseDAO{
         }
         return usuario;
 	}
+    
+    public Usuario carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
+		Usuario usuario = new Usuario();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM usuarioadm_usr WHERE usr_codusr = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setInt(1, codigo);
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	usuario = gerarUsuario(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava usuário por código(" + codigo + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return usuario;
+	}
 
 	private Usuario gerarUsuario(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Usuario usuario = new Usuario();

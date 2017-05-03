@@ -11,6 +11,7 @@ import com.scv.javabean.Cidade;
 import com.scv.javabean.Unidade;
 import com.scv.javabean.Unidade.Gestao;
 import com.scv.javabean.Unidade.TipoUnidade;
+import com.scv.javabean.Usuario;
 import com.scv.persistence.exception.DAOException;
 
 import java.sql.Connection;
@@ -35,7 +36,7 @@ public class UnidadeDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "INSERT INTO unidade_uni (uni_nomefant, uni_razao, uni_dtcad, uni_cnes, uni_cnpj,"
 	    	    + "uni_telefone, uni_tipo, uni_gestao, uni_logradouro, uni_bairro, uni_codcid,"
-	    	    + "uni_codest, uni_cep, uni_status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    	    + "uni_codest, uni_cep, uni_codusr, uni_status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -43,7 +44,7 @@ public class UnidadeDAO extends BaseDAO{
 
 	        pstmt.setString(1, unidade.getNomeFantasia());
 	        pstmt.setString(2, unidade.getRazaoSocial());
-	        pstmt.setDate(3, (java.sql.Date) new Date());
+	        pstmt.setDate(3, new java.sql.Date(new Date().getTime()));
 	        pstmt.setString(4, unidade.getCnes());
 	        pstmt.setString(5, unidade.getCnpj());
 	        pstmt.setString(6, unidade.getTelefone());
@@ -54,7 +55,8 @@ public class UnidadeDAO extends BaseDAO{
 	        pstmt.setInt(11, unidade.getCidade().getCodigo());
 	        pstmt.setInt(12, unidade.getEstado().getCodigo());
 	        pstmt.setString(13, unidade.getCep());
-	        pstmt.setBoolean(14, unidade.getStatus());
+	        pstmt.setInt(14, unidade.getUsuario().getCodigo());
+	        pstmt.setBoolean(15, unidade.getStatus());
 	        
 	        pstmt.execute();
 	        
@@ -73,7 +75,7 @@ public class UnidadeDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "UPDATE unidade_uni SET uni_nomefant=?, uni_razao=?, uni_cnes=?, uni_cnpj=?,"
 	    	    + "uni_telefone=?, uni_tipo=?, uni_gestao=?, uni_logradouro=?, uni_bairro=?, uni_codcid=?,"
-	    	    + "uni_codest=?, uni_cep=?, uni_status=? WHERE uni_coduni=?)";	    
+	    	    + "uni_codest=?, uni_cep=?, uni_codusr=?, uni_status=? WHERE uni_coduni=?";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -91,8 +93,9 @@ public class UnidadeDAO extends BaseDAO{
 	        pstmt.setInt(10, unidade.getCidade().getCodigo());
 	        pstmt.setInt(11, unidade.getEstado().getCodigo());
 	        pstmt.setString(12, unidade.getCep());
-	        pstmt.setBoolean(13, unidade.getStatus());
-	        pstmt.setInt(14, unidade.getCodigo());
+	        pstmt.setInt(13, unidade.getUsuario().getCodigo());
+	        pstmt.setBoolean(14, unidade.getStatus());
+	        pstmt.setInt(15, unidade.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -158,6 +161,33 @@ public class UnidadeDAO extends BaseDAO{
         return unidades;
 	}
 	
+	public List<Unidade> carregarPorUsuario(Usuario usuario) throws DAOException, ClassNotFoundException {
+		List<Unidade> unidades = new ArrayList<Unidade>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM unidade_uni WHERE uni_codusr = ? ORDER BY uni_coduni";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, usuario.getCodigo());
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Unidade unidade = gerarUnidade(res);
+                unidades.add(unidade);
+            }
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava todas as unidades do usuario " + usuario.getCodigo();
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return unidades;
+	}
+	
 	public Unidade carregarPorCodigo(Integer codigo) throws DAOException, ClassNotFoundException {
 		Unidade unidade = new Unidade();
 
@@ -203,6 +233,7 @@ public class UnidadeDAO extends BaseDAO{
 		unidade.setBairro(res.getString("uni_bairro"));
 		unidade.setCidade(CidadeDAO.getInstance().carregarPorCodigo(res.getInt("uni_codcid")));
 		unidade.setEstado(EstadoDAO.getInstance().carregarPorCodigo(res.getInt("uni_codest")));
+		unidade.setUsuario(UsuarioDAO.getInstance().carregarPorCodigo(res.getInt("uni_codusr")));
 		unidade.setCep(res.getString("uni_cep"));
 		unidade.setStatus(res.getBoolean("uni_status"));
 		

@@ -31,6 +31,32 @@ public class Gerente {
 	
 	public Gerente() {}
 
+	public Gerente(String matricula, String nome, Sexo sexo, String nacionalidade, String naturalidade, String cpf,
+			String documento, TipoDocumento tipoDocumento, String emissor, Date dataNascimento, String telefone, 
+			String email, String logradouro, String complemento, String bairro, Cidade cidade, Estado estado, 
+			String cep, Unidade unidade, Boolean status) {
+		this.matricula = matricula;
+		this.nome = nome;
+		this.sexo = sexo;
+		this.nacionalidade = nacionalidade;
+		this.naturalidade = naturalidade;
+		this.cpf = cpf;
+		this.documento = documento;
+		this.tipoDocumento = tipoDocumento;
+		this.emissor = emissor;
+		this.dataNascimento = dataNascimento;
+		this.telefone = telefone;
+		this.email = email;
+		this.logradouro = logradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.unidade = unidade;
+		this.status = status;
+	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}

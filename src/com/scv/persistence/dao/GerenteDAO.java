@@ -35,7 +35,7 @@ public class GerenteDAO extends BaseDAO{
 	    String query = "INSERT INTO gerente_ger (ger_matger, ger_nome, ger_dtmat, ger_sexo,"
 	    		+ "ger_nacional, ger_natural, ger_cpf, ger_documento, ger_tipodoc, ger_emissordoc, ger_dtnasc, ger_telefone, ger_email,"
 	    		+ "ger_logradouro, ger_complemento, ger_bairro, ger_codcid, ger_codest, ger_cep, ger_coduni, ger_status) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -43,7 +43,7 @@ public class GerenteDAO extends BaseDAO{
 
 	        pstmt.setString(1, gerente.getMatricula());
 	        pstmt.setString(2, gerente.getNome());
-	        pstmt.setDate(3, (java.sql.Date) new Date());
+	        pstmt.setDate(3, new java.sql.Date(new Date().getTime()));
 	        pstmt.setString(4, gerente.getSexo().getValue());
 	        pstmt.setString(5, gerente.getNacionalidade());
 	        pstmt.setString(6, gerente.getNaturalidade());
@@ -51,7 +51,7 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setString(8, gerente.getDocumento());
 	        pstmt.setInt(9, gerente.getTipoDocumento().getValue());
 	        pstmt.setString(10, gerente.getEmissor());
-	        pstmt.setDate(11, (java.sql.Date) gerente.getDataNascimento());
+	        pstmt.setDate(11, new java.sql.Date(gerente.getDataNascimento().getTime()));
 	        pstmt.setString(12, gerente.getTelefone());
 	        pstmt.setString(13, gerente.getEmail());
 	        pstmt.setString(14, gerente.getLogradouro());
@@ -61,7 +61,7 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setInt(18, gerente.getEstado().getCodigo());
 	        pstmt.setString(19, gerente.getCep());
 	        pstmt.setInt(20, gerente.getUnidade().getCodigo());
-	        pstmt.setBoolean(21, gerente.getStatus());
+	        pstmt.setBoolean(21, gerente.getStatus().booleanValue());
 	        
 	        pstmt.execute();
 	        
@@ -79,7 +79,7 @@ public class GerenteDAO extends BaseDAO{
 		Connection con = null;
         PreparedStatement pstmt = null;
 	    String query = "UPDATE gerente_ger SET ger_matger = ?, ger_nome = ?, "
-	    		+ "ger_sexo = ?, ger_nacional = ?, ger_natural = ?, ger_ cpf = ?, ger_documento = ?, ger_tipodoc = ?, ger_emissordoc = ?, ger_dtnasc = ?, "
+	    		+ "ger_sexo = ?, ger_nacional = ?, ger_natural = ?, ger_cpf = ?, ger_documento = ?, ger_tipodoc = ?, ger_emissordoc = ?, ger_dtnasc = ?, "
 	    		+ "ger_telefone = ?, ger_email = ?, ger_logradouro = ?, ger_complemento = ?, ger_bairro = ?, ger_codcid = ?, "
 	    		+ "ger_codest = ?, ger_cep = ?, ger_coduni = ?, ger_status = ? WHERE ger_codger = ?";	    
 	    
@@ -96,7 +96,7 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setString(7, gerente.getDocumento());
 	        pstmt.setInt(8, gerente.getTipoDocumento().getValue());
 	        pstmt.setString(9, gerente.getEmissor());
-	        pstmt.setDate(10, (java.sql.Date) gerente.getDataNascimento());
+	        pstmt.setDate(10, new java.sql.Date(gerente.getDataNascimento().getTime()));
 	        pstmt.setString(11, gerente.getTelefone());
 	        pstmt.setString(12, gerente.getEmail());
 	        pstmt.setString(13, gerente.getLogradouro());
@@ -106,13 +106,13 @@ public class GerenteDAO extends BaseDAO{
 	        pstmt.setInt(17, gerente.getEstado().getCodigo());
 	        pstmt.setString(18, gerente.getCep());
 	        pstmt.setInt(19, gerente.getUnidade().getCodigo());
-	        pstmt.setBoolean(20, gerente.getStatus());
+	        pstmt.setBoolean(20, gerente.getStatus().booleanValue());
 	        pstmt.setInt(21, gerente.getCodigo());
 	        
 	        pstmt.execute();
 	        
 	    } catch (SQLException e) {
-	    	String msg = "SQLException enquanto inseria alterações no registro do gerente (" + gerente.getCodigo() +")";
+	    	String msg = "SQLException enquanto inseria alterações no registro do gerente (" + gerente.getCodigo() + ")";
             LOGGER.log(Level.SEVERE, msg, e);
             throw new DAOException(msg, e);
 	    } finally {
@@ -168,6 +168,38 @@ public class GerenteDAO extends BaseDAO{
             
         } catch (SQLException e) {
             String msg = "SQLException enquanto carregava o gerente (" + codigo.toString() + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return gerente;
+	}
+	
+	public Gerente carregarPorDocumento(String documento) throws DAOException, ClassNotFoundException {
+		Gerente gerente = new Gerente();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM gerente_ger WHERE ger_matger = ? OR ger_cpf = ? OR ger_documento = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, documento);
+            pstmt.setString(2, documento);
+            pstmt.setString(3, documento);
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	gerente = gerarGerente(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava o gerente por documento(" + documento + ")";
             LOGGER.log(Level.SEVERE, msg, e);
             throw new DAOException(msg, e);
         } finally {

@@ -143,6 +143,7 @@ $(document).ready(function() {
 					<div id="dadosPessoa" class="w3-row">
 						<div class="w3-col m6 l5">
 							<h6><b>Cartão de Vacinação:</b> <%=pessoa.getNome()%></h6>
+							<input type="hidden" name="pessoa" id="pessoa" value="<%=pessoa.getCodigo()%>">
 						</div>
 					</div>
 					<hr />
