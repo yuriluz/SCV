@@ -245,4 +245,13 @@
 		<servlet-name>UnidadeFormServlet</servlet-name>
 		<url-pattern>/loadUnidade</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CardReportServlet</servlet-name>
+		<servlet-class>com.scv.servlet.CardReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CardReportServlet</servlet-name>
+		<url-pattern>/imprimirCartao</url-pattern>
+	</servlet-mapping>
 </web-app>

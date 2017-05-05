@@ -154,6 +154,17 @@ $(document).ready(function() {
 							</table>
 						</div>
 					</div>
+					<div class="w3-row">
+						<div class="w3-col w3-padding-32">
+							<form action="/imprimirCartao" method="POST" target="_blank">
+								<input type="hidden" id="codPessoa" name="codPessoa" value="<%=usuario.getCodigo()%>">
+								<input type="hidden" id="print" name="print" value="2">
+								<button id="printButton" type="submit" id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
+									<i class="fa fa-print"></i> IMPRIMIR CARTÃO DE VACINAÇÃO
+								</button>
+							</form>
+						</div>
+					</div>
 			</div>
 		</div>
 		
