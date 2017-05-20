@@ -32,15 +32,15 @@
 					</div>
 				</div>
 				<hr />
-				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/pessoa">
+				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="#">
 					<input type="hidden" name="codPessoa" value=<%=pessoa.getCodigo()%>>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=pessoa.getNome()%>">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=pessoa.getNome()%>" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=df.format(pessoa.getDataNascimento())%>">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=df.format(pessoa.getDataNascimento())%>" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
@@ -53,15 +53,15 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=pessoa.getNaturalidade()%>">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=pessoa.getNaturalidade()%>" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=pessoa.getNacionalidade()%>">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=pessoa.getNacionalidade()%>" disabled>
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade">
+							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade" disabled>
 								<option value=0 <%if (escolaridade.getValue() == 0) {%> selected <%}%>>Não possui</option>
 								<option value=1 <%if (escolaridade.getValue() == 1) {%> selected <%}%>>Fundamental</option>
 								<option value=2 <%if (escolaridade.getValue() == 2) {%> selected <%}%>>Médio</option>
@@ -72,11 +72,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=pessoa.getCpf()%>">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=pessoa.getCpf()%>" disabled>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
-							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc">
+							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc" disabled>
 								<option value="1" <%if (tipoDocumento.getValue().equals(1)) {%> selected <%}%>>RG</option>
 								<option value="2" <%if (tipoDocumento.getValue().equals(2)) {%> selected <%}%>>Passaporte</option>
 								<option value="3" <%if (tipoDocumento.getValue().equals(3)) {%> selected <%}%>>CNH</option>
@@ -85,33 +85,33 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=pessoa.getDocumento()%>">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=pessoa.getDocumento()%>" disabled>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=pessoa.getEmissor()%>">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=pessoa.getEmissor()%>" disabled>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=pessoa.getLogradouro()%>">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=pessoa.getLogradouro()%>" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="<%=pessoa.getComplemento()%>">
+							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="<%=pessoa.getComplemento()%>" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=pessoa.getCep()%>">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=pessoa.getCep()%>" disabled>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=pessoa.getBairro()%>">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=pessoa.getBairro()%>" disabled>
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado">
+							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado" disabled>
 								<option value=""></option>
 								<%
 									List<Estado> estados = new ArrayList<Estado>();
@@ -127,7 +127,7 @@
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" >
+							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" disabled>
 								<%
 									List<Cidade> cidades = new ArrayList<Cidade>();
 									cidades = CidadeDAO.getInstance().carregarPorEstado(estado);
@@ -143,19 +143,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m5 l3 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=pessoa.getTelefone()%>">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=pessoa.getTelefone()%>" disabled>
 						</div>
 
 						<div class="w3-col m7 l4 w3-padding-small">
-							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="<%=pessoa.getEmail()%>">
-						</div>
-					</div>
-					<hr />
-					<div class="w3-row">
-						<div class="w3-col w3-padding-tiny">
-							<button type="submit" id="saveButton" class="w3-btn w3-white w3-border w3-hover-blue w3-right">
-								<i class="fa fa-floppy-o"></i> SALVAR ALTERAÇÕES
-							</button>
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="<%=pessoa.getEmail()%>" disabled>
 						</div>
 					</div>
 				</form>
@@ -173,19 +165,19 @@
 					</div>
 				</div>
 				<hr />
-				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/pessoa">
+				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="#">
 					<input type="hidden" name="codPessoa" value="">
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero">
+							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero" disabled>
 								<option value="M">Masculino</option>
 								<option value="F">Feminino</option>
 								<option value="O">Outro</option>
@@ -194,15 +186,15 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="" disabled>
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade">
+							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade" disabled>
 								<option value=0>Não possui</option>
 								<option value=1>Fundamental</option>
 								<option value=2>Médio</option>
@@ -213,11 +205,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="" disabled>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
-							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc">
+							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc" disabled>
 								<option value="1">RG</option>
 								<option value="2">Passaporte</option>
 								<option value="3">CNH</option>
@@ -226,33 +218,33 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="" disabled>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="" disabled>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="">
+							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="" disabled>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="" disabled>
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado">
+							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado" disabled>
 								<option value=""></option>
 								<%
 									List<Estado> estados = new ArrayList<Estado>();
@@ -268,26 +260,18 @@
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" >
+							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" disabled>
 								<option value=""></option>
 							</select>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m5 l3 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="" disabled>
 						</div>
 
 						<div class="w3-col m7 l4 w3-padding-small">
-							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="">
-						</div>
-					</div>
-					<hr />
-					<div class="w3-row">
-						<div class="w3-col w3-padding-tiny">
-							<button type="submit" id="saveButton" class="w3-btn w3-white w3-border w3-hover-blue w3-right">
-								<i class="fa fa-floppy-o"></i> CADASTRAR USUÁRIO
-							</button>
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="" disabled>
 						</div>
 					</div>
 				</form>

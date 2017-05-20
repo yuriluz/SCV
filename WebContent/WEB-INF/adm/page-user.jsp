@@ -31,28 +31,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	function updateCities(estado) {
-		if (estado == "") {
-			document.getElementById("cidade").innerHTML = "";
-			return;
-		}
-		if (window.XMLHttpRequest) {
-			// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else { // code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("cidade").innerHTML = this.responseText;
-			}
-		}
-		xmlhttp
-				.open("GET", "loadCities?estado=" + estado,
-						true);
-		xmlhttp.send();
-	}
-	
 	function updatePessoa(documento) {
 		if (documento == "") {
 			document.getElementById("infoBusca").innerHTML = "Informe o documento da pessoa!";
@@ -72,10 +50,6 @@ $(document).ready(function() {
 		xmlhttp.open("GET", "loadPessoa?documento=" + documento, true);
 		xmlhttp.send();
 	}
-
-	$('#estado').on('change', function() {
-		updateCities(this.value);
-	});
 	
 	$(document).on('click', '#searchButton', function() {
 		updatePessoa($('#searchPessoa').val());
@@ -106,19 +80,19 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<hr />
-				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/pessoa">
+				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="#">
 					<input type="hidden" name="codPessoa" value="">
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero">
+							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero" disabled>
 								<option value="M">Masculino</option>
 								<option value="F">Feminino</option>
 								<option value="O">Outro</option>
@@ -127,15 +101,15 @@ $(document).ready(function() {
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="" disabled>
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade">
+							<label><b>Escolaridade</b></label> <select class="w3-input" id="escolaridade" name="escolaridade" disabled>
 								<option value=0>Não possui</option>
 								<option value=1>Fundamental</option>
 								<option value=2>Médio</option>
@@ -146,11 +120,11 @@ $(document).ready(function() {
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="" disabled>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
-							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc">
+							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc" disabled>
 								<option value="1">RG</option>
 								<option value="2">Passaporte</option>
 								<option value="3">CNH</option>
@@ -159,33 +133,33 @@ $(document).ready(function() {
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="" disabled>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="" disabled>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="">
+							<label><b>Complemento</b></label> <input class="w3-input" type="text" id="complemento" name="complemento" value="" disabled>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="" disabled>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="" disabled>
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado">
+							<label><b>Estado</b></label> <select class="w3-input" id="estado" name="estado" disabled>
 								<option value=""></option>
 								<%
 									List<Estado> estados = new ArrayList<Estado>();
@@ -201,26 +175,18 @@ $(document).ready(function() {
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
-							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" >
+							<label><b>Cidade</b></label> <select class="w3-input" id="cidade" name="cidade" disabled>
 								<option value=""></option>
 							</select>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m5 l3 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="" disabled>
 						</div>
 
 						<div class="w3-col m7 l4 w3-padding-small">
-							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="">
-						</div>
-					</div>
-					<hr />
-					<div class="w3-row">
-						<div class="w3-col w3-padding-tiny">
-							<button type="submit" id="saveButton" class="w3-btn w3-white w3-border w3-hover-green w3-right">
-								<i class="fa fa-floppy-o"></i> CADASTRAR USUÁRIO
-							</button>
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="" disabled>
 						</div>
 					</div>
 				</form>
