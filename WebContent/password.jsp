@@ -15,6 +15,11 @@
 <meta name="author" content="Yuri Luz">
 </head>
 <body class="w3-light-grey">
+
+	<%
+		String tipo = request.getParameter("t");
+	%>
+	
 	<div id="menu">
 		<ul class="w3-navbar w3-white w3-card-2" id="myNavbar">
 			<li><b><a class="w3-large w3-wide">SCV</a></b></li>
@@ -33,6 +38,7 @@
 			</header>
 			<div class="w3-padding">
 				<form method="POST" class="w3-container" id="loginForm" name="loginForm" action="/userLogin">
+				<input type="hidden" id="tipo" name="tipo" value="<%=tipo%>">
 					<div>
 						<h6 class="w3-center">Informe seu e-mail</h6>
 					</div>

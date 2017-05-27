@@ -213,6 +213,38 @@ public class VacinadorDAO extends BaseDAO{
         return vacinador;
 	}
 
+	public Vacinador carregarPorEmailEMatricula(String email, String matricula) throws ClassNotFoundException, DAOException {
+		Vacinador vacinador = new Vacinador();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM vacinador_vac WHERE vac_email = ? AND vac_matvac = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, email);
+            pstmt.setString(2, matricula);
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	vacinador = gerarVacinador(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava o vacinador (" + email + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return vacinador;
+        
+	}
+
 	private Vacinador gerarVacinador(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Vacinador vacinador = new Vacinador();
 		

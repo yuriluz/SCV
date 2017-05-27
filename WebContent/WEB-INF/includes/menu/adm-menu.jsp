@@ -20,6 +20,7 @@
 				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
 				<a <%if (selecionado.equals("4")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/registro">REGISTRAR VACINAÇÃO</a>
 				<a <%if (selecionado.equals("5")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/confirmacao">CONFIRMAR VACINAÇÃO</a>
+				<a <%if (selecionado.equals("9")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/senha">ALTERAR SENHA</a>
 
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
@@ -28,13 +29,15 @@
 				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
 				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
 				<a <%if (selecionado.equals("6")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/agente">CADASTRO DE AGENTE</a>
+				<a <%if (selecionado.equals("9")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/senha">ALTERAR SENHA</a>
 
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
 	<% } else if (tipoUsuario.equals(TipoUsuario.ADMINISTRADOR)) { %>
 			<li class="w3-right w3-hide-medium w3-hide-small">
 				<a <%if (selecionado.equals("7")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/unidade">CADASTRO DE UNIDADE</a> 
-				<a <%if (selecionado.equals("8")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/gerente">CADASTRO DE GERENTE</a> 
+				<a <%if (selecionado.equals("8")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/gerente">CADASTRO DE GERENTE</a>
+				<a <%if (selecionado.equals("9")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/senha">ALTERAR SENHA</a> 
 
 				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
@@ -56,7 +59,8 @@
 			<a href="/cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
 			<a href="/calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a>
 			<a href="/registro" onclick="w3_close()">REGISTRAR VACINAÇÃO</a> 
-			<a href="/confirmacao" onclick="w3_close()">CONFIRMAR VACINAÇÃO</a>   
+			<a href="/confirmacao" onclick="w3_close()">CONFIRMAR VACINAÇÃO</a>
+			<a href="/senha" onclick="w3_close()">ALTERAR SENHA</a>   
 			<a href="/logout" onclick="w3_close()">Sair</a>
 		</nav>
 	<% } else if (tipoUsuario.equals(TipoUsuario.GERENTE)) { %>
@@ -64,14 +68,16 @@
 			<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
 			<a href="/cartao" onclick="w3_close()">CARTÃO DE VACINAÇÃO</a> 
 			<a href="/calendario" onclick="w3_close()">CALENDÁRIO DE VACINAÇÃO</a>
-			<a href="/agente" onclick="w3_close()">CADASTRO DE AGENTE</a> 
+			<a href="/agente" onclick="w3_close()">CADASTRO DE AGENTE</a>
+			<a href="/senha" onclick="w3_close()">ALTERAR SENHA</a> 
 			<a href="/logout" onclick="w3_close()">Sair</a>
 		</nav>
 	<% } else if (tipoUsuario.equals(TipoUsuario.ADMINISTRADOR)) { %>
 		<nav class="w3-sidenav w3-margin-0 w3-card-2 w3-blue w3-animate-left w3-hide-large" style="display: none" id="mySidenav">
 			<a href="javascript:void(0)" onclick="w3_close()" class="w3-large w3-padding-16">Fechar ×</a> 
 			<a href="/unidade" onclick="w3_close()">CADASTRO DE UNIDADE</a> 
-			<a href="/gerente" onclick="w3_close()">CADASTRO DE GERENTE</a>   
+			<a href="/gerente" onclick="w3_close()">CADASTRO DE GERENTE</a>
+			<a href="/senha" onclick="w3_close()">ALTERAR SENHA</a>   
 			<a href="/logout" onclick="w3_close()">Sair</a>
 		</nav>
 	<% } else { %>

@@ -1,4 +1,4 @@
-<%@page import="com.scv.javabean.Pessoa"%>
+<%@page import="com.scv.javabean.Usuario"%>
 <%@page import="java.util.*"%>
 
 <!DOCTYPE html>
@@ -32,17 +32,16 @@ $(document).ready(function() {
 <body class="w3-white">
 
 <jsp:include page="/WEB-INF/includes/menu/user-menu.jsp">
-	<jsp:param name="tipo" value="5"/>
+	<jsp:param name="tipo" value="9"/>
 </jsp:include>
 
 	<%
-		Pessoa usuario = (Pessoa) session.getAttribute("usuario");
+		Usuario usuario = (Usuario) session.getAttribute("login");
 	%>
 
 	<div class="w3-container w3-padding-32">
 			<div class="w3-padding">
-				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/usuario-senha">
-				<input type="hidden" id="codPessoa" name="codPessoa" value="<%=usuario.getCodigo()%>">
+				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/senha">
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
 							<label><b>Senha atual</b></label>

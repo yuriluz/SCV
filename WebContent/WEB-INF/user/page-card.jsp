@@ -97,56 +97,23 @@ $(document).ready(function() {
 		
 		List<Pessoa> cadastros = new ArrayList<Pessoa>();
 		cadastros.add(usuario);
+		
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 	%>
 
 	<div class="w3-container w3-padding-32">
-			<div class="w3-padding">
-				<div class="w3-row">
-						<div class="w3-col w3-padding-tiny w3-center">
-							<h5><b>CARTÃO DE VACINAÇÃO (NÃO OFICIAL)</b></h5>
-						</div>
-				</div>
-					<div class="w3-row">
-						<div class="w3-col">
-							<p><b>Nome: </b><%=usuario.getNome().toUpperCase()%></p> 
-						</div>
-					</div>
-					
-					<div class="w3-row">
-						<div class="w3-col m4 l4">
-							<p><b>Sexo: </b><%=sexo.toUpperCase()%></p> 
-						</div>
-					
-						<div class="w3-col m4 l4">
-							<p><b>Data de Nascimento: </b><%=usuario.getDataNascimento()%></p>
-						</div>
-						
-						<div class="w3-col m4 l4">
-							<p><b>Nacionalidade: </b><%=usuario.getNacionalidade()%></p>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col">
-							<p><b>Documento nacional de identificação: </b><%=tipoDoc%> - <%=nDoc%> - <%=usuario.getEmissor()%></p>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col">
-							<p><b>Foi vacinado nas datas indicadas contra: </b></p>
-						</div>
-					</div>
 					<div class="w3-row">
 						<div class="w3-col">
 							<table class="w3-table w3-bordered w3-border">
-								<tr>
-									<th>Vacina</th><th>Data</th><th>Clínico ou agente de saúde responsável</th><th>Fabricante e número de lote</th><th>Validade</th><th>Unidade de Saúde</th>
+								<tr class="w3-blue">
+									<th>Vacina</th><th>Data</th><th class="w3-hide-medium w3-hide-small">Profissional responsável</th><th class="w3-hide-medium w3-hide-small">Fabricante e número de lote</th><th class="w3-hide-medium w3-hide-small">Validade</th><th>Unidade de Saúde</th>
 								</tr>
 								<%
 									for (Registro r : registros) {
 								%>
 									<tr>
-										<td><%=r.getVacina().getNome()%></td><td><%=r.getDataVacina()%></td><td><%=r.getConsulta().getVacinador().getNome()%></td><td><%=r.getLote()%></td><td><%=r.getDataValidade()%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
+										<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td class="w3-hide-medium w3-hide-small"><%=r.getConsulta().getVacinador().getNome() == null ? (r.getVerificado() ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : "Ainda não verificado") : r.getConsulta().getVacinador().getNome() %></td><td class="w3-hide-medium w3-hide-small"><%=r.getLote()%></td><td class="w3-hide-medium w3-hide-small"><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
 									</tr>
 								<%
 									}
@@ -166,7 +133,6 @@ $(document).ready(function() {
 						</div>
 					</div>
 			</div>
-		</div>
 		
 	<script src="./resources/scripts/navigation.js"></script>
 	

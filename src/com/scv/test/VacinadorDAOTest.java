@@ -43,5 +43,18 @@ public class VacinadorDAOTest {
 		
 		assertNotNull(vacinador);
 	}
+	
+	@Test
+	public void testCarregarPorEmailEMatricula() throws ClassNotFoundException {
+		Vacinador vacinador = new Vacinador();
+		
+		try {
+			vacinador = VacinadorDAO.getInstance().carregarPorEmailEMatricula("", "");
+		} catch (DAOException e) {
+			fail("VacinadorDAO: Falha do teste de carregarPorEmailEMatricula()");
+		}
+		
+		assertNotNull(vacinador);
+	}
 
 }

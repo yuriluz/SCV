@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta name="description" content="Página inicial do Sistema de Controle de Vacinação">
+<meta name="description" content="Sistema de Controle de Vacinação">
 <meta name="author" content="Yuri Luz">
 </head>
 <body class="w3-light-grey">
@@ -22,47 +22,44 @@
 			<li class="w3-right w3-hide-small"><a href="index.html"><i class="fa fa-home w3-large"></i> HOME</a></li>
 			
 			<li class="w3-right w3-hide-large w3-hide-medium"><a class="w3-right" href="index.html"><i class="fa fa-home w3-large w3-padding-right w3-padding-left"></i></a></li>
-
 		</ul>
 	</div>
 
 	<div class="w3-container w3-margin-top w3-padding-64">
 		<div class="w3-card-2 w3-white w3-display-middle w3-margin-top w3-animate-opacity" style="width: 80%; max-width: 420px;" id="access">
 			<header class="w3-container w3-blue">
-				<h3 class="w3-center" style="color: #ffffff;">ACESSO AO SISTEMA</h3>
+				<h3 class="w3-center" style="color: #ffffff;">PRIMEIRO ACESSO</h3>
 			</header>
 			<div class="w3-padding">
-				<form method="POST" class="w3-container" id="loginForm" name="loginForm" action="/userLogin">
+				<form method="POST" class="w3-container" id="registerForm" name="registerForm" action="/primeiroAcesso">
 					<div>
-						<h6 class="w3-center">Informe seus dados</h6>
+						<h6 class="w3-center">Informe seus dados e crie uma senha</h6>
 					</div>
 					<div>
 						<p>
-							<input class="w3-input w3-border" type="text" id="doc" name="doc" placeholder="Número do documento" autocomplete="off" required>
+							<input class="w3-input w3-border" type="text" id="email" name="email" placeholder="Informe seu e-mail" autocomplete="off" required>
 						</p>
 						<p>
-							<input class="w3-input w3-border" type="password" id="senha" name="senha" placeholder="Senha de acesso" autocomplete="off" required>
+							<input class="w3-input w3-border" type="text" id="matricula" name="matricula" placeholder="Informe sua matrícula" autocomplete="off" required>
+						</p>
+						<p>
+							<input class="w3-input w3-border" type="password" id="senha1" name="senha1" placeholder="Informe a senha" autocomplete="off" required>
+						</p>
+						<p>
+							<input class="w3-input w3-border" type="password" id="senha2" name="senha2" placeholder="Confirme a senha" autocomplete="off" required>
 						</p>
 					</div>
 					<div class="w3-center">
 						<p>
-							<button class="w3-btn w3-white w3-border w3-hover-blue" type="submit">
-								ACESSAR <i class="fa fa-arrow-right"></i>
+							<button class="w3-btn w3-white w3-border w3-hover-green" type="submit">
+								FINALIZAR <i class="fa fa-check"></i>
 							</button>
-						</p>
-						<hr/>
-						<p>
-							<a href="user-registration.jsp" class="w3-button w3-white w3-border w3-hover-green">
-								CRIAR CONTA
-							</a>
-							<a href="password.jsp?t=U" class="w3-button w3-white w3-border w3-hover-yellow">
-								ESQUECI MINHA SENHA
-							</a>
 						</p>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script src="./resources/scripts/navigation.js"></script>
 </body>
 </html>

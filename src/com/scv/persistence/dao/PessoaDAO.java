@@ -36,7 +36,7 @@ public class PessoaDAO extends BaseDAO{
 	    String query = "INSERT INTO pessoa_pes (pes_nome, pes_dtmat, pes_sexo, pes_nacional, pes_natural, "
 	    		+ "pes_cpf, pes_documento, pes_tipodoc, pes_emissordoc, pes_dtnasc, pes_escolaridade, pes_telefone, pes_email, "
 	    		+ "pes_logradouro, pes_complemento, pes_bairro, pes_codcid, pes_codest, pes_cep, pes_senha) "
-	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	    
+	    		+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,MD5(?))";	    
 	    
 	    try {
 	    	con = getConnection();
@@ -80,7 +80,7 @@ public class PessoaDAO extends BaseDAO{
         PreparedStatement pstmt = null;
 	    String query = "UPDATE pessoa_pes SET pes_nome = ?, pes_sexo = ?, pes_nacional = ?, "
 	    		+ "pes_natural = ?, pes_cpf = ?, pes_documento = ?, pes_tipodoc = ?, pes_emissordoc = ?, pes_dtnasc = ?, pes_telefone = ?, pes_email = ?, pes_escolaridade = ?, "
-	    		+ "pes_logradouro = ?, pes_complemento = ?, pes_bairro = ?, pes_codcid = ?, pes_codest = ?, pes_cep = ?, pes_senha = ? "
+	    		+ "pes_logradouro = ?, pes_complemento = ?, pes_bairro = ?, pes_codcid = ?, pes_codest = ?, pes_cep = ? "
 	    		+ "WHERE pes_codpes = ?";	    
 	    
 	    try {
@@ -105,8 +105,7 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setInt(16, pessoa.getCidade().getCodigo());
 	        pstmt.setInt(17, pessoa.getEstado().getCodigo());
 	        pstmt.setString(18, pessoa.getCep());
-	        pstmt.setString(19, pessoa.getSenha());
-	        pstmt.setInt(20, pessoa.getCodigo());
+	        pstmt.setInt(19, pessoa.getCodigo());
 	        
 	        pstmt.execute();
 	        
@@ -236,6 +235,30 @@ public class PessoaDAO extends BaseDAO{
             close(con, pstmt, res);
         }
         return pessoa;
+	}
+	
+	public void alterarSenha(Pessoa pessoa, String novaSenha) throws ClassNotFoundException, DAOException {
+		Connection con = null;
+        PreparedStatement pstmt = null;
+	    String query = "UPDATE pessoa_pes SET pes_senha = MD5(?) WHERE pes_codpes = ?";	    
+	    
+	    try {
+	    	con = getConnection();
+	        pstmt = con.prepareStatement(query);
+
+	        pstmt.setString(1, novaSenha);
+	        pstmt.setInt(2, pessoa.getCodigo());
+
+	        pstmt.execute();
+	        
+	    } catch (SQLException e) {
+	    	String msg = "SQLException enquanto alterava senha da pessoa (" + pessoa.getCodigo() +")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+	    } finally {
+	    	close(con, pstmt);
+	    }
+		
 	}
 
 	private Pessoa gerarPessoa(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {

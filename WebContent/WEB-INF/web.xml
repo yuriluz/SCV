@@ -254,4 +254,22 @@
 		<servlet-name>CardReportServlet</servlet-name>
 		<url-pattern>/imprimirCartao</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewPessoaServlet</servlet-name>
+		<servlet-class>com.scv.servlet.NewPessoaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewPessoaServlet</servlet-name>
+		<url-pattern>/registrarPessoa</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewAdmServlet</servlet-name>
+		<servlet-class>com.scv.servlet.NewAdmServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewAdmServlet</servlet-name>
+		<url-pattern>/registrarUsuario</url-pattern>
+	</servlet-mapping>
 </web-app>

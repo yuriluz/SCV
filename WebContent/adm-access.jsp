@@ -38,7 +38,7 @@
 			<%} else if (tipo.equals("2"))   {%>
 				<h3 class="w3-center" style="color: #ffffff;">ACESSO ADMINISTRATIVO</h3>
 			<%} else { %>
-				<h3 class="w3-center" style="color: #ffffff;">ACESSO</h3>
+				<h3 class="w3-center" style="color: #ffffff;">ACESSO AO SISTEMA</h3>
 			<%}%>
 			</header>
 			<div class="w3-padding">
@@ -60,6 +60,24 @@
 								ACESSAR <i class="fa fa-arrow-right"></i>
 							</button>
 						</p>
+					<%if (tipo.equals("1")) { %>
+						<hr/>
+						<p>
+							<a href="first-access.html" class="w3-button w3-white w3-border w3-hover-green">
+								PRIMEIRO ACESSO
+							</a>
+							<a href="password.jsp?t=A" class="w3-button w3-white w3-border w3-hover-yellow">
+								RECUPERAR SENHA
+							</a>
+						</p>
+					<% } else { %>
+						<hr/>
+						<p>
+							<a href="password.jsp?t=A" class="w3-button w3-white w3-border w3-hover-yellow">
+								RECUPERAR SENHA
+							</a>
+						</p>
+					<% } %>
 					</div>
 				</form>
 			</div>

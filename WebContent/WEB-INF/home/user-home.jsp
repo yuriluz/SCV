@@ -60,6 +60,7 @@
 			</div>
 			<div class="w3-col l6">
 				<a href="/usuario-dados"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Atualizar meus dados</button></a>
+				<a href="/usuario-senha"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Alterar minha senha</button></a>
 				<a href="/usuario-registro"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Informar Vacinação</button></a>
 				<a href="/usuario-cartao"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Consultar meu Cartão de Vacinação</button></a>
 				<a href="/usuario-calendario"><button style="width: 80%; white-space: normal;" class="w3-btn w3-white w3-border w3-hover-blue w3-padding-xxlarge w3-margin-bottom w3-btn w3-round">Consultar o Calendário de Vacinação</button></a>

@@ -91,52 +91,18 @@
 					List<Registro> registros = RegistroDAO.getInstance().carregarPorPessoa(pessoa);
 					
 			%>
-				<div class="w3-row">
-						<div class="w3-col w3-padding-tiny w3-center">
-							<h5><b>CARTÃO DE VACINAÇÃO</b></h5>
-						</div>
-				</div>
-					<div class="w3-row">
-						<div class="w3-col">
-							<p><b>Nome: </b><%=pessoa.getNome().toUpperCase()%></p> 
-						</div>
-					</div>
-					
-					<div class="w3-row">
-						<div class="w3-col m4 l4">
-							<p><b>Sexo: </b><%=sexo.toUpperCase()%></p> 
-						</div>
-					
-						<div class="w3-col m4 l4">
-							<p><b>Data de Nascimento: </b><%=df.format(pessoa.getDataNascimento())%></p>
-						</div>
-						
-						<div class="w3-col m4 l4">
-							<p><b>Nacionalidade: </b><%=pessoa.getNacionalidade()%></p>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col">
-							<p><b>Documento nacional de identificação: </b><%=tipoDoc%> - <%=nDoc%> - <%=pessoa.getEmissor()%></p>
-						</div>
-					</div>
-					<div class="w3-row">
-						<div class="w3-col">
-							<p><b>Foi vacinado nas datas indicadas contra: </b></p>
-						</div>
-					</div>
 					<div class="w3-row">
 						<div class="w3-col">
 							<table class="w3-table w3-bordered w3-border">
-								<tr>
-									<th>Vacina</th><th>Data</th><th>Clínico ou agente de saúde responsável</th><th>Fabricante e número de lote</th><th>Validade</th><th>Unidade de Saúde</th>
+								<tr class="w3-blue">
+									<th>Vacina</th><th>Data</th><th class="w3-hide-medium w3-hide-small">Profissional responsável</th><th class="w3-hide-medium w3-hide-small">Fabricante e número de lote</th><th class="w3-hide-medium w3-hide-small">Validade</th><th>Unidade de Saúde</th>
 								</tr>
 								<%
 									for (Registro r : registros) {
 										if (r.getVerificado()) {
 								%>
 									<tr>
-										<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td><%=r.getConsulta().getVacinador().getNome() == null ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : r.getConsulta().getVacinador().getNome() %></td><td><%=r.getLote()%></td><td><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
+										<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td class="w3-hide-medium w3-hide-small"><%=r.getConsulta().getVacinador().getNome() == null ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : r.getConsulta().getVacinador().getNome() %></td><td class="w3-hide-medium w3-hide-small"><%=r.getLote()%></td><td class="w3-hide-medium w3-hide-small"><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
 									</tr>
 								<%
 										}

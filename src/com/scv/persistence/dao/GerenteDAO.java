@@ -206,6 +206,39 @@ public class GerenteDAO extends BaseDAO{
             close(con, pstmt, res);
         }
         return gerente;
+        
+	}
+	
+	public Gerente carregarPorEmailEMatricula(String email, String matricula) throws ClassNotFoundException, DAOException {
+		Gerente gerente = new Gerente();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM gerente_ger WHERE ger_email = ? AND ger_matger = ?";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, email);
+            pstmt.setString(2, matricula);
+            
+            res = pstmt.executeQuery();
+            
+            if (res.next()) {
+            	gerente = gerarGerente(res);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava o gerente por email e matrícula(" + email + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return gerente;
+        
 	}
 
 	private Gerente gerarGerente(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {

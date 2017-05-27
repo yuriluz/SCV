@@ -3,14 +3,30 @@ package com.scv.javabean;
 public class Usuario {
 	
 	private Integer codigo;
+	private String nome;
 	private Integer codUsuario;
 	private String email;
+	private String senha;
 	private TipoUsuario tipo;
 	
 	public Usuario() {}
 	
-    
-    public Integer getCodigo() {
+    public Usuario(String nome, String email, String senha, TipoUsuario tipo) {
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.tipo = tipo;
+	}
+
+	public Usuario(String nome, Integer codUsuario, String email, String senha, TipoUsuario tipo) {
+		this.nome = nome;
+		this.codUsuario = codUsuario;
+		this.email = email;
+		this.senha = senha;
+		this.tipo = tipo;
+	}
+
+	public Integer getCodigo() {
 		return codigo;
 	}
 
@@ -34,6 +50,26 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 
 	public TipoUsuario getTipo() {
 		return tipo;

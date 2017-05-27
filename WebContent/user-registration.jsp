@@ -90,7 +90,7 @@ $(document).ready(function() {
 					<h4><b>NOVO USUÁRIO</b></h4>
 				</div>
 				<hr />
-				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/usuario-dados">
+				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/registrarPessoa">
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
 							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">

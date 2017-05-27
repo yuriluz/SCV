@@ -57,6 +57,32 @@ public class Pessoa {
 		this.cep = cep;
 		this.senha = "";
 	}
+	
+	public Pessoa(String nome, Sexo sexo, String nacionalidade, String naturalidade, String cpf, 
+			String documento, TipoDocumento tipoDocumento, String emissor, Date dataNascimento, 
+			Escolaridade escolaridade, String telefone, String email, String logradouro, 
+			String complemento, String bairro, Cidade cidade, Estado estado, String cep, String senha) {
+		
+		this.nome = nome;
+		this.sexo = sexo;
+		this.nacionalidade = nacionalidade;
+		this.naturalidade = naturalidade;
+		this.cpf = cpf;
+		this.documento = documento;
+		this.tipoDocumento = tipoDocumento;
+		this.emissor = emissor;
+		this.dataNascimento = dataNascimento;
+		this.escolaridade = escolaridade;
+		this.telefone = telefone;
+		this.email = email;
+		this.logradouro = logradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.senha = senha;
+	}
 
 	public Integer getCodigo() {
 		return codigo;

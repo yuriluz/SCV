@@ -56,5 +56,18 @@ public class GerenteDAOTest {
 		
 		assertNotNull(gerente);
 	}
+	
+	@Test
+	public void testCarregarPorEmailEMatricula() throws ClassNotFoundException {
+		Gerente gerente = new Gerente();
+		
+		try {
+			gerente = GerenteDAO.getInstance().carregarPorEmailEMatricula("", "");
+		} catch (DAOException e) {
+			fail("GerenteDAO: Falha do teste de carregarPorEmailEMatricula()");
+		}
+		
+		assertNotNull(gerente);
+	}
 
 }
