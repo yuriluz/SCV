@@ -15,14 +15,24 @@
 			</li>
 	<% if (tipoUsuario.equals(TipoUsuario.VACINADOR)) { %>
 			<li class="w3-right w3-hide-medium w3-hide-small">
+				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
+			</li>
+			<div class="w3-dropdown-hover w3-right w3-padding-top w3-hide-medium w3-hide-small">
+				<button class="w3-button">VACINAÇÃO</button>
+				<div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<a href="/cartao" class="w3-bar-item w3-button">CARTÃO DE VACINAÇÃO</a>
+				    <a href="/calendario" class="w3-bar-item w3-button">CALENDÁRIO DE VACINAÇÃO</a>
+				    <a href="/registro" class="w3-bar-item w3-button">REGISTRAR VACINAÇÃO</a>
+				    <a href="/confirmacao" class="w3-bar-item w3-button">CONFIRMAR VACINAÇÃO</a>
+				</div>
+			</div>
+			<li class="w3-right w3-hide-medium w3-hide-small">
 				<a <%if (selecionado.equals("1")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/pessoa">CADASTRO DE PESSOA</a> 
-				<a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
+				<!-- <a <%if (selecionado.equals("2")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/cartao">CARTÃO DE VACINAÇÃO</a> 
 				<a <%if (selecionado.equals("3")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/calendario">CALENDÁRIO DE VACINAÇÃO</a>
 				<a <%if (selecionado.equals("4")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/registro">REGISTRAR VACINAÇÃO</a>
-				<a <%if (selecionado.equals("5")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/confirmacao">CONFIRMAR VACINAÇÃO</a>
+				<a <%if (selecionado.equals("5")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/confirmacao">CONFIRMAR VACINAÇÃO</a>  -->
 				<a <%if (selecionado.equals("9")) {%> class="w3-bottombar w3-border-blue" <%}%> href="/senha">ALTERAR SENHA</a>
-
-				<a class="w3-border-left" href="/logout">Sair <i class="fa fa-sign-out"></i></a>
 			</li>
 	<% } else if (tipoUsuario.equals(TipoUsuario.GERENTE)) { %>
 			<li class="w3-right w3-hide-medium w3-hide-small"> 
