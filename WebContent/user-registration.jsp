@@ -19,12 +19,16 @@
 
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="./resources/styles/style.css">
+<link rel="stylesheet" href="./resources/styles/validation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<script src="./resources/scripts/jquery-1.12.4.js"></script>
+<script src="./resources/scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="./resources/scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./resources/scripts/validation.js" type="text/javascript"></script>
 <script src="./resources/scripts/jquery-ui.js"></script>
+<script src="./resources/scripts/calendar.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -90,7 +94,7 @@ $(document).ready(function() {
 					<h4><b>NOVO USUÁRIO</b></h4>
 				</div>
 				<hr />
-				<form class="w3-container" id="formCadastro" name="formCadastro" method="POST" action="/registrarPessoa">
+				<form class="w3-container" id="registerForm" name="registerForm" method="POST" action="/registrarPessoa">
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
 							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">
@@ -133,7 +137,7 @@ $(document).ready(function() {
 						</div>
 					
 						<div class="w3-col m6 l3 w3-padding-large">
-							<label><b>Outro Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc">
+							<label><b>Documento</b></label> <select class="w3-input" id="tipodoc" name="tipodoc">
 								<option value="1">RG</option>
 								<option value="2">Passaporte</option>
 								<option value="3">CNH</option>
@@ -210,7 +214,7 @@ $(document).ready(function() {
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Confirme a Senha</b></label> <input class="w3-input" type="password" id="senha2" name="senha2" value="">
+							<label><b>Confirme a senha</b></label> <input class="w3-input" type="password" id="senha2" name="senha2" value="">
 						</div>
 					</div>
 					<hr />

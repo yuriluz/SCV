@@ -42,14 +42,15 @@ public class UserRegisterServlet extends HttpServlet {
 		
 		Integer codPessoa;
 		Integer codUnidade;
-		Integer nVacinas;
 		Pessoa pessoa = null;
 		Unidade unidade = new Unidade();
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		codPessoa = Integer.parseInt(request.getParameter("pessoa"));
 		codUnidade = Integer.parseInt(request.getParameter("unidade"));
-		nVacinas = Integer.parseInt(request.getParameter("nVacinas"));
+		String[] vacinas = request.getParameterValues("vacina");
+		String[] datas = request.getParameterValues("dataVacina");
+		String[] lotes = request.getParameterValues("loteVacina");
 		
 		try {
 			pessoa = PessoaDAO.getInstance().carregarPorCodigo(codPessoa);
@@ -59,20 +60,16 @@ public class UserRegisterServlet extends HttpServlet {
 			ConsultaDAO.getInstance().inserir(consulta);
 			consulta.setCodigo(ConsultaDAO.getInstance().carregarCodigoPorConsulta(consulta));
 			
-			for (int i = 1; i <= nVacinas; i++) {
+			for (int i = 0; i < vacinas.length; i++) {
 				Integer codVacina = null;
-				if (request.getParameter("vacina" + i) != null) {
-					codVacina = Integer.parseInt(request.getParameter("vacina" + i));
-				}
-				if (codVacina != null) {
-					Vacina vacina = VacinaDAO.getInstance().carregarPorCodigo(codVacina);
-					String strDataVacina = request.getParameter("dataVacina" + i);
-					Date dataVacina = df.parse(strDataVacina);
-					String lote = request.getParameter("loteVacina" + i);
+				codVacina = Integer.parseInt(vacinas[i]);
+				Vacina vacina = VacinaDAO.getInstance().carregarPorCodigo(codVacina);
+				String strDataVacina = datas[i];
+				Date dataVacina = df.parse(strDataVacina);
+				String lote = lotes[i];
 					
-					Registro registro = new Registro(pessoa, vacina, consulta, dataVacina, lote, false);
-					RegistroDAO.getInstance().inserir(registro);
-				}
+				Registro registro = new Registro(pessoa, vacina, consulta, dataVacina, lote, false);
+				RegistroDAO.getInstance().inserir(registro);
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -85,7 +82,6 @@ public class UserRegisterServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		
 		request.getRequestDispatcher("WEB-INF/user/page-register.jsp").forward(request, response);
 		

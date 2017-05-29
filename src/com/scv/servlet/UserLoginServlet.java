@@ -32,7 +32,7 @@ public class UserLoginServlet extends HttpServlet {
 			senha = request.getParameter("senha");
 			pessoa = PessoaDAO.getInstance().validarAcesso(documento, senha);
 			if (pessoa.getCodigo() == null) {
-				request.getRequestDispatcher("index.html").forward(request, response);
+				request.getRequestDispatcher("user-access.html").forward(request, response);
 			} else {
 				session.setAttribute("usuario", pessoa);
 				request.getRequestDispatcher("WEB-INF/home/user-home.jsp").forward(request, response);
@@ -53,7 +53,7 @@ public class UserLoginServlet extends HttpServlet {
 		
 		pessoa = (Pessoa) session.getAttribute("usuario");
 		if (pessoa.getCodigo() == null) {
-			request.getRequestDispatcher("index.html").forward(request, response);
+			request.getRequestDispatcher("user-access.html").forward(request, response);
 		} else {
 			request.getRequestDispatcher("WEB-INF/home/user-home.jsp").forward(request, response);
 		}

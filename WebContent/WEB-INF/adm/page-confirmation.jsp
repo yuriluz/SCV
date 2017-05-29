@@ -76,8 +76,8 @@ $(document).ready(function() {
 							<input id="searchPessoa" class="w3-padding w3-section w3-border" style="width:80%;" type="text" placeholder="CPF, RG, CNH, CTPS, Passaporte ou Certidão de Nasc." autocomplete="off">
 							<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 								<i class="fa fa-search"></i>
-							</a>
-							<label id="infoPessoa"></label>
+							</a><br/>
+							<label class="w3-small w3-text-red" id="infoPessoa"></label>
 						</div>
 					</div>
 					<hr />

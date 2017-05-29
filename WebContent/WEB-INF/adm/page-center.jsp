@@ -21,11 +21,14 @@
 
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="./resources/styles/style.css">
+<link rel="stylesheet" href="./resources/styles/validation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<script src="./resources/scripts/jquery-1.12.4.js"></script>
+<script src="./resources/scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="./resources/scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./resources/scripts/validation.js" type="text/javascript"></script>
 <script src="./resources/scripts/jquery-ui.js"></script>
 
 <script type="text/javascript">

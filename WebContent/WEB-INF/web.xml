@@ -272,4 +272,31 @@
 		<servlet-name>NewAdmServlet</servlet-name>
 		<url-pattern>/registrarUsuario</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FirstAccessServlet</servlet-name>
+		<servlet-class>com.scv.servlet.FirstAccessServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FirstAccessServlet</servlet-name>
+		<url-pattern>/primeiroAcesso</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserPasswordServlet</servlet-name>
+		<servlet-class>com.scv.servlet.UserPasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserPasswordServlet</servlet-name>
+		<url-pattern>/usuario-senha</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdmPasswordServlet</servlet-name>
+		<servlet-class>com.scv.servlet.AdmPasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdmPasswordServlet</servlet-name>
+		<url-pattern>/senha</url-pattern>
+	</servlet-mapping>
 </web-app>

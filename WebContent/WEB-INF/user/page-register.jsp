@@ -23,12 +23,16 @@
 
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="./resources/styles/style.css">
+<link rel="stylesheet" href="./resources/styles/validation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<script src="./resources/scripts/jquery-1.12.4.js"></script>
+<script src="./resources/scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="./resources/scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./resources/scripts/validation.js" type="text/javascript"></script>
 <script src="./resources/scripts/jquery-ui.js"></script>
+<script src="./resources/scripts/calendar.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -89,7 +93,7 @@ $(document).ready(function() {
 			for (var j=0; j<fields.length; j++) {
 				var fieldName = fields[j].name
 				if (fieldName) {
-					fields[j].name = fields[j].id + counter;
+					fields[j].name = fields[j].id;
 					fields[j].setAttribute("class", "w3-input w3-margin-top");
 				}
 				if (fields[j].tagName == "LABEL")
@@ -209,7 +213,7 @@ $(document).ready(function() {
 						<div class="w3-row" id="item">
 							<div class="w3-col m3 l3 w3-padding-small">
 								<label><b>Vacina</b></label>
-								<select class="w3-input" id="vacina" name="vacina1">
+								<select class="w3-input" id="vacina" name="vacina">
 									<% for (Vacina v : vacinas) { %>
 										<option value=<%=v.getCodigo()%>><%=v.getNome()%> | <%=v.getDescricao()%></option>
 									<% } %>
@@ -217,11 +221,11 @@ $(document).ready(function() {
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small">
 								<label><b>Data da Vacinação</b></label>
-								<input class="w3-input" type="text" id="dataVacina" name="dataVacina1" value="">
+								<input class="w3-input" type="text" id="dataVacina" name="dataVacina" value="" required>
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small">
 								<label><b>Lote</b></label>
-								<input class="w3-input" type="text" id="loteVacina" name="loteVacina1" value="">
+								<input class="w3-input" type="text" id="loteVacina" name="loteVacina" value="">
 							</div>
 							<div class="w3-col m3 l3 w3-padding-small w3-margin-top">
 								<button class="w3-button w3-white w3-border w3-hover-red" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);" disabled>

@@ -40,13 +40,13 @@ public class FirstAccessServlet extends HttpServlet {
 			if (vacinador.getCodigo() != null) {
 				Usuario usuario = new Usuario(vacinador.getNome(), vacinador.getCodigo(), email, senha, TipoUsuario.VACINADOR);
 				UsuarioDAO.getInstance().inserir(usuario);
-				request.getRequestDispatcher("adm-access.html").forward(request, response);
+				request.getRequestDispatcher("adm-access.jsp?t=1").forward(request, response);
 			} else if (gerente.getCodigo() != null) {
 				Usuario usuario = new Usuario(gerente.getNome(), gerente.getCodigo(), email, senha, TipoUsuario.GERENTE);
 				UsuarioDAO.getInstance().inserir(usuario);
-				request.getRequestDispatcher("adm-access.html").forward(request, response);
+				request.getRequestDispatcher("adm-access.jsp?t=1").forward(request, response);
 			} else {
-				request.getRequestDispatcher("adm-access.html").forward(request, response);
+				request.getRequestDispatcher("first-access.html").forward(request, response);
 			}
 			
 		} catch (ClassNotFoundException | DAOException e) {

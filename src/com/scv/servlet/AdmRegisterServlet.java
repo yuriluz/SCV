@@ -44,7 +44,6 @@ public class AdmRegisterServlet extends HttpServlet {
 		Integer codPessoa;
 		Integer codUnidade;
 		Integer codCampanha;
-		Integer nVacinas;
 		Pessoa pessoa = null;
 		Unidade unidade = new Unidade();
 		Campanha campanha = new Campanha();
@@ -54,7 +53,9 @@ public class AdmRegisterServlet extends HttpServlet {
 		codPessoa = Integer.parseInt(request.getParameter("codPessoa"));
 		codUnidade = Integer.parseInt(request.getParameter("codUnidade"));
 		codCampanha = Integer.parseInt(request.getParameter("campanha"));
-		nVacinas = Integer.parseInt(request.getParameter("nVacinas"));
+		String[] vacinas = request.getParameterValues("vacina");
+		String[] datas = request.getParameterValues("dataVacina");
+		String[] lotes = request.getParameterValues("loteVacina");
 		
 		try {
 			pessoa = PessoaDAO.getInstance().carregarPorCodigo(codPessoa);
@@ -65,20 +66,17 @@ public class AdmRegisterServlet extends HttpServlet {
 			ConsultaDAO.getInstance().inserir(consulta);
 			consulta.setCodigo(ConsultaDAO.getInstance().carregarCodigoPorConsulta(consulta));
 			
-			for (int i = 1; i <= nVacinas; i++) {
+			for (int i = 0; i < vacinas.length; i++) {
 				Integer codVacina = null;
-				if (request.getParameter("vacina" + i) != null) {
-					codVacina = Integer.parseInt(request.getParameter("vacina" + i));
-				}
-				if (codVacina != null) {
-					Vacina vacina = VacinaDAO.getInstance().carregarPorCodigo(codVacina);
-					String strDataVacina = request.getParameter("dataVacina" + i);
-					Date dataVacina = df.parse(strDataVacina);
-					String lote = request.getParameter("loteVacina" + i);
+				codVacina = Integer.parseInt(vacinas[i]);
+				Vacina vacina = VacinaDAO.getInstance().carregarPorCodigo(codVacina);
+				String strDataVacina = datas[i];
+				Date dataVacina = df.parse(strDataVacina);
+				String lote = lotes[i];
 					
-					Registro registro = new Registro(pessoa, vacina, consulta, dataVacina, lote, true);
-					RegistroDAO.getInstance().inserir(registro);
-				}
+				Registro registro = new Registro(pessoa, vacina, consulta, dataVacina, lote, true);
+				RegistroDAO.getInstance().inserir(registro);
+			
 			}
 			
 		} catch (ClassNotFoundException e) {

@@ -28,7 +28,7 @@
 						<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 							<i class="fa fa-search"></i>
 						</a><br/>
-						<label id="infoBusca"></label>
+						<label class="w3-small w3-text-red" id="infoBusca"></label>
 					</div>
 				</div>
 				<hr />

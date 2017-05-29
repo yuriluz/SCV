@@ -34,7 +34,7 @@
 						<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 							<i class="fa fa-search"></i>
 						</a><br/>
-						<label id="infoBusca"></label>
+						<label class="w3-small w3-text-red" id="infoBusca"></label>
 					</div>
 				</div>
 				<hr />
@@ -42,11 +42,11 @@
 					<input type="hidden" name="codGer" value=<%=gerente.getCodigo()%>>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=gerente.getNome()%>">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=gerente.getNome()%>" required>
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="<%=gerente.getMatricula()%>">
+							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="<%=gerente.getMatricula()%>" required>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-large">
@@ -66,7 +66,7 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=df.format(gerente.getDataNascimento())%>">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=df.format(gerente.getDataNascimento())%>" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -78,16 +78,16 @@
 						</div>
 					
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=gerente.getNaturalidade()%>">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=gerente.getNaturalidade()%>" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=gerente.getNacionalidade()%>">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=gerente.getNacionalidade()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=gerente.getCpf()%>">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=gerente.getCpf()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -100,16 +100,16 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=gerente.getDocumento()%>">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=gerente.getDocumento()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=gerente.getEmissor()%>">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=gerente.getEmissor()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=gerente.getLogradouro()%>">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=gerente.getLogradouro()%>" required>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
@@ -117,12 +117,12 @@
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=gerente.getCep()%>">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=gerente.getCep()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=gerente.getBairro()%>">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=gerente.getBairro()%>" required>
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
@@ -158,11 +158,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=gerente.getTelefone()%>">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=gerente.getTelefone()%>" required>
 						</div>
 
 						<div class="w3-col m5 l6 w3-padding-small">
-							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="<%=gerente.getEmail()%>">
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="<%=gerente.getEmail()%>" required>
 						</div>
 						
 						<div class="w3-col m3 l2 w3-padding-large">
@@ -197,11 +197,11 @@
 					<input type="hidden" name="codGer" value="">
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="" required>
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="">
+							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="" required>
 						</div>
 						
 						<div class="w3-col m4 l4 w3-padding-large">
@@ -221,7 +221,7 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -233,16 +233,16 @@
 						</div>
 					
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -255,16 +255,16 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="" required>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
@@ -272,12 +272,12 @@
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="" required>
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
@@ -304,11 +304,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="" required>
 						</div>
 
 						<div class="w3-col m5 l6 w3-padding-small">
-							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="">
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="" required>
 						</div>
 						
 						<div class="w3-col m3 l2 w3-padding-large">

@@ -8,8 +8,13 @@
 
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="./resources/styles/style.css">
+<link rel="stylesheet" href="./resources/styles/validation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="./resources/scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="./resources/scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./resources/scripts/validation.js" type="text/javascript"></script>
 
 <meta name="description" content="Página inicial do Sistema de Controle de Vacinação">
 <meta name="author" content="Yuri Luz">
@@ -48,10 +53,10 @@
 					</div>
 					<div>
 						<p>
-							<input class="w3-input w3-border" type="text" id="email" name="email" placeholder="E-mail de acesso" autocomplete="off" required>
+							<input class="w3-input w3-border" type="text" id="email" name="email" placeholder="E-mail de acesso" autocomplete="off">
 						</p>
 						<p>
-							<input class="w3-input w3-border" type="password" id="senha" name="senha" placeholder="Senha de acesso" autocomplete="off" required>
+							<input class="w3-input w3-border" type="password" id="senha" name="senha" placeholder="Senha de acesso" autocomplete="off">
 						</p>
 					</div>
 					<div class="w3-center">
@@ -73,6 +78,9 @@
 					<% } else { %>
 						<hr/>
 						<p>
+							<a href="adm-registration.html" class="w3-button w3-white w3-border w3-hover-green">
+								CADASTRE-SE
+							</a>
 							<a href="password.jsp?t=A" class="w3-button w3-white w3-border w3-hover-yellow">
 								RECUPERAR SENHA
 							</a>

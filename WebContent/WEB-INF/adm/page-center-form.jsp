@@ -41,32 +41,32 @@
 					<input type="hidden" id="codUser" name="codUser" value=<%=usuario.getCodigo() %>>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nome Fantasia</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=unidade.getNomeFantasia()%>">
+							<label><b>Nome Fantasia</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=unidade.getNomeFantasia()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Razão Social</b></label> <input class="w3-input" type="text" id="razao" name="razao" value="<%=unidade.getRazaoSocial()%>">
+							<label><b>Razão Social</b></label> <input class="w3-input" type="text" id="razao" name="razao" value="<%=unidade.getRazaoSocial()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CNES</b></label> <input class="w3-input" type="text" id="cnes" name="cnes" value="<%=unidade.getCnes()%>">
+							<label><b>CNES</b></label> <input class="w3-input" type="text" id="cnes" name="cnes" value="<%=unidade.getCnes()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CNPJ</b></label> <input class="w3-input" type="text" id="cnpj" name="cnpj" value="<%=unidade.getCnpj()%>">
+							<label><b>CNPJ</b></label> <input class="w3-input" type="text" id="cnpj" name="cnpj" value="<%=unidade.getCnpj()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=unidade.getLogradouro()%>">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=unidade.getLogradouro()%>" required>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=unidade.getBairro()%>">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=unidade.getBairro()%>" required>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=unidade.getCep()%>">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=unidade.getCep()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
@@ -101,7 +101,7 @@
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=unidade.getTelefone()%>">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=unidade.getTelefone()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">

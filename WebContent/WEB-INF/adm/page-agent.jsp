@@ -19,12 +19,16 @@
 
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="./resources/styles/style.css">
+<link rel="stylesheet" href="./resources/styles/validation.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<script src="./resources/scripts/jquery-1.12.4.js"></script>
+<script src="./resources/scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="./resources/scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./resources/scripts/validation.js" type="text/javascript"></script>
 <script src="./resources/scripts/jquery-ui.js"></script>
+<script src="./resources/scripts/calendar.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -107,8 +111,8 @@ $(document).ready(function() {
 						<input id="searchPessoa" class="w3-padding w3-section w3-border" style="width:80%;" type="text" placeholder="Matrícula, CPF ou Documento de Identificação" autocomplete="off">
 						<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 							<i class="fa fa-search"></i>
-						</a>
-						<label id="infoBusca"></label>
+						</a><br/>
+						<label class="w3-small w3-text-red" id="infoBusca"></label>
 					</div>
 				</div>
 				<hr />
@@ -248,6 +252,22 @@ $(document).ready(function() {
 		</div>
 		
 	<script src="./resources/scripts/navigation.js"></script>
-	
+	<script>
+		$('body').on('focus',"#dtNascimento", function(){
+		    $(this).datepicker({
+		    	dateFormat: 'dd/mm/yy',
+		        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+		        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+		        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+		        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+		        showButtonPanel:true,
+		        maxDate: new Date,
+		        dateFormat: 'dd/mm/yy',
+		        changeMonth: true,
+		        changeYear: true
+		    });
+		});
+	</script>
 </body>
 </html>

@@ -32,11 +32,10 @@ public class NewAdmServlet extends HttpServlet {
 			UsuarioDAO.getInstance().inserir(usuario);
 			
 		} catch (ClassNotFoundException | DAOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					request.getRequestDispatcher("adm-registration.html").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("adm-registration.html").forward(request, response);
+		request.getRequestDispatcher("/adm-access.jsp?t=2").forward(request, response);
 		
 	}
 

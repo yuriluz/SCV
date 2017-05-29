@@ -40,7 +40,7 @@
 						<a id="searchButton" class="w3-button w3-white w3-border w3-hover-blue">
 							<i class="fa fa-search"></i>
 						</a><br/>
-						<label id="infoBusca"></label>
+						<label class="w3-small w3-text-red" id="infoBusca"></label>
 					</div>
 				</div>
 				<hr />
@@ -49,15 +49,15 @@
 					<input type="hidden" name="codUni" value=<%=unidade.getCodigo()%>>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=vacinador.getNome()%>">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="<%=vacinador.getNome()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="<%=vacinador.getMatricula()%>">
+							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="<%=vacinador.getMatricula()%>" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=df.format(vacinador.getDataNascimento())%>">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="<%=df.format(vacinador.getDataNascimento())%>" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -70,11 +70,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=vacinador.getNaturalidade()%>">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="<%=vacinador.getNaturalidade()%>" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=vacinador.getNacionalidade()%>">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="<%=vacinador.getNacionalidade()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -91,7 +91,7 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=vacinador.getCpf()%>">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="<%=vacinador.getCpf()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -104,16 +104,16 @@
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=vacinador.getDocumento()%>">
+							<label><b>Número do Documento</b></label> <input class="w3-input" type="text" id="documento" name="documento" value="<%=vacinador.getDocumento()%>" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=vacinador.getEmissor()%>">
+							<label><b>Órgão Emissor</b></label> <input class="w3-input" type="text" id="emissor" name="emissor" value="<%=vacinador.getEmissor()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=vacinador.getLogradouro()%>">
+							<label><b>Endereço</b></label> <input class="w3-input" type="text" id="endereco" name="endereco" value="<%=vacinador.getLogradouro()%>" required>
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
@@ -121,12 +121,12 @@
 						</div>
 
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=vacinador.getCep()%>">
+							<label><b>CEP</b></label> <input class="w3-input" type="text" id="cep" name="cep" value="<%=vacinador.getCep()%>" required>
 						</div>
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=vacinador.getBairro()%>">
+							<label><b>Bairro</b></label> <input class="w3-input" type="text" id="bairro" name="bairro" value="<%=vacinador.getBairro()%>" required>
 						</div>
 					
 						<div class="w3-col m4 l4 w3-padding-large">
@@ -162,11 +162,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m4 l4 w3-padding-small">
-							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=vacinador.getTelefone()%>">
+							<label><b>Telefone</b></label> <input class="w3-input" type="text" id="telefone" name="telefone" value="<%=vacinador.getTelefone()%>" required>
 						</div>
 
 						<div class="w3-col m5 l6 w3-padding-small">
-							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="<%=vacinador.getEmail()%>">
+							<label><b>E-mail</b></label> <input class="w3-input" type="text" id="email" name="email" value="<%=vacinador.getEmail()%>" required>
 						</div>
 						
 						<div class="w3-col m3 l2 w3-padding-large">
@@ -204,15 +204,15 @@
 					<input type="hidden" name="codUni" value=<%=unidade.getCodigo()%>>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="">
+							<label><b>Nome</b></label> <input class="w3-input" type="text" id="nome" name="nome" value="" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="">
+							<label><b>Matrícula</b></label> <input class="w3-input" type="text" id="matricula" name="matricula" value="" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="">
+							<label><b>Data de Nascimento</b></label> <input class="w3-input" type="text" id="dtNascimento" name="dtNascimento" value="" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -225,11 +225,11 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="">
+							<label><b>Naturalidade</b></label> <input class="w3-input" type="text" id="naturalidade" name="naturalidade" value="" required>
 						</div>
 
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="">
+							<label><b>Nacionalidade</b></label> <input class="w3-input" type="text" id="nacionalidade" name="nacionalidade" value="" required>
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
@@ -246,7 +246,7 @@
 					</div>
 					<div class="w3-row">
 						<div class="w3-col m6 l3 w3-padding-small">
-							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="">
+							<label><b>CPF</b></label> <input class="w3-input" type="text" id="cpf" name="cpf" value="" >
 						</div>
 						
 						<div class="w3-col m6 l3 w3-padding-large">
