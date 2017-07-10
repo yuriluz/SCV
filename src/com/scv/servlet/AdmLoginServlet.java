@@ -1,6 +1,8 @@
 package com.scv.servlet;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +20,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class AdmLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(AdmLoginServlet.class.getName());
        
     public AdmLoginServlet() {
         super();
@@ -28,15 +31,17 @@ public class AdmLoginServlet extends HttpServlet {
 		
 		String email;
 		String senha;
+		String tipo;
 		Usuario usuario = new Usuario();
 		HttpSession session = request.getSession();
 		
 		try {
 			email = request.getParameter("email");
 			senha = request.getParameter("senha");
+			tipo = request.getParameter("tipo");
 			usuario = UsuarioDAO.getInstance().validarAcesso(email, senha);
 			if (usuario.getEmail() == null) {
-				request.getRequestDispatcher("/adm-access.jsp?t=2").forward(request, response);
+				request.getRequestDispatcher("/adm-access.jsp?t=".concat(tipo).concat("&sucesso=0")).forward(request, response);
 			} else {
 				session.setAttribute("login", usuario);
 				if (usuario.getTipo().equals(Usuario.TipoUsuario.GERENTE)){
@@ -53,9 +58,11 @@ public class AdmLoginServlet extends HttpServlet {
 				request.getRequestDispatcher("WEB-INF/home/adm-home.jsp").forward(request, response);
 			}
 		} catch (DAOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		}	
 		
 	}

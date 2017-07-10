@@ -62,6 +62,20 @@ public class RegistroDAOTest {
 	}
 	
 	@Test
+	public void testCarregarEmDiaPorPessoa() throws ClassNotFoundException, DAOException {
+		ArrayList<Registro> registros = new ArrayList<Registro>();
+		Pessoa pessoa = PessoaDAO.getInstance().carregarPorCodigo(1);
+		
+		try {
+			registros = (ArrayList<Registro>) RegistroDAO.getInstance().carregarPorPessoa(pessoa);
+		} catch (DAOException e) {
+			fail("RegistroDAO: Falha do teste de carregarPorCodigo()");
+		}
+		
+		assertNotNull(registros);
+	}
+	
+	@Test
 	public void testCarregarNumeroDaUltimaDose() throws ClassNotFoundException {
 		Pessoa pessoa = new Pessoa();
 		Vacina vacina = new Vacina();

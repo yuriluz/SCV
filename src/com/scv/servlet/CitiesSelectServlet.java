@@ -1,6 +1,8 @@
 package com.scv.servlet;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class CitiesSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(CitiesSelectServlet.class.getName());
        
     public CitiesSelectServlet() {
         super();
@@ -28,8 +31,8 @@ public class CitiesSelectServlet extends HttpServlet {
 		try {
 			estado = EstadoDAO.getInstance().carregarPorCodigo(Integer.parseInt(estadoId));
 		} catch (NumberFormatException | ClassNotFoundException | DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		}
 		
 		if (!(estado.getCodigo() == null)) {

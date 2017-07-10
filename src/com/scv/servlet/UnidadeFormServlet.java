@@ -1,6 +1,8 @@
 package com.scv.servlet;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class UnidadeFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(UnidadeFormServlet.class.getName());
        
     public UnidadeFormServlet() {
         super();
@@ -28,8 +31,8 @@ public class UnidadeFormServlet extends HttpServlet {
 			codigo = Integer.parseInt(request.getParameter("unidade"));
 			unidade = UnidadeDAO.getInstance().carregarPorCodigo(codigo);
 		} catch (NumberFormatException | ClassNotFoundException | DAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		}
 		
 		request.setAttribute("unidade", unidade);

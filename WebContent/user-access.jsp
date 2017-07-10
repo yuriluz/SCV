@@ -20,6 +20,15 @@
 <meta name="author" content="Yuri Luz">
 </head>
 <body class="w3-light-grey">
+
+	<%
+		String sucesso = request.getParameter("sucesso");
+		
+		if (sucesso == null) {
+			sucesso = "";
+		}
+	%>
+
 	<div id="menu">
 		<ul class="w3-navbar w3-white w3-card-2" id="myNavbar">
 			<li><b><a class="w3-large w3-wide">SCV</a></b></li>
@@ -40,6 +49,9 @@
 				<form method="POST" class="w3-container" id="loginForm" name="loginForm" action="/userLogin">
 					<div>
 						<h6 class="w3-center">Informe seus dados</h6>
+						<% if (sucesso.equals("0")) { %>
+						<label class="w3-small w3-text-red" id="mensagem">Login e/ou senha inválidos!</label>
+						<% } %>
 					</div>
 					<div>
 						<p>
@@ -59,9 +71,6 @@
 						<p>
 							<a href="user-registration.jsp" class="w3-button w3-white w3-border w3-hover-green">
 								CRIAR CONTA
-							</a>
-							<a href="password.jsp?t=U" class="w3-button w3-white w3-border w3-hover-yellow">
-								ESQUECI MINHA SENHA
 							</a>
 						</p>
 					</div>

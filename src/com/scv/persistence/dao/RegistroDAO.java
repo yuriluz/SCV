@@ -214,6 +214,34 @@ public class RegistroDAO extends BaseDAO{
         }
         return registros;
 	}
+	
+	public List<Registro> carregarEmDiaPorPessoa(Pessoa pessoa) throws DAOException, ClassNotFoundException {
+		List<Registro> registros = new ArrayList<Registro>();
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM registro_reg WHERE reg_codpes = ? AND reg_dtvalidade > CURRENT_DATE()";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, pessoa.getCodigo());
+            res = pstmt.executeQuery();
+            while (res.next()) {
+                Registro registro = gerarRegistro(res);
+                registros.add(registro);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava os registros da pessoa (" + pessoa.getCodigo().toString() + ")";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return registros;
+	}
 
 	private Registro gerarRegistro(ResultSet res) throws SQLException, DAOException, ClassNotFoundException {
 		Registro registro = new Registro();

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.scv.entities.enums.Sexo;
 import com.scv.javabean.Vacina;
 import com.scv.persistence.exception.DAOException;
 
@@ -144,6 +145,39 @@ public class VacinaDAO extends BaseDAO{
             close(con, pstmt, res);
         }
         return vacina;
+	}
+	
+	public List<Vacina> carregarPorSexoEIdade(Sexo sexo, Integer idade) throws DAOException, ClassNotFoundException {
+		List<Vacina> vacinas = new ArrayList<Vacina>();
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet res = null;
+        String query = "SELECT * FROM vacina_vcn WHERE (vcn_sexo = ? OR vcn_sexo IS NULL) AND (vcn_idademin <= ? AND vcn_idademax >= ?)";
+
+        try {
+            con = getConnection();
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, sexo.getValue());
+            pstmt.setInt(2, idade);
+            pstmt.setInt(3, idade);
+            
+            res = pstmt.executeQuery();
+            
+            while (res.next()) {
+                Vacina vacina = gerarVacina(res);
+                vacinas.add(vacina);
+            }
+            
+        } catch (SQLException e) {
+            String msg = "SQLException enquanto carregava a vacina por sexo e idade";
+            LOGGER.log(Level.SEVERE, msg, e);
+            throw new DAOException(msg, e);
+        } finally {
+            close(con, pstmt, res);
+        }
+        return vacinas;
 	}
 
 	private Vacina gerarVacina(ResultSet res) throws SQLException, DAOException {

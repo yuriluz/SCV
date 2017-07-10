@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +27,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class AdmVacinadorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(AdmVacinadorServlet.class.getName());
        
     public AdmVacinadorServlet() {
         super();
@@ -103,8 +106,8 @@ public class AdmVacinadorServlet extends HttpServlet {
 			}
 			
 		} catch (ClassNotFoundException | DAOException | ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		}
 		
 		request.getRequestDispatcher("WEB-INF/adm/page-agent.jsp").forward(request, response);

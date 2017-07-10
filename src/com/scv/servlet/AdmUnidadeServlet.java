@@ -1,6 +1,8 @@
 package com.scv.servlet;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class AdmUnidadeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(AdmUnidadeServlet.class.getName());
        
     public AdmUnidadeServlet() {
         super();
@@ -81,8 +84,8 @@ public class AdmUnidadeServlet extends HttpServlet {
 			}
 			
 		} catch (ClassNotFoundException | DAOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		}
 		
 		request.getRequestDispatcher("WEB-INF/adm/page-center.jsp").forward(request, response);

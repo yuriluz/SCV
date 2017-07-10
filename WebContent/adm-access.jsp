@@ -23,6 +23,15 @@
 
 	<%
 		String tipo = request.getParameter("t");
+		String sucesso = request.getParameter("sucesso");
+		
+		if (tipo == null) {
+			tipo = "";
+		}
+		
+		if (sucesso == null) {
+			sucesso = "";
+		}
 	%>
 	
 	<div id="menu">
@@ -48,8 +57,12 @@
 			</header>
 			<div class="w3-padding">
 				<form method="POST" class="w3-container" id="loginForm" name="loginForm" action="/admLogin">
+				<input type="hidden" name="tipo" value="<%=tipo%>">
 					<div>
 						<h6 class="w3-center">Informe seus dados</h6>
+						<% if (sucesso.equals("0")) { %>
+						<label class="w3-small w3-text-red" id="mensagem">Login e/ou senha inválidos!</label>
+						<% } %>
 					</div>
 					<div>
 						<p>
@@ -80,9 +93,6 @@
 						<p>
 							<a href="adm-registration.html" class="w3-button w3-white w3-border w3-hover-green">
 								CADASTRE-SE
-							</a>
-							<a href="password.jsp?t=A" class="w3-button w3-white w3-border w3-hover-yellow">
-								RECUPERAR SENHA
 							</a>
 						</p>
 					<% } %>

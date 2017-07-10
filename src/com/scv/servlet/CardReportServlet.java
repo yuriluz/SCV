@@ -3,6 +3,8 @@ package com.scv.servlet;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +32,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class CardReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(CardReportServlet.class.getName());
        
     public CardReportServlet() {
         super();
@@ -245,6 +248,13 @@ public class CardReportServlet extends HttpServlet {
             
             document.add(table);
             
+            if (tipoImpressao.equals("1")) {
+	            paragraph = new Paragraph("", fieldFont);
+	            paragraph.add(new Chunk("________________________________________________", textFont));
+	            paragraph.setSpacingBefore(24);
+	            document.add(paragraph);
+            }
+            
             document.close();
             
          // setting some response headers
@@ -262,7 +272,8 @@ public class CardReportServlet extends HttpServlet {
             os.flush();
             os.close();
         } catch (DocumentException | ClassNotFoundException | DAOException ex) {
-        	throw new IOException(ex.getMessage());
+        	LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+            request.getRequestDispatcher("erro.html").forward(request, response);
         } 
     }
 

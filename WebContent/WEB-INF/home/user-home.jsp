@@ -1,11 +1,15 @@
 <%@page import="com.scv.persistence.dao.PaisDAO"%>
 <%@page import="com.scv.persistence.dao.EstadoDAO"%>
 <%@page import="com.scv.persistence.dao.CidadeDAO"%>
+<%@page import="com.scv.persistence.dao.VacinaDAO"%>
+<%@page import="com.scv.persistence.dao.RegistroDAO"%>
 <%@page import="com.scv.javabean.Pessoa.Escolaridade"%>
 <%@page import="com.scv.entities.enums.Sexo"%>
 <%@page import="com.scv.javabean.Pessoa"%>
 <%@page import="com.scv.javabean.Estado"%>
 <%@page import="com.scv.javabean.Cidade"%>
+<%@page import="com.scv.javabean.Vacina"%>
+<%@page import="com.scv.javabean.Registro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -38,6 +42,7 @@
 		Pessoa usuario = (Pessoa) session.getAttribute("usuario");
 		String nome = usuario.getNome().substring(0, usuario.getNome().indexOf(" ")).toUpperCase();
 		Sexo genero = usuario.getSexo();
+		Integer idade = usuario.getIdade();
 		Escolaridade escolaridade = usuario.getEscolaridade();
 		Estado estado = usuario.getEstado();
 		Cidade cidade = usuario.getCidade();
@@ -46,6 +51,26 @@
 			msg = "SEJA BEM VINDO,";
 		} else if (genero.getValue().equals("F")) {
 			msg = "SEJA BEM VINDA,";
+		}
+		
+		List<Vacina> vacinas = VacinaDAO.getInstance().carregarPorSexoEIdade(genero, idade);
+		List<Vacina> alertaVacinas = new ArrayList<Vacina>();
+		List<Registro> registros = RegistroDAO.getInstance().carregarEmDiaPorPessoa(usuario);
+		List<Integer> codVacRegistro =  new ArrayList<Integer>();
+		
+		for (Registro registro : registros) {
+			codVacRegistro.add(registro.getVacina().getCodigo());
+		}
+		
+		for (Vacina vacina : vacinas) {
+			if (!codVacRegistro.contains(vacina.getCodigo())) {
+				alertaVacinas.add(vacina);
+			} else {
+				Integer maxDose = RegistroDAO.getInstance().carregarNumeroDaUltimaDose(usuario, vacina);
+				if (vacina.getNumeroDoses() != 0 && maxDose < vacina.getNumeroDoses()) {
+					alertaVacinas.add(vacina);
+				}
+			}
 		}
 	%>
 
@@ -68,6 +93,30 @@
 		</div>
 
 	</div>
+	
+	<% if (!alertaVacinas.isEmpty()) { %>
+		<div id="popup" class="w3-modal">
+			<div class="w3-modal-content w3-animate-bottom">
+				<header class="w3-container w3-yellow"> 
+        			<span onclick="document.getElementById('popup').style.display='none'" class="w3-button w3-display-topright w3-yellow"><i class="fa fa-close"></i></span>
+        			<h4>Aviso de Vacinação</h4>
+      			</header>
+				<div class="w3-container">
+			      	<h5>Atenção, você precisa receber a primeira dose ou reforço da(s) seguinte(s) vacina(s):</h5>
+			      	<ul>
+			      	<% for (Vacina alerta : alertaVacinas) { %>
+			      		<li><%=alerta.getNome()%>: <%=alerta.getDescricao()%></li>
+			      	<% } %>
+			      	</ul>
+			    </div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				document.getElementById("popup").style.display="block";
+			});
+		</script>
+	<% } %>
 	
 	<script src="./resources/scripts/navigation.js"></script>
 

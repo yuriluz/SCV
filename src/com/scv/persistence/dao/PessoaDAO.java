@@ -1,6 +1,7 @@
 package com.scv.persistence.dao;
 
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,8 +48,16 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setString(3, pessoa.getSexo().getValue());
 	        pstmt.setString(4, pessoa.getNacionalidade());
 	        pstmt.setString(5, pessoa.getNaturalidade());
-	        pstmt.setString(6, pessoa.getCpf());
-	        pstmt.setString(7, pessoa.getDocumento());
+	        if (pessoa.getCpf().equals("")) {
+	        	pstmt.setNull(6, Types.INTEGER);
+	        } else {
+	        	pstmt.setString(6, pessoa.getCpf());
+	        }
+	        if (pessoa.getDocumento().equals("")) {
+	        	pstmt.setNull(7, Types.INTEGER);
+	        } else {
+	        	pstmt.setString(7, pessoa.getDocumento());
+	        }
 	        pstmt.setInt(8, pessoa.getTipoDocumento().getValue());
 	        pstmt.setString(9, pessoa.getEmissor());
 	        pstmt.setDate(10, new java.sql.Date(pessoa.getDataNascimento().getTime()));
@@ -91,8 +100,16 @@ public class PessoaDAO extends BaseDAO{
 	        pstmt.setString(2, pessoa.getSexo().getValue());
 	        pstmt.setString(3, pessoa.getNacionalidade());
 	        pstmt.setString(4, pessoa.getNaturalidade());
-	        pstmt.setString(5, pessoa.getCpf());
-	        pstmt.setString(6, pessoa.getDocumento());
+	        if (pessoa.getCpf().equals("")) {
+	        	pstmt.setNull(5, Types.INTEGER);
+	        } else {
+	        	pstmt.setString(5, pessoa.getCpf());
+	        }
+	        if (pessoa.getDocumento().equals("")) {
+	        	pstmt.setNull(6, Types.INTEGER);
+	        } else {
+	        	pstmt.setString(6, pessoa.getDocumento());
+	        }
 	        pstmt.setInt(7, pessoa.getTipoDocumento().getValue());
 	        pstmt.setString(8, pessoa.getEmissor());
 	        pstmt.setDate(9, new java.sql.Date(pessoa.getDataNascimento().getTime()));

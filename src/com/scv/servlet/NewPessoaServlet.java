@@ -54,18 +54,18 @@ public class NewPessoaServlet extends HttpServlet {
 			String cep = request.getParameter("cep");
 			String senha = request.getParameter("senha1");
 			
+			
 			Pessoa pessoa = new Pessoa(nome, sexo, nacionalidade, naturalidade, cpf, documento, 
 						tipoDocumento, emissor, dataNascimento, escolaridade, telefone, email, logradouro, 
 						complemento, bairro, cidade, estado, cep, senha);
-			
+				
 			PessoaDAO.getInstance().inserir(pessoa);
+			request.getRequestDispatcher("user-registration.jsp?sucesso=1").forward(request, response);
+
 			
 		} catch (ClassNotFoundException | DAOException | ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			request.getRequestDispatcher("user-registration.jsp?sucesso=0").forward(request, response);
 		}
-		
-		request.getRequestDispatcher("user-registration.jsp").forward(request, response);
 		
 	}
 

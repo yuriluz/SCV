@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
+import com.scv.entities.enums.Sexo;
 import com.scv.javabean.Vacina;
 import com.scv.persistence.dao.VacinaDAO;
 import com.scv.persistence.exception.DAOException;
@@ -18,7 +18,7 @@ public class VacinaDAOTest {
 		assertNotNull(VacinaDAO.getInstance());
 	}
 
-	@Ignore
+	@Test
 	public void testCarregarTodos() throws ClassNotFoundException {
 		ArrayList<Vacina> vacinas = new ArrayList<Vacina>();
 		
@@ -42,6 +42,19 @@ public class VacinaDAOTest {
 		}
 		
 		assertNotNull(vacina);
+	}
+	
+	@Test
+	public void testCarregarPorSexoEIdade() throws ClassNotFoundException {
+		ArrayList<Vacina> vacinas = new ArrayList<Vacina>();
+		
+		try {
+			vacinas = (ArrayList<Vacina>) VacinaDAO.getInstance().carregarPorSexoEIdade(Sexo.MASCULINO, 25);
+		} catch (DAOException e) {
+			fail("VacinaDAO: Falha do teste de carregarPorSexoEIdade()");
+		}
+		
+		assertNotNull(vacinas);
 	}
 
 }

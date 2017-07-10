@@ -78,6 +78,14 @@ $(document).ready(function() {
 </head>
 <body class="w3-white">
 
+	<%
+		String sucesso = request.getParameter("sucesso");
+		
+		if (sucesso == null) {
+			sucesso = "";
+		}
+	%>
+
 	<div id="menu">
 		<ul class="w3-navbar w3-white w3-card-2" id="myNavbar">
 			<li><b><a class="w3-large w3-wide">SCV</a></b></li>
@@ -228,6 +236,40 @@ $(document).ready(function() {
 				</form>
 			</div>
 		</div>
+		
+		<% if (sucesso.equals("0")) { %>
+		<div id="popup" class="w3-modal">
+			<div class="w3-modal-content w3-animate-bottom">
+				<header class="w3-container w3-red"> 
+        			<span onclick="document.getElementById('popup').style.display='none'" class="w3-button w3-display-topright w3-red"><i class="fa fa-close"></i></span>
+        			<h4>Ops, houve um problema</h4>
+      			</header>
+				<div class="w3-container">
+			      	<h5>Por favor, confira os dados e tente novamente</h5>
+			    </div>
+			</div>
+		</div>
+		<% } else if (sucesso.equals("1")) { %>
+		<div id="popup" class="w3-modal">
+			<div class="w3-modal-content w3-animate-bottom">
+				<header class="w3-container w3-blue"> 
+        			<span onclick="document.getElementById('popup').style.display='none'" class="w3-button w3-display-topright w3-blue"><i class="fa fa-close"></i></span>
+        			<h4>Cadastro realizado com sucesso!</h4>
+      			</header>
+				<div class="w3-container">
+			      	<h4>Faça seu login na página de acesso!</h4>
+			    </div>
+			</div>
+		</div>
+		<% } %>
+		
+		<% if (!sucesso.equals("")) { %>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				document.getElementById("popup").style.display="block";
+			});
+		</script>
+		<% } %>
 		
 	<script src="./resources/scripts/navigation.js"></script>
 	

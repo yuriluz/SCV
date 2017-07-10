@@ -1,6 +1,8 @@
 package com.scv.servlet;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,7 @@ import com.scv.persistence.exception.DAOException;
 
 public class UserLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger LOGGER = Logger.getLogger(UserLoginServlet.class.getName());
        
     public UserLoginServlet() {
         super();
@@ -32,15 +35,17 @@ public class UserLoginServlet extends HttpServlet {
 			senha = request.getParameter("senha");
 			pessoa = PessoaDAO.getInstance().validarAcesso(documento, senha);
 			if (pessoa.getCodigo() == null) {
-				request.getRequestDispatcher("user-access.html").forward(request, response);
+				request.getRequestDispatcher("user-access.jsp?sucesso=0").forward(request, response);
 			} else {
 				session.setAttribute("usuario", pessoa);
 				request.getRequestDispatcher("WEB-INF/home/user-home.jsp").forward(request, response);
 			}
 		} catch (DAOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
+            request.getRequestDispatcher("erro.html").forward(request, response);
 		}
 		
 		
@@ -53,7 +58,7 @@ public class UserLoginServlet extends HttpServlet {
 		
 		pessoa = (Pessoa) session.getAttribute("usuario");
 		if (pessoa.getCodigo() == null) {
-			request.getRequestDispatcher("user-access.html").forward(request, response);
+			request.getRequestDispatcher("user-access.jsp?sucesso=0").forward(request, response);
 		} else {
 			request.getRequestDispatcher("WEB-INF/home/user-home.jsp").forward(request, response);
 		}
