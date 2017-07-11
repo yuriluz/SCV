@@ -86,6 +86,9 @@ $(document).ready(function() {
 			case PASSAPORTE:
 				tipoDoc = "Passaporte";
 				break;
+			case CERTIDAO:
+				tipoDoc = "Certidão de Nascimento";
+				break;
 			}
 			nDoc = usuario.getDocumento();
 		} else {
@@ -113,7 +116,7 @@ $(document).ready(function() {
 									for (Registro r : registros) {
 								%>
 									<tr>
-										<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td class="w3-hide-medium w3-hide-small"><%=r.getConsulta().getVacinador().getNome() == null ? (r.getVerificado() ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : "Ainda não verificado") : r.getConsulta().getVacinador().getNome() %></td><td class="w3-hide-medium w3-hide-small"><%=r.getLote()%></td><td class="w3-hide-medium w3-hide-small"><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
+										<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td class="w3-hide-medium w3-hide-small"><%=r.getConsulta().getVacinador().getNome() == null ? (r.getVerificado() ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : "Ainda não verificado") : r.getConsulta().getVacinador().getNome() %></td><td class="w3-hide-medium w3-hide-small"><%=r.getLote()%></td><td class="w3-hide-medium w3-hide-small"><%=r.getVacina().getValidade() > 0 ? df.format(r.getDataValidade()) : "" %></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
 									</tr>
 								<%
 									}

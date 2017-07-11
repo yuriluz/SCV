@@ -84,9 +84,6 @@
 							<a href="first-access.html" class="w3-button w3-white w3-border w3-hover-green">
 								PRIMEIRO ACESSO
 							</a>
-							<a href="password.jsp?t=A" class="w3-button w3-white w3-border w3-hover-yellow">
-								RECUPERAR SENHA
-							</a>
 						</p>
 					<% } else { %>
 						<hr/>

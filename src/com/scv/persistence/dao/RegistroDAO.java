@@ -193,7 +193,7 @@ public class RegistroDAO extends BaseDAO{
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "SELECT * FROM registro_reg WHERE reg_codpes = ?";
+        String query = "SELECT * FROM registro_reg WHERE reg_codpes = ? ORDER BY reg_dtvacina";
 
         try {
             con = getConnection();
@@ -221,7 +221,7 @@ public class RegistroDAO extends BaseDAO{
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet res = null;
-        String query = "SELECT * FROM registro_reg WHERE reg_codpes = ? AND reg_dtvalidade > CURRENT_DATE()";
+        String query = "SELECT * FROM registro_reg WHERE reg_codpes = ?";
 
         try {
             con = getConnection();

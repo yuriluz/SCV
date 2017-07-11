@@ -39,7 +39,6 @@
 							<label>Gênero</label> <select class="w3-input" id="genero" name="genero">
 								<option value="M" <%if (genero.getValue().equals("M")) {%> selected <%}%>>Masculino</option>
 								<option value="F" <%if (genero.getValue().equals("F")) {%> selected <%}%>>Feminino</option>
-								<option value="O" <%if (genero.getValue().equals("O")) {%> selected <%}%>>Outro</option>
 							</select>
 						</div>
 

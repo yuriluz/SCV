@@ -77,6 +77,9 @@ public class CardReportServlet extends HttpServlet {
     			case PASSAPORTE:
     				tipoDoc = "Passaporte";
     				break;
+    			case CERTIDAO:
+    				tipoDoc = "Certidão de Nascimento";
+    				break;
     			}
     			nDoc = pessoa.getDocumento();
     			emissor = " - " + pessoa.getEmissor();
@@ -229,7 +232,7 @@ public class CardReportServlet extends HttpServlet {
 	                cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	                cell.setPadding(5f);
 	                table.addCell(cell);
-	                paragraph = new Paragraph(df.format(r.getDataValidade()), textFont);
+	                paragraph = new Paragraph(r.getVacina().getValidade() > 0 ? df.format(r.getDataValidade()) : "", textFont);
 	                cell = new PdfPCell(paragraph);
 	                cell.setBorder(PdfPCell.BOTTOM | PdfPCell.TOP);
 	                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

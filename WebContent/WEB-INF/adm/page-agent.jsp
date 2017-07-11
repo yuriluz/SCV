@@ -136,7 +136,6 @@ $(document).ready(function() {
 							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero">
 								<option value="M">Masculino</option>
 								<option value="F">Feminino</option>
-								<option value="O">Outro</option>
 							</select>
 						</div>
 					</div>
@@ -172,6 +171,7 @@ $(document).ready(function() {
 								<option value="2">Passaporte</option>
 								<option value="3">CNH</option>
 								<option value="4">CTPS</option>
+								<option value="5">Certidão de Nascimento</option>
 							</select>
 						</div>
 

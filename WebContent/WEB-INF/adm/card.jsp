@@ -45,6 +45,9 @@
 			case PASSAPORTE:
 				tipoDoc = "Passaporte";
 				break;
+			case CERTIDAO:
+				tipoDoc = "Certidão de Nascimento";
+				break;
 			}
 			nDoc = pessoa.getDocumento();
 		} else {
@@ -105,7 +108,7 @@
 										if (r.getVerificado()) {
 								%>
 										<tr>
-											<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td><%=r.getConsulta().getVacinador().getNome() == null ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : r.getConsulta().getVacinador().getNome() %></td><td><%=r.getLote()%></td><td><%=df.format(r.getDataValidade())%></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
+											<td><%=r.getVacina().getNome()%></td><td><%=df.format(r.getDataVacina())%></td><td><%=r.getConsulta().getVacinador().getNome() == null ? r.getVerificador().getNome() + " (verificado em " + df.format(r.getDataVerificacao()) + ")" : r.getConsulta().getVacinador().getNome() %></td><td><%=r.getLote()%></td><td><%=r.getVacina().getValidade() > 0 ? df.format(r.getDataValidade()) : "" %></td><td><%=r.getConsulta().getUnidade().getNomeFantasia()%></td>
 										</tr>
 								<%
 										}

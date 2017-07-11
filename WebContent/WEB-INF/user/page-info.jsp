@@ -135,7 +135,6 @@ $(document).ready(function() {
 							<label><b>Gênero</b></label> <select class="w3-input" id="genero" name="genero">
 								<option value="M" <%if (genero.getValue().equals("M")) {%> selected <%}%>>Masculino</option>
 								<option value="F" <%if (genero.getValue().equals("F")) {%> selected <%}%>>Feminino</option>
-								<option value="O" <%if (genero.getValue().equals("O")) {%> selected <%}%>>Outro</option>
 							</select>
 						</div>
 					</div>
@@ -169,6 +168,7 @@ $(document).ready(function() {
 								<option value="2" <%if (tipoDocumento.getValue().equals(2)) {%> selected <%}%>>Passaporte</option>
 								<option value="3" <%if (tipoDocumento.getValue().equals(3)) {%> selected <%}%>>CNH</option>
 								<option value="4" <%if (tipoDocumento.getValue().equals(4)) {%> selected <%}%>>CTPS</option>
+								<option value="5" <%if (tipoDocumento.getValue().equals(5)) {%> selected <%}%>>Certidão de Nascimento</option>
 							</select>
 						</div>
 

@@ -2,7 +2,7 @@ package com.scv.entities.enums;
 
 public enum TipoDocumento {
 
-	RG(1), PASSAPORTE(2), CNH(3), CTPS(4);
+	RG(1), PASSAPORTE(2), CNH(3), CTPS(4), CERTIDAO(5);
     private Integer value;
     
     private TipoDocumento(Integer value) {
